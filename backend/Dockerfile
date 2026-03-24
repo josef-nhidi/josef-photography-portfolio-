@@ -1,4 +1,4 @@
-FROM php:8.3-apache
+FROM php:8.4-apache
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -39,7 +39,7 @@ WORKDIR /var/www
 COPY . /var/www
 
 # Install production dependencies
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+RUN composer install --no-dev --optimize-autoloader --no-interaction --ignore-platform-req=php+
 
 # Copy start script
 COPY start.sh /usr/local/bin/start.sh
