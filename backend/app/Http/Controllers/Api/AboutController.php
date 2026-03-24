@@ -41,12 +41,40 @@ class AboutController extends Controller
         $about->social_links = $request->social_links;
 
         if ($request->hasFile('image')) {
-            if ($about->profile_image_url) {
-                $oldPath = str_replace('/storage/', '', $about->profile_image_url);
-                Storage::disk('public')->delete($oldPath);
+            $cloudName = env('CLOUDINARY_CLOUD_NAME');
+            $apiKey = env('CLOUDINARY_API_KEY');
+            $apiSecret = env('CLOUDINARY_API_SECRET');
+
+            if ($cloudName && $apiKey && $apiSecret) {
+                // --- UPLOAD TO CLOUDINARY ---
+                $timestamp = time();
+                $signature = sha1("timestamp={$timestamp}{$apiSecret}");
+                $url = "https://api.cloudinary.com/v1_1/{$cloudName}/image/upload";
+                
+                $ch = curl_init($url);
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, [
+                    'file' => new \CURLFile($request->file('image')->getRealPath()),
+                    'api_key' => $apiKey,
+                    'timestamp' => $timestamp,
+                    'signature' => $signature,
+                    'folder' => 'josef-about'
+                ]);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $response = json_decode(curl_exec($ch), true);
+                curl_close($ch);
+
+                if (isset($response['secure_url'])) {
+                    $about->profile_image_url = $response['secure_url'];
+                }
+            } else {
+                // --- LOCAL STORAGE ---
+                if ($about->profile_image_url && !str_starts_with($about->profile_image_url, 'http')) {
+                    Storage::disk('public')->delete($about->profile_image_url);
+                }
+                $path = $request->file('image')->store('about', 'public');
+                $about->profile_image_url = $path;
             }
-            $path = $request->file('image')->store('about', 'public');
-            $about->profile_image_url = Storage::url($path);
         }
 
         $about->save();

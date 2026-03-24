@@ -28,33 +28,66 @@ class PhotoController extends Controller
             'title' => 'nullable|string',
         ]);
 
-        // Native GD WebP Conversion & Scalable Watermarking
+        // Native GD WebP Conversion
         $imageString = file_get_contents($request->file('image')->getRealPath());
         $image = @\imagecreatefromstring($imageString);
         
+        $webpData = null;
         if ($image) {
-            $width = \imagesx($image);
-            $height = \imagesy($image);
-
-            // No watermark, just convert to WebP
             ob_start();
             \imagewebp($image, null, 80);
             $webpData = ob_get_clean();
             \imagedestroy($image);
+        } else {
+            $webpData = $imageString;
+        }
 
+        $cloudName = env('CLOUDINARY_CLOUD_NAME');
+        $apiKey = env('CLOUDINARY_API_KEY');
+        $apiSecret = env('CLOUDINARY_API_SECRET');
+
+        if ($cloudName && $apiKey && $apiSecret) {
+            // --- UPLOAD TO CLOUDINARY (For Render/Stateless Hosts) ---
+            $timestamp = time();
+            $signature = sha1("timestamp={$timestamp}{$apiSecret}");
+            
+            $url = "https://api.cloudinary.com/v1_1/{$cloudName}/image/upload";
+            $data = [
+                'file' => 'data:image/webp;base64,' . base64_encode($webpData),
+                'api_key' => $apiKey,
+                'timestamp' => $timestamp,
+                'signature' => $signature,
+                'folder' => 'josef-photography'
+            ];
+
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $response = json_decode(curl_exec($ch), true);
+            curl_close($ch);
+
+            $path = $response['secure_url'] ?? null;
+            if (!$path) throw new \Exception('Cloudinary upload failed');
+            
+            $photo = Photo::create([
+                'url' => $path,
+                'category' => $request->category,
+                'album_id' => $request->album_id,
+                'title' => $request->title,
+            ]);
+        } else {
+            // --- UPLOAD TO LOCAL STORAGE (Default) ---
             $filename = 'photos/' . uniqid() . '.webp';
             Storage::disk('public')->put($filename, $webpData);
-            $path = $filename;
-        } else {
-            // Fallback for non-GD compatible images
-            $path = $request->file('image')->store('photos', 'public');
+            
+            $photo = Photo::create([
+                'url' => $filename, // Model accessor handles the full URL
+                'category' => $request->category,
+                'album_id' => $request->album_id,
+                'title' => $request->title,
+            ]);
         }
-        $photo = Photo::create([
-            'url' => Storage::url($path),
-            'category' => $request->category,
-            'album_id' => $request->album_id,
-            'title' => $request->title,
-        ]);
 
         return response()->json($photo, 201);
     }
