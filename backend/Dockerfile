@@ -38,9 +38,13 @@ WORKDIR /var/www
 # Copy existing application
 COPY . /var/www
 
+# Copy start script
+COPY start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
+
 # Final permissions
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
-# Expose port 80
-EXPOSE 80
+# Start using the script
+CMD ["/usr/local/bin/start.sh"]
 
