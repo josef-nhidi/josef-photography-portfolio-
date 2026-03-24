@@ -1,0 +1,16 @@
+node_modules
+dist
+.env
+.env.local
+.DS_Store
+vendor
+storage/*.key
+.idea
+.vscode
+public/storage
+backend/storage/*.key
+backend/vendor
+backend/.env
+backend/public/storage
+backend/bootstrap/cache/*
+!backend/bootstrap/cache/.gitignore
