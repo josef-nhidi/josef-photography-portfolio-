@@ -38,6 +38,9 @@ WORKDIR /var/www
 # Copy existing application
 COPY . /var/www
 
+# Install production dependencies
+RUN composer install --no-dev --optimize-autoloader --no-interaction
+
 # Copy start script
 COPY start.sh /usr/local/bin/start.sh
 RUN chmod +x /usr/local/bin/start.sh
