@@ -18,12 +18,12 @@ const SEO = ({
     'Josef Nhidi, Youssef Nhidi, Nhidi, Josef, Youssef, photography, portrait photographer, event photographer, portfolio';
   
   const defaultImage = '/og-image.png'; 
-  const siteUrl = 'https://josefnhidi.com'; // Update to your actual domain
+  const siteUrl = settings?.site_url || 'https://josef-nhidi.vercel.app'; 
 
   const fullTitle = title ? `${title} | ${siteName}` : siteName;
   const metaDescription = description || defaultDescription;
   const metaKeywords = keywords || defaultKeywords;
-  const metaImage = image || `${siteUrl}${defaultImage}`;
+  const metaImage = image || (image?.startsWith('http') ? image : `${siteUrl}${defaultImage}`);
   const metaUrl = url ? `${siteUrl}${url}` : siteUrl;
 
   return (
