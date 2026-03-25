@@ -611,6 +611,19 @@ const AdminDashboard = ({ setIsAdmin }) => {
                     />
                     <small style={{ color: 'var(--muted)', marginTop: '0.5rem', display: 'block' }}>Get this from Google Search Console → Settings → Ownership Verification → HTML Tag.</small>
                   </div>
+                  <div style={{ marginTop: '1.5rem' }}>
+                    <label>Production Site URL (for Canonical Links)</label>
+                    <input 
+                      type="text" 
+                      value={customization.site_url || ''} 
+                      placeholder="e.g. https://josefnhidi.com"
+                      onChange={(e) => setCustomization({...customization, site_url: e.target.value})} 
+                      style={{ marginTop: '0.5rem' }} 
+                    />
+                    <p style={{ fontSize: '0.65rem', marginTop: '0.4rem', opacity: '0.7' }}>
+                      Google uses this to avoid "duplicate content" issues. Use <i>https://josef-nhidi.vercel.app</i> for now.
+                    </p>
+                  </div>
                 </div>
 
                 <button type="submit" className="save-btn" style={{ marginTop: '1rem', width: '100%' }}>Publish Site Appearance</button>
