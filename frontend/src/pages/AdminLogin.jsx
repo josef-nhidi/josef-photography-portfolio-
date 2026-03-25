@@ -15,12 +15,16 @@ const AdminLogin = ({ setIsAdmin }) => {
     setError('');
 
     try {
+      console.log('Attempting login to:', api.defaults.baseURL);
       const response = await api.post('/admin/login', { username, password });
       localStorage.setItem('admin_token', response.data.token);
       setIsAdmin(true);
       navigate('/admin/dashboard');
     } catch (err) {
-      setError('Invalid credentials.');
+      console.error('Login failed:', err);
+      const status = err.response?.status;
+      const message = err.response?.data?.message || 'Network error';
+      setError(`Login failed (${status || 'Network Error'}): ${message}`);
     } finally {
       setLoading(false);
     }
