@@ -2,8 +2,9 @@ import axios from 'axios';
 
 const getBaseURL = () => {
   const url = import.meta.env.VITE_API_URL || 'http://localhost:9001';
-  const cleanUrl = url.replace(/\/+$/, ''); // Remove any trailing slashes
-  return cleanUrl.endsWith('/api') ? cleanUrl : `${cleanUrl}/api`;
+  // Remove all trailing slashes and existing /api parts to start clean
+  const rootUrl = url.replace(/\/+$/, '').replace(/\/api$/, '');
+  return `${rootUrl}/api`;
 };
 
 const api = axios.create({
