@@ -57,6 +57,11 @@ jobs:
           sed -i 's|../vendor/autoload.php|./vendor/autoload.php|g' index.php
           sed -i 's|../bootstrap/app.php|./bootstrap/app.php|g' index.php
 
+      - name: Use Laravel server.php
+        working-directory: ./backend
+        run: |
+          cp server.php index.php
+
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v2
         with:
