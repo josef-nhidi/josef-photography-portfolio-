@@ -1,17 +1,13 @@
 #!/bin/bash
 
 # =============================================================================
-# Josef Photography — Azure Startup Script (Simplified)
+# Josef Photography — Azure Startup Script (Optimized)
 # =============================================================================
 
 echo "Starting Azure App Service initialization..."
 
-# 1. Detect PHP-FPM socket and Log it
-echo "Searching for PHP-FPM sockets for diagnosis..."
-find /var/run -name "*fpm.sock" -exec echo "FOUND_SOCKET: {}" \; >> /home/site/wwwroot/storage/logs/laravel.log 2>/dev/null || true
-
-# 2. Database Initialization
-echo "Initializing database directory and file..."
+# 1. Database Initialization
+echo "Initializing database..."
 mkdir -p /home/site/wwwroot/database
 DB_PATH="/home/site/wwwroot/database/database.sqlite"
 if [ ! -f "$DB_PATH" ]; then
@@ -19,33 +15,28 @@ if [ ! -f "$DB_PATH" ]; then
 fi
 chmod -R 777 /home/site/wwwroot/database
 
-# 3. Public Flattening Strategy
-echo "Flattening public folder to root..."
+# 2. Fast Symlink Strategy
+echo "Applying fast symlink mapping..."
 cd /home/site/wwwroot
-cp -rf public/* . 2>/dev/null || true
-cp -f public/index.php index.php
+# Link the entry point directly to root for instant access
+ln -snf public/index.php index.php
 
-# 3. Storage setup and broad permissions
-echo "Setting up storage directories..."
-cd /home/site/wwwroot
+# 3. Storage and Cache setup
+echo "Setting up storage..."
 mkdir -p storage/{app,framework,logs}
 mkdir -p storage/framework/{cache,sessions,views}
-mkdir -p storage/app/public/photos
 mkdir -p bootstrap/cache
 
-# Create Nginx log files if they don't exist
-touch storage/logs/nginx-error.log storage/logs/nginx-access.log
+# Fix permissions minimally and fast
+chmod -R 777 storage bootstrap/cache
 
-# Fix permissions across the entire root to rule out access issues
-echo "Applying permissive permissions..."
-chown -R www-data:www-data . 2>/dev/null || true
-chmod -R 777 . 2>/dev/null || true
+# 4. Run Laravel optimizations (if artisan exists)
+if [ -f "artisan" ]; then
+    echo "Running Laravel optimizations..."
+    php artisan storage:link --force 2>/dev/null || true
+    php artisan migrate --force 2>/dev/null || true
+    php artisan config:cache
+    php artisan route:cache
+fi
 
-# 4. Run Laravel optimizations
-echo "Running Laravel optimizations..."
-php artisan storage:link --force 2>/dev/null || true
-php artisan migrate --force 2>/dev/null || true
-php artisan config:cache
-php artisan route:cache
-
-echo "Initialization complete! Routing should now be active at /home/site/wwwroot"
+echo "Initialization complete! Container stabilized."
