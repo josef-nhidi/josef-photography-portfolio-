@@ -11,11 +11,10 @@ echo "Searching for PHP-FPM sockets for diagnosis..."
 find /var/run -name "*fpm.sock" -exec echo "FOUND_SOCKET: {}" \; >> /home/site/wwwroot/storage/logs/laravel.log 2>/dev/null || true
 
 # 2. Public Flattening Strategy
-# Since Azure's Nginx is ignoring DOCUMENT_ROOT, we move the public entry point to the root
 echo "Flattening public folder to root..."
-cp -rn public/* . 2>/dev/null || true
-# Ensure the index.php in the root is the one from public
-cp public/index.php index.php
+cd /home/site/wwwroot
+cp -rf public/* . 2>/dev/null || true
+cp -f public/index.php index.php
 
 # 3. Storage setup and aggressive permissions
 echo "Setting up storage directories..."
