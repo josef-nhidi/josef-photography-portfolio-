@@ -42,3 +42,4 @@ php artisan route:list > /home/site/wwwroot/storage/logs/audit.log 2>&1 || echo 
 
 echo "Initialization complete! Search storage/logs/audit.log for route list."
 Stabilization Trigger: Wed Apr 15 10:56:00 PM CET 2026
+Force Deploy: Wed Apr 15 11:11:35 PM CET 2026
