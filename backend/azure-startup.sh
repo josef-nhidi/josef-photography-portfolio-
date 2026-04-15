@@ -36,8 +36,9 @@ if [ -f "artisan" ]; then
     php artisan storage:link --force 2>/dev/null || true
     php artisan migrate --force 2>/dev/null || true
     php artisan config:cache
-    php artisan route:cache
-fi
+    # 5. Forensic Audit
+echo "Performing Forensic Route Audit..."
+php artisan route:list > /home/site/wwwroot/storage/logs/audit.log 2>&1 || echo "Audit Failed" > /home/site/wwwroot/storage/logs/audit.log
 
-echo "Initialization complete! Container stabilized."
+echo "Initialization complete! Search storage/logs/audit.log for route list."
 Stabilization Trigger: Wed Apr 15 10:56:00 PM CET 2026
