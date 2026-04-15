@@ -60,43 +60,39 @@ This project uses a high-performance, cost-effective split architecture. The fro
 
 ---
 
-### Step 2: Deploy the Frontend (Static Web App)
-1. Go to the [Azure Portal](https://portal.azure.com).
-2. Create a **Static Web App**.
-3. **Project Details**:
-   - name: `josef-photography-ui`
-   - Plan type: **Free**
-   - Azure Functions/Staging location: (Choose nearest region)
-4. **Deployment Details**:
-   - Source: **GitHub**
-   - Select your Organization, Repository, and Branch (`main`).
-5. **Build Details**:
-   - Build Presets: **React**
-   - App location: `/frontend`
-   - Api location: *(Leave empty)*
-   - Output location: `dist`
-6. Click **Review + Create**, then **Create**.
-7. Once created, go to **Custom domains** in the Sidebar and add `josefnhidi.me`. Follow Azure's instructions to verify ownership via CNAME.
+### Step 2: Deploy the Frontend (Vercel) — Cost: FREE
+1. Go to [Vercel.com](https://vercel.com) and sign in with GitHub.
+2. Click **Add New** → **Project**.
+3. Import your `josef-photography-portfolio-` repository.
+4. **Configure Project**:
+   - **Root Directory**: `frontend`
+   - **Framework Preset**: `Vite`
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+5. **Environment Variables**:
+   - Add `VITE_API_URL` = `https://api.josefnhidi.me/api`
+6. Click **Deploy**.
+7. Once deployed, add your custom domain `josefnhidi.me` in the Vercel project settings.
 
 ---
 
 ### Step 3: Deploy the Backend (App Service)
-1. In the Azure Portal, create a **Web App**.
+1. In the [Azure Portal](https://portal.azure.com), create a **Web App**.
 2. **Project Details**:
    - name: `josef-photography-api`
    - Publish: **Code**
-   - Runtime stack: **PHP 8.2** (or 8.3/8.4)
+   - Runtime stack: **PHP 8.2** (or 8.4)
    - Operating System: **Linux**
-   - Region: (Same as your Static Web App)
+   - **Region**: (Choose any region allowed by your policy, e.g., **East US**).
 3. **Pricing Plan**:
-   - Change size to **Basic B1** (minimum for custom domains and stability).
+   - Change size to **Basic B1** (to use your $100 credit).
 4. Click **Review + Create**, then **Create**.
-5. **Configuration (Environment Variables)**:
-   - Go to the new Web App → **Settings** → **Configuration** → **Application settings**.
-   - Add these New application settings:
+5. **Configuration**:
+   - Go to the new Web App → **Settings** → **Configuration**.
+   - Add these Application settings:
      - `APP_ENV` = `production`
      - `APP_DEBUG` = `false`
-     - `APP_KEY` = (The base64 key you generated in Step 1)
+     - `APP_KEY` = (Your base64 key)
      - `DB_CONNECTION` = `sqlite`
      - `DB_DATABASE` = `/home/site/wwwroot/database/database.sqlite`
      - `FRONTEND_URL` = `https://josefnhidi.me`
