@@ -10,7 +10,7 @@ const About = ({ settings }) => {
   useEffect(() => {
     const fetchAbout = async () => {
       try {
-        const response = await api.get('/about');
+        const response = await api.get('about');
         const data = response.data;
         if (data && typeof data.social_links === 'string') {
           try { data.social_links = JSON.parse(data.social_links); } catch(e) { data.social_links = []; }

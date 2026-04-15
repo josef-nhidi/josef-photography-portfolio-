@@ -45,11 +45,11 @@ export const useAdmin = (setIsAdmin) => {
   const fetchData = async () => {
     try {
       const [photosRes, albumsRes, aboutRes, analyticsRes, settingsRes] = await Promise.all([
-        api.get('/photos'),
-        api.get('/albums'),
-        api.get('/about'),
-        api.get('/admin/analytics'),
-        api.get('/settings'),
+        api.get('photos'),
+        api.get('albums'),
+        api.get('about'),
+        api.get('admin/analytics'),
+        api.get('settings'),
       ]);
 
       setPhotos(photosRes.data);
@@ -130,7 +130,7 @@ export const useAdmin = (setIsAdmin) => {
 
         try {
           const config = { headers: { 'Content-Type': 'multipart/form-data' }};
-          await api.post('/admin/photos', formData, config);
+          await api.post('admin/photos', formData, config);
         } catch (err) { 
           console.error('Upload failed for', file.name); 
         }
@@ -145,7 +145,7 @@ export const useAdmin = (setIsAdmin) => {
   const handleDeletePhoto = (id) => {
     showConfirm('Are you sure you want to delete this photo?', async () => {
         try {
-          await api.delete(`/admin/photos/${id}`);
+          await api.delete(`admin/photos/${id}`);
           fetchData();
           addToast('Photo deleted.');
         } catch (err) { showAlert('Error during deletion.', true); }
@@ -155,7 +155,7 @@ export const useAdmin = (setIsAdmin) => {
   const handleUpdatePhoto = async (e) => {
     e.preventDefault();
     try {
-      await api.put(`/admin/photos/${editingPhoto.id}`, {
+      await api.put(`admin/photos/${editingPhoto.id}`, {
         title: editingPhoto.title,
         category: editingPhoto.category,
         album_id: editingPhoto.album_id
@@ -170,7 +170,7 @@ export const useAdmin = (setIsAdmin) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     try {
-      await api.post('/admin/albums', { 
+      await api.post('admin/albums', { 
         name: formData.get('name'), 
         type: formData.get('type') 
       });
@@ -183,7 +183,7 @@ export const useAdmin = (setIsAdmin) => {
   const handleUpdateAlbum = async (e) => {
     e.preventDefault();
     try {
-      await api.put(`/admin/albums/${editingAlbum.id}`, {
+      await api.put(`admin/albums/${editingAlbum.id}`, {
         name: editingAlbum.name,
         type: editingAlbum.type
       });
@@ -196,7 +196,7 @@ export const useAdmin = (setIsAdmin) => {
   const handleDeleteAlbum = (id) => {
     showConfirm('Delete this album? Photos inside will NOT be deleted.', async () => {
         try {
-          await api.delete(`/admin/albums/${id}`);
+          await api.delete(`admin/albums/${id}`);
           fetchData();
           addToast('Album successfully deleted.');
         } catch (err) { showAlert('Error deleting album.', true); }
@@ -216,7 +216,7 @@ export const useAdmin = (setIsAdmin) => {
     }
 
     try {
-      await api.post('/admin/about', formData, { 
+      await api.post('admin/about', formData, { 
         headers: { 'Content-Type': 'multipart/form-data' } 
       });
       setAboutImage(null);
@@ -231,7 +231,7 @@ export const useAdmin = (setIsAdmin) => {
         return showAlert('Passwords do not match.', true);
     }
     try {
-      await api.put('/admin/credentials', credentials);
+      await api.put('admin/credentials', credentials);
       addToast('Credentials updated! Please login again.');
       setTimeout(() => handleLogout(), 2000);
     } catch (err) { showAlert('Error updating credentials.', true); }
@@ -240,7 +240,7 @@ export const useAdmin = (setIsAdmin) => {
   const handleUpdateSettings = async (e) => {
     e.preventDefault();
     try {
-      await api.put('/admin/settings', customization);
+      await api.put('admin/settings', customization);
       addToast('Site Appearance Updated! Page will refresh.');
       setTimeout(() => window.location.reload(), 1500);
     } catch (err) { showAlert('Error updating site settings.', true); }

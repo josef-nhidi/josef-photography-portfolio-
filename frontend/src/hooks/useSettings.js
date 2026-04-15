@@ -12,7 +12,7 @@ export const useSettings = () => {
 
   const fetchSettings = async () => {
     try {
-      const res = await api.get('/settings');
+      const res = await api.get('settings');
       setSettings(res.data);
       
       // Dynamically apply primary branding colors to the CSS root

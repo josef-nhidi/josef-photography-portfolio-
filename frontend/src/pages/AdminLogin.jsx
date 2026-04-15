@@ -16,7 +16,7 @@ const AdminLogin = ({ setIsAdmin }) => {
 
     try {
       console.log('Attempting login to:', api.defaults.baseURL);
-      const response = await api.post('/admin/login', { username, password });
+      const response = await api.post('admin/login', { username, password });
       localStorage.setItem('admin_token', response.data.token);
       setIsAdmin(true);
       navigate('/admin/dashboard');
