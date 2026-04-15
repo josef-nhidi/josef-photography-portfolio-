@@ -22,7 +22,7 @@ return [
     'allowed_origins' => [
         'https://josefnhidi.me',
         'https://www.josefnhidi.me',
-        'https://josef-photography-portfolio.vercel.app',
+        'https://josefgroup-d7e4ekbfcngad4dt.germanywestcentral-01.azurewebsites.net',
         'http://localhost:3000',
         'http://localhost:5173',
     ],
