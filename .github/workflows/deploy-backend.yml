@@ -27,7 +27,7 @@ jobs:
           
       - name: Install dependencies
         working-directory: ./backend
-        run: composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev --ignore-platform-req=php+
         
       - name: Create SQLite storage file
         working-directory: ./backend
