@@ -28,6 +28,8 @@ chmod -R 775 /home/site/wwwroot/storage /home/site/wwwroot/bootstrap/cache /home
 # 4. Run Laravel optimizations
 echo "Running Laravel optimizations..."
 cd /home/site/wwwroot
+# Create a symlink in the root to ensure index.php is found if DOCUMENT_ROOT fails
+ln -sf public/index.php index.php
 php artisan storage:link --force 2>/dev/null || true
 php artisan migrate --force
 php artisan config:cache
