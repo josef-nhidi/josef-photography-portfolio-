@@ -50,7 +50,12 @@ jobs:
         run: |
           cp -r public/* .
           rm -rf public
-          sed -i "s|__DIR__.'/../|__DIR__.'/|g" index.php
+
+      - name: Fix Laravel paths
+        working-directory: ./backend
+        run: |
+          sed -i 's|../vendor/autoload.php|./vendor/autoload.php|g' index.php
+          sed -i 's|../bootstrap/app.php|./bootstrap/app.php|g' index.php
 
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v2
