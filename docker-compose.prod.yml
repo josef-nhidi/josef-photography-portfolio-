@@ -1,0 +1,92 @@
+version: '3.8'
+
+# =============================================================================
+# Josef Photography — Production Docker Compose
+# =============================================================================
+# Usage:
+#   docker-compose -f docker-compose.prod.yml up -d --build
+# =============================================================================
+
+services:
+  # ---------------------------------------------------------------------------
+  # Laravel API Backend (PHP + Apache)
+  # ---------------------------------------------------------------------------
+  app:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: josef-website-app:latest
+    container_name: josef-app
+    restart: unless-stopped
+    working_dir: /var/www
+    env_file:
+      - ./backend/.env
+    volumes:
+      - app-storage:/var/www/storage/app/public
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - josef-network
+
+  # ---------------------------------------------------------------------------
+  # MariaDB Database
+  # ---------------------------------------------------------------------------
+  db:
+    image: mariadb:10.11
+    container_name: josef-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE:-josef_website}
+      MYSQL_USER: ${DB_USERNAME:-josef_user}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-josef_password}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root_password}
+    volumes:
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - josef-network
+
+  # ---------------------------------------------------------------------------
+  # Frontend (React built assets) + Nginx Reverse Proxy
+  # ---------------------------------------------------------------------------
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: /api
+    image: josef-website-web:latest
+    container_name: josef-web
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d/production.conf:/etc/nginx/conf.d/default.conf:ro
+      - app-storage:/var/www/storage/app/public:ro
+    depends_on:
+      - app
+    networks:
+      - josef-network
+
+# =============================================================================
+# Persistent Volumes
+# =============================================================================
+volumes:
+  db-data:
+    driver: local
+  app-storage:
+    driver: local
+
+# =============================================================================
+# Network
+# =============================================================================
+networks:
+  josef-network:
+    driver: bridge

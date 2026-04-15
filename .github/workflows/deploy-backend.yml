@@ -1,0 +1,55 @@
+name: Deploy Backend to Azure App Service
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'backend/**'
+      - '.github/workflows/deploy-backend.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build_and_deploy_job:
+    runs-on: ubuntu-latest
+    name: Build & Deploy Backend
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, dom, filter, gd, iconv, json, libxml
+          
+      - name: Install dependencies
+        working-directory: ./backend
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+        
+      - name: Create SQLite storage file
+        working-directory: ./backend
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
+          
+      - name: Generate deployment package
+        working-directory: ./backend
+        run: zip -r deploy.zip . -x "*.git*" "tests/*" "node_modules/*"
+        
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: './backend/deploy.zip'
+        env:
+          AZURE_WEBAPP_NAME: 'josefnhidi-api' # Change this to your actual App Service name
+          
+      - name: Run startup actions (Migrations)
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az webapp ssh -n ${{ env.AZURE_WEBAPP_NAME }} -g ${{ secrets.AZURE_RESOURCE_GROUP }} --command "/usr/local/bin/php artisan migrate --force"

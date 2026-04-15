@@ -111,22 +111,38 @@ const AdminLogin = ({ setIsAdmin }) => {
           width: 100%;
           padding: 1rem;
           background: var(--accent);
-          color: black;
+          color: white;
           border: none;
-          font-weight: bold;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
           cursor: pointer;
           transition: var(--transition);
+          border-radius: 8px;
         }
 
         button:hover {
-          background: white;
+          background: var(--primary);
+          color: var(--secondary);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        button:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
         }
 
         .error {
           color: #ff4d4d;
+          background: rgba(255, 77, 77, 0.1);
+          padding: 0.75rem;
+          border-radius: 6px;
           text-align: center;
-          margin-bottom: 1rem;
-          font-size: 0.9rem;
+          margin-bottom: 1.5rem;
+          font-size: 0.8rem;
+          font-weight: 600;
+          border: 1px solid rgba(255, 77, 77, 0.2);
         }
       `}</style>
     </div>

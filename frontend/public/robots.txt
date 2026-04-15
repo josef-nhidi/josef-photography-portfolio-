@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /admin
 
 # Sitemap
-Sitemap: https://josefnhidi.com/sitemap.xml
+Sitemap: https://josefnhidi.me/sitemap.xml

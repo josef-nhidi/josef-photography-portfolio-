@@ -19,9 +19,17 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => array_filter([
+        env('FRONTEND_URL', 'http://localhost:3000'),
+        env('FRONTEND_URL') ? env('FRONTEND_URL') : 'http://localhost:5173',
+        'https://josefnhidi.me',
+        'https://www.josefnhidi.me',
+    ]),
 
-    'allowed_origins_patterns' => [],
+    'allowed_origins_patterns' => [
+        // Allow Azure Static Web Apps preview URLs
+        '#^https://.*\.azurestaticapps\.net$#',
+    ],
 
     'allowed_headers' => ['*'],
 

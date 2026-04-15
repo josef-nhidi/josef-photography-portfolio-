@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App.jsx';
 import './styles/main.css';
+import './styles/components.css';
 
 console.log(
   "%cHELLOO! If you downloaded 1 photo, I'll give you $1000 and a happy smile! 😄",

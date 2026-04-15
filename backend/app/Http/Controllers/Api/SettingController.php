@@ -37,7 +37,7 @@ class SettingController extends Controller
             'seo_author' => 'Josef Nhidi',
             'og_image_url' => '',
             'google_verification_tag' => '',
-            'site_url' => 'https://josef-nhidi.vercel.app',
+            'site_url' => 'https://josefnhidi.me',
         ];
 
         return response()->json(array_merge($defaults, $settings->toArray()));

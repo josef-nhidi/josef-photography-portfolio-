@@ -1,5 +1,5 @@
 import React from 'react';
-import PortfolioLayout from '../components/PortfolioLayout';
+import PortfolioLayout from '../layouts/PortfolioLayout';
 
 const Portraits = ({ settings }) => {
   return (
@@ -8,8 +8,8 @@ const Portraits = ({ settings }) => {
       category="portrait"
       title={settings?.portraits_label || 'Portraits'}
       bgText={settings?.gallery_bg_text || 'PORTRAITS'}
-      seoDescription="Discover Josef Nhidi's portrait photography — a collection of powerful, intimate portraits that reveal the depth and character of every subject."
-      seoKeywords="portrait photography, Josef Nhidi portraits, professional portraits, studio photography"
+      seoDescription="Explore cinematic and high-end portrait photography by Josef Nhidi. Personal branding, artistic studio sessions, and intimate lifestyle portraits captured with professional lighting and creative vision."
+      seoKeywords="professional portrait photography, high-end headshots, cinematic portraits, Josef Nhidi, studio photography Paris, lifestyle photographer, artistic portraits"
       url="/portraits"
     />
   );

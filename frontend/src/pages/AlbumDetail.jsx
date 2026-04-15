@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../api/axios';
-import MasonryGrid from '../components/MasonryGrid';
-import SEO from '../components/SEO';
+import MasonryGrid from '../components/portfolio/MasonryGrid';
+import SEO from '../components/ui/SEO';
 import { ArrowLeft } from 'lucide-react';
 
 const AlbumDetail = ({ settings }) => {
@@ -33,55 +33,118 @@ const AlbumDetail = ({ settings }) => {
       <SEO 
         settings={settings}
         title={album.name}
-        description={album.description || `Explore the ${album.name} collection by Josef Nhidi. ${album.photos?.length || 0} professional frames captured in detail.`}
+        description={album.description || `Discover the ${album.name} collection by Josef Nhidi. Featuring ${album.photos?.length || 0} high-end professional frames captured with a cinematic lens and unique artistic vision.`}
         image={album.photos?.[0]?.url}
         url={`/album/${id}`}
         type="article"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "ImageGallery",
+          "name": `${album.name} | Josef Nhidi Photography`,
+          "description": album.description || `A professional photography collection featuring ${album.photos?.length || 0} images.`,
+          "author": {
+            "@type": "Person",
+            "name": "Josef Nhidi"
+          },
+          "image": album.photos?.[0]?.url,
+          "numberOfItems": album.photos?.length || 0
+        }}
       />
       <div className="container">
-        <button className="back-btn" onClick={() => navigate(-1)}>
-          <ArrowLeft size={18} /> <span>Back Portfolios</span>
-        </button>
-        
         <header className="page-header">
-          <span className="header-label">Collection</span>
-          <h1 className="header-title">{album.name}</h1>
+          <div className="header-content">
+            <span className="header-label">Selected Collection</span>
+            <h1 className="header-title">{album.name}</h1>
+            {album.description && <p className="header-subtitle">{album.description}</p>}
+          </div>
           <div className="header-bg-text">ALBUM</div>
-          {album.description && <p className="header-desc">{album.description}</p>}
-          <span className="photo-count">{album.photos?.length || 0} Frames</span>
         </header>
 
-        {album.photos?.length > 0 ? (
-          <MasonryGrid images={album.photos} />
-        ) : (
-          <div className="no-images">No photos in this album yet.</div>
-        )}
+        <div className="portfolio-content-panel">
+          <div className="panel-toolbar detail-toolbar">
+            <button className="back-btn-modern" onClick={() => navigate(-1)}>
+              <ArrowLeft size={16} />
+              <span>Portfolios</span>
+            </button>
+            <div className="toolbar-divider" />
+            <span className="toolbar-stat">{album.photos?.length || 0} Professional Frames</span>
+          </div>
+
+          <div className="panel-body">
+
+            {album.photos?.length > 0 ? (
+              <MasonryGrid images={album.photos} />
+            ) : (
+              <div className="no-images">No photos in this album yet.</div>
+            )}
+          </div>
+        </div>
       </div>
 
       <style jsx="true">{`
-        .back-btn {
+        .page-header { position: relative; margin-bottom: 4rem; }
+        .header-content { position: relative; z-index: 5; }
+        .header-subtitle { font-size: 1rem; color: var(--admin-text-soft); margin-top: 1rem; max-width: 600px; line-height: 1.6; opacity: 0.8; }
+
+        .portfolio-content-panel { 
+          background: var(--bg-panel); 
+          border: 1px solid var(--border); 
+          border-radius: 20px; 
+          overflow: hidden; 
+          margin-bottom: 4rem;
+          box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+        }
+        
+        .panel-toolbar { 
+          padding: 1.25rem 2rem; 
+          border-bottom: 1px solid var(--border-subtle); 
+          background: var(--admin-header);
           display: flex;
           align-items: center;
-          gap: 1rem;
-          background: none;
-          border: none;
-          color: var(--muted);
+          gap: 1.5rem;
+          position: sticky;
+          top: 0;
+          z-index: 100;
+        }
+
+        .back-btn-modern {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          background: var(--bg);
+          border: 1px solid var(--border);
+          padding: 0.6rem 1.2rem;
+          border-radius: 10px;
           cursor: pointer;
-          transition: var(--transition);
-          font-family: inherit;
-          padding: 0;
-          text-transform: uppercase;
-          letter-spacing: 3px;
           font-size: 0.7rem;
           font-weight: 700;
-          margin-bottom: 3rem;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: var(--muted);
+          transition: all 0.3s ease;
         }
-        .back-btn:hover { color: var(--primary); transform: translateX(-8px); }
+
+        .back-btn-modern:hover {
+          color: var(--primary);
+          border-color: var(--accent);
+          background: var(--bg-panel);
+          transform: translateX(-5px);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .toolbar-divider { height: 20px; width: 1px; background: var(--border-subtle); }
+        .toolbar-stat { font-size: 0.7rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 0.2em; }
         
-        .page-header { 
-          position: relative;
-          margin-bottom: 8rem; 
+        .panel-body { padding: 2.5rem; }
+
+        @media (max-width: 768px) {
+          .page { padding-top: 2rem !important; }
+          .portfolio-content-panel { border-radius: 0; border-left: none; border-right: none; }
+          .panel-body { padding: 1.5rem; }
+          .panel-toolbar { padding: 1rem; overflow-x: auto; position: relative; }
+          .header-title { font-size: 3rem; }
         }
+        
         .header-label {
           display: block;
           font-size: 0.7rem;
@@ -112,24 +175,6 @@ const AlbumDetail = ({ settings }) => {
           pointer-events: none;
           line-height: 0.8;
           text-transform: uppercase;
-        }
-        .header-desc {
-          margin-top: 2rem;
-          opacity: 0.6;
-          max-width: 600px;
-          font-size: 1.1rem;
-          line-height: 1.6;
-        }
-        .photo-count {
-          display: inline-block;
-          margin-top: 2rem;
-          font-size: 0.7rem;
-          color: var(--muted);
-          text-transform: uppercase;
-          letter-spacing: 4px;
-          font-weight: 800;
-          border-left: 2px solid var(--accent);
-          padding-left: 1rem;
         }
         .no-images {
           padding: 5rem 0;

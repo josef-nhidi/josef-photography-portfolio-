@@ -1,19 +1,105 @@
 :root {
-  --font-display: 'Tenor Sans', sans-serif;
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
+  
+  /* Light Theme (Default) */
   --primary: #0a0a0a;
   --secondary: #ffffff;
-  --accent: #ac8b4d; /* Soft Muted Gold */
-  --bg: #fcfcfc;
+  --accent: #2563eb; 
+  --bg: #fdfdfd;
+  --bg-panel: #ffffff;
   --text: #1a1a1a;
-  --muted: #888888;
+  --muted: #666666;
   --border: rgba(0, 0, 0, 0.05);
-  --glass: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.3);
-  --transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03);
-  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.12);
+  --border-subtle: rgba(0, 0, 0, 0.03);
+  --glass: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.04);
+  
+  --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 10px 40px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.08);
+
+  /* Shared Admin Variables (Now Respect Themes) */
+  --admin-bg: var(--bg);
+  --admin-sidebar: var(--bg-panel);
+  --admin-header: var(--bg-panel);
+  --admin-panel: var(--bg-panel);
+  --admin-border: var(--border);
+  --admin-text: var(--primary);
+  --admin-text-soft: var(--muted);
+  --admin-accent: var(--accent);
+  --admin-active-bg: rgba(37, 99, 235, 0.08);
+  --admin-hover-bg: rgba(0, 0, 0, 0.02);
+
+  /* Cinematic Image Tokens */
+  --img-brightness: 1;
+  --img-contrast: 1;
+  --img-saturation: 1;
+  --img-lustre: 1.05;
+
+  /* ── LENS INTERFACE TOKENS ── */
+  --pod-size: 64px;
+  --pod-expand: 480px;
+  --lens-accent: var(--accent);
+  --lens-glass: rgba(0, 0, 0, 0.8);
+  --lens-blur: 24px;
+  
+  /* ── FLUID TYPOGRAPHY ── */
+  /* Base: 16px. Scales smoothly from 320px to 1400px viewport */
+  --fs-base: clamp(0.9rem, 0.85rem + 0.25vw, 1.1rem);
+  --fs-h1: clamp(2.5rem, 5vw + 1.5rem, 6rem);
+  --fs-h2: clamp(1.8rem, 4vw + 1rem, 4rem);
+  --fs-h3: clamp(1.4rem, 3vw + 0.8rem, 2.5rem);
+  --fs-eyebrow: clamp(0.6rem, 0.1vw + 0.55rem, 0.7rem);
+}
+ 
+[data-theme='dark'] {
+  --primary: #ffffff !important;
+  --secondary: #0a0a0a !important;
+  --accent: #2563eb; 
+  --bg: #030303 !important;
+  --bg-panel: #0a0a0a !important;
+  --text: #e0e0e0 !important;
+  --muted: #a0a0a0;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --glass: rgba(10, 10, 10, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.06);
+ 
+  --admin-bg: #050505 !important;
+  --admin-sidebar: #0d0d0d !important;
+  --admin-header: #0d0d0d !important;
+  --admin-panel: #0d0d0d !important;
+  --admin-border: rgba(255, 255, 255, 0.08);
+  --admin-text: #ffffff !important;
+  --admin-text-soft: #999;
+  --admin-active-bg: rgba(37, 99, 235, 0.15);
+  --admin-hover-bg: rgba(255, 255, 255, 0.04);
+
+  /* Dark Mode Optimization (Refined) */
+  --img-brightness: 0.9;
+  --img-contrast: 1.05;
+  --img-saturation: 0.98;
+  --img-lustre: 1.08;
+}
+
+/* Global Cinematic Image Refinement (Strictly Dark Mode) */
+[data-theme='dark'] img,
+[data-theme='dark'] canvas,
+[data-theme='dark'] .protected-image-container {
+  filter: brightness(var(--img-brightness)) contrast(var(--img-contrast)) saturate(var(--img-saturation));
+  transition: filter 0.5s ease;
+}
+
+[data-theme='dark'] .masonry-item:hover img,
+[data-theme='dark'] .masonry-item:hover canvas,
+[data-theme='dark'] .album-panel-card:hover .album-cover {
+  filter: brightness(var(--img-lustre)) contrast(var(--img-contrast)) saturate(var(--img-lustre)) !important;
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 * {
@@ -26,19 +112,23 @@ body {
   font-family: var(--font-body);
   background-color: var(--bg);
   color: var(--text);
-  line-height: 1.7;
+  line-height: 1.6;
+  font-size: var(--fs-base);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
   letter-spacing: -0.01em;
 }
 
-h1, h2, h3, h4 {
-  font-family: var(--font-display);
-  font-weight: 400; /* Tenor Sans is best at regular weight */
-  letter-spacing: 0.05em;
-  line-height: 1.2;
-  text-transform: uppercase;
+h1 { font-size: var(--fs-h1); line-height: 1.05; }
+h2 { font-size: var(--fs-h2); line-height: 1.1; }
+h3 { font-size: var(--fs-h3); line-height: 1.2; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--primary);
 }
 
 a {
@@ -61,9 +151,14 @@ ul {
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin-left: 320px; /* Width of the sidebar defined in Navbar.jsx */
+  margin-left: 320px;
   min-height: 100vh;
   position: relative;
+  transition: margin 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.app-layout.lens-mode .main-content-wrapper {
+  margin-left: 0;
 }
 
 .main-content {
@@ -123,77 +218,111 @@ ul {
   text-transform: uppercase;
 }
 
-.portfolio-tabs {
-  display: flex;
-  gap: 2rem;
+/* ── SEGMENTED TABS (Admin Style) ── */
+.segmented-tabs {
+  display: inline-flex;
+  background: var(--border-subtle);
+  padding: 4px;
+  border-radius: 12px;
+  gap: 4px;
   margin-bottom: 3rem;
-  justify-content: center;
 }
-.tab-btn {
-  background: none;
+ 
+.segment-btn {
+  background: transparent;
   border: none;
   font-family: var(--font-body);
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 4px;
+  font-size: 0.72rem;
   font-weight: 700;
   color: var(--muted);
+  padding: 0.7rem 1.5rem;
+  border-radius: 9px;
   cursor: pointer;
-  position: relative;
-  padding: 1rem 0;
-  transition: var(--transition);
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
-.tab-btn::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+ 
+.segment-btn.active {
+  background: var(--bg-panel);
+  color: var(--accent);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-.tab-btn.active { color: var(--primary); }
-.tab-btn.active::after { transform: scaleX(1); }
+ 
+.segment-btn:hover:not(.active) {
+  color: var(--primary);
+}
 
-.albums-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2rem;
+/* ── PORTFOLIO PANELS ── */
+.portfolio-panel, .portfolio-content-panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .no-images { text-align: center; padding: 5rem 0; opacity: 0.6; letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; }
 
-@media (max-width: 768px) {
+/* ── REVEAL ANIMATIONS ── */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 1024px) {
   .main-content-wrapper {
-    margin-left: 0;
-    padding-top: 72px; /* Offset for the mobile header */
+    margin-left: 0 !important;
+    padding-bottom: 120px; /* Space for the Lens Pod */
   }
 
   .container {
     width: 100%;
-    padding: 0 1rem;
+    padding: 0 1.25rem;
   }
 
-  h1 { font-size: clamp(2rem, 8vw, 3rem); }
-  h2 { font-size: clamp(1.5rem, 6vw, 2.5rem); }
-  h3 { font-size: clamp(1.2rem, 5vw, 2rem); }
-
-  .footer {
-    padding: 1.5rem 1rem;
-    margin-top: 2rem;
+  .masonry-container {
+    gap: 1rem;
+    padding: 1rem 0;
   }
-
-  .page-header { margin-bottom: 3rem; }
-  .header-bg-text { display: none; }
-  .portfolio-tabs { gap: 1rem; margin-bottom: 3rem; }
-  .albums-grid { grid-template-columns: 1fr; gap: 1.5rem; }
 }
 
 @media (max-width: 480px) {
   .container {
-    width: 100%;
     padding: 0 0.75rem;
+  }
+  
+  .page-header {
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    padding: 0 !important; /* Absolute Full-Bleed */
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .page-header {
+    margin-bottom: 1rem;
+    padding: 1.5rem 1rem 0; /* Header text still needs padding, but the grid doesn't */
+  }
+
+  .header-title {
+    font-size: 2rem;
+  }
+  
+  .footer {
+    padding: 2rem 1rem;
+    margin-top: 1rem;
   }
 }
