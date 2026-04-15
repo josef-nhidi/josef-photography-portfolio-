@@ -27,7 +27,7 @@ jobs:
           
       - name: Install dependencies
         working-directory: ./backend
-        run: composer update --no-interaction --prefer-dist --optimize-autoloader --no-dev
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
         
       - name: Create SQLite storage file
         working-directory: ./backend
@@ -37,7 +37,7 @@ jobs:
           
       - name: Generate deployment package
         working-directory: ./backend
-        run: zip -r deploy.zip . -x "*.git*" "tests/*" "node_modules/*"
+        run: zip -r deploy.zip . -x "*.git*" "tests/*" "node_modules/*" "storage/logs/*" "storage/framework/cache/*" "storage/framework/sessions/*" "storage/framework/views/*"
         
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v2
