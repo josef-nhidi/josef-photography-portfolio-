@@ -46,5 +46,4 @@ jobs:
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: './backend/deploy.zip'
         env:
-        env:
-          AZURE_WEBAPP_NAME: 'josefGroup' 
+          AZURE_WEBAPP_NAME: 'josefGroup'
