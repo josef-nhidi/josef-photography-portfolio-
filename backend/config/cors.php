@@ -15,20 +15,21 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie', 'storage/*'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie', 'storage/*', 'login'],
 
     'allowed_methods' => ['*'],
 
     'allowed_origins' => [
         'https://josefnhidi.me',
         'https://www.josefnhidi.me',
+        'https://josef-photography-portfolio.vercel.app',
         'http://localhost:3000',
         'http://localhost:5173',
     ],
 
     'allowed_origins_patterns' => [
-        // Allow Azure Static Web Apps preview URLs
         '#^https://.*\.azurestaticapps\.net$#',
+        '#^https://.*\.vercel\.app$#',
     ],
 
     'allowed_headers' => ['*'],
