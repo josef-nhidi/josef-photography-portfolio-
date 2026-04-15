@@ -16,6 +16,7 @@ jobs:
   build_and_deploy_job:
     runs-on: ubuntu-latest
     name: Build & Deploy Backend
+
     steps:
       - uses: actions/checkout@v3
 
@@ -23,23 +24,36 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
-          extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, dom, filter, gd, iconv, json, libxml
+          extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, dom, filter, gd, json, libxml
           
       - name: Install dependencies
         working-directory: ./backend
-        run: composer update --no-interaction --prefer-dist --optimize-autoloader --no-dev
-        
+        run: composer install --no-dev --optimize-autoloader
+
       - name: Create SQLite storage file
         working-directory: ./backend
         run: |
           mkdir -p database
           touch database/database.sqlite
-          
+
+      # 🔥 هذا أهم fix
+      - name: Prepare Laravel
+        working-directory: ./backend
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+          php artisan config:cache
+          php artisan route:cache
+
+      - name: Move public to root
+        working-directory: ./backend
+        run: |
+          cp -r public/* .
+          rm -rf public
+
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v2
         with:
-            app-name: ${{ env.AZURE_WEBAPP_NAME }}
-            publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-            package: './backend'
-        env:
-          AZURE_WEBAPP_NAME: 'josefGroup'
+          app-name: josefGroup
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: './backend'
