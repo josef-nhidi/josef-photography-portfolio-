@@ -15,11 +15,11 @@ if [ ! -f "$DB_PATH" ]; then
 fi
 chmod -R 777 /home/site/wwwroot/database
 
-# 2. Fast Symlink Strategy
-echo "Applying fast symlink mapping..."
+# 2. Fast Copy Strategy
+echo "Applying fast file mapping..."
 cd /home/site/wwwroot
-# Link the entry point directly to root for instant access
-ln -snf public/index.php index.php
+# Copy the entry point directly to root (more reliable than symlinks in some Azure configs)
+cp -f public/index.php index.php
 
 # 3. Storage and Cache setup
 echo "Setting up storage..."
