@@ -50,6 +50,7 @@ jobs:
         run: |
           cp -r public/* .
           rm -rf public
+          sed -i "s|__DIR__.'/../|__DIR__.'/|g" index.php
 
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v2
