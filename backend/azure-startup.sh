@@ -10,7 +10,16 @@ echo "Starting Azure App Service initialization..."
 echo "Searching for PHP-FPM sockets for diagnosis..."
 find /var/run -name "*fpm.sock" -exec echo "FOUND_SOCKET: {}" \; >> /home/site/wwwroot/storage/logs/laravel.log 2>/dev/null || true
 
-# 2. Public Flattening Strategy
+# 2. Database Initialization
+echo "Initializing database directory and file..."
+mkdir -p /home/site/wwwroot/database
+DB_PATH="/home/site/wwwroot/database/database.sqlite"
+if [ ! -f "$DB_PATH" ]; then
+    touch "$DB_PATH"
+fi
+chmod -R 777 /home/site/wwwroot/database
+
+# 3. Public Flattening Strategy
 echo "Flattening public folder to root..."
 cd /home/site/wwwroot
 cp -rf public/* . 2>/dev/null || true
