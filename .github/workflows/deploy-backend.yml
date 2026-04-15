@@ -46,10 +46,5 @@ jobs:
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: './backend/deploy.zip'
         env:
-          AZURE_WEBAPP_NAME: 'josefgroup-d7e4ekbfcngad4dt' # Corrected unique Azure app name
-          
-      - name: Run startup actions (Migrations)
-        uses: azure/CLI@v1
-        with:
-          inlineScript: |
-            az webapp ssh -n ${{ env.AZURE_WEBAPP_NAME }} -g ${{ secrets.AZURE_RESOURCE_GROUP }} --command "/usr/local/bin/php artisan migrate --force"
+        env:
+          AZURE_WEBAPP_NAME: 'josefGroup' 
