@@ -9,10 +9,11 @@ echo "Starting Azure App Service initialization..."
 # 1. Detect PHP-FPM socket
 # Azure PHP images sometimes use sockets instead of TCP 9000
 echo "Detecting PHP-FPM socket..."
+mkdir -p /var/run/php
 FPM_SOCKET=$(find /var/run -name "*php*fpm.sock" 2>/dev/null | head -n 1)
 if [ -n "$FPM_SOCKET" ]; then
-    echo "Found PHP-FPM socket at $FPM_SOCKET"
-    # Ensure our nginx.conf (can) use this path if we configured it
+    echo "Found PHP-FPM socket at $FPM_SOCKET. Linking to /var/run/php/php-fpm.sock"
+    ln -sf "$FPM_SOCKET" /var/run/php/php-fpm.sock
 else
     echo "No PHP-FPM socket found, assuming TCP 127.0.0.1:9000"
 fi
