@@ -9,7 +9,7 @@ export const ThemeProvider = ({ children }) => {
   const [portfolioTheme, setPortfolioTheme] = useState(() => {
     const saved = localStorage.getItem('portfolio_theme');
     if (saved) return saved;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    return 'light';
   });
 
   // 2. Admin Theme (Dashboard Facing)
