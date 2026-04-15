@@ -15,6 +15,9 @@ const About = ({ settings }) => {
         if (data && typeof data.social_links === 'string') {
           try { data.social_links = JSON.parse(data.social_links); } catch(e) { data.social_links = []; }
         }
+        if (data && !Array.isArray(data.social_links)) {
+          data.social_links = []; // Force to array if it's an object or null
+        }
         setContent(data);
       } catch (error) {
         console.error('Error fetching about content:', error);

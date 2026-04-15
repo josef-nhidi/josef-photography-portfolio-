@@ -16,8 +16,8 @@ class AboutContentSeeder extends Seeder
             'bio' => "Josef Nhidi est un photographe passionné spécialisé dans les portraits et les événements. Avec un œil attentif aux détails et à l'âme de ses sujets, il capture l'éphémère pour le rendre éternel. Basé en France, il travaille avec des clients internationaux pour immortaliser leurs moments les plus précieux.",
             'email' => 'contact@josefnhidi.com',
             'social_links' => [
-                'instagram' => 'https://instagram.com/josefnhidi',
-                'facebook' => 'https://facebook.com/josefnhidi',
+                ['platform' => 'Instagram', 'url' => 'https://instagram.com/josefnhidi'],
+                ['platform' => 'Facebook', 'url' => 'https://facebook.com/josefnhidi'],
             ],
         ]);
     }

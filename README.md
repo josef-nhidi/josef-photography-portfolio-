@@ -81,12 +81,16 @@ This project uses a high-performance, cost-effective split architecture. The fro
 2. **Project Details**:
    - name: `josef-photography-api`
    - Publish: **Code**
-   - Runtime stack: **PHP 8.2** (or 8.4)
+   - Runtime stack: **PHP 8.2** (Matches current server runtime)
    - Operating System: **Linux**
    - **Region**: (Choose any region allowed by your policy, e.g., **East US**).
 3. **Pricing Plan**:
    - Change size to **Basic B1** (to use your $100 credit).
-4. Click **Review + Create**, then **Create**.
+4. **Enable Basic Auth (Crucial Step)**:
+   - Go to your new Web App → **Settings** → **Configuration** → **General settings**.
+   - Scroll down to **SCM Basic Auth Publishing** and set it to **On**.
+   - Click **Save**. *This allows you to download the Publish Profile.*
+5. Click **Review + Create**, then **Create**.
 5. **Configuration**:
    - Go to the new Web App → **Settings** → **Configuration**.
    - Add these Application settings:
