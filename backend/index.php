@@ -1,18 +1,22 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /**
- * Josef Photography - Root Router
- * This script ensures that all requests reach the Laravel entry point
- * even when Azure's Nginx is not correctly configured.
+ * Josef Photography - High Performance Root Bridge
+ * This file lives in the root (wwwroot) and serves as the entry point.
  */
 
-$publicPath = __DIR__ . '/public';
-$uri = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+define('LARAVEL_START', microtime(true));
 
-// If the file exists in public/, serve it directly
-if ($uri !== '/' && file_exists($publicPath . $uri)) {
-    return false;
+// 1. Check for maintenance mode
+if (file_exists($maintenance = __DIR__.'/storage/framework/maintenance.php')) {
+    require $maintenance;
 }
 
-// Otherwise, hand over to the Laravel index.php
-require_once $publicPath . '/index.php';
+// 2. Register Autoloader (Directly in root)
+require __DIR__.'/vendor/autoload.php';
+
+// 3. Bootstrap Laravel (Directly in root)
+(require_once __DIR__.'/bootstrap/app.php')
+    ->handleRequest(Request::capture());

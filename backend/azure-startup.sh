@@ -18,8 +18,11 @@ chmod -R 777 /home/site/wwwroot/database
 # 2. Fast Copy Strategy
 echo "Applying fast file mapping..."
 cd /home/site/wwwroot
-# Copy the entry point directly to root (more reliable than symlinks in some Azure configs)
-cp -f public/index.php index.php
+# Permissions setup
+chmod -R 777 storage bootstrap/cache
+mkdir -p storage/logs
+touch storage/logs/laravel.log
+chmod 666 storage/logs/laravel.log
 
 # 3. Storage and Cache setup
 echo "Setting up storage..."
