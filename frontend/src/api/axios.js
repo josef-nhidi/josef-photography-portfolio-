@@ -1,10 +1,14 @@
 import axios from 'axios';
 
 const getBaseURL = () => {
-  const url = import.meta.env.VITE_API_URL || 'http://localhost:9001';
-  // Remove all trailing slashes and existing /api parts to start clean
-  const rootUrl = url.replace(/\/+$/, '').replace(/\/api$/, '');
-  return `${rootUrl}/api`;
+  let url = import.meta.env.VITE_API_URL || 'http://localhost:9001';
+  // Remove all trailing slashes
+  url = url.replace(/\/+$/, '');
+  // If the URL already contains /api anywhere, we strip the suffix and normalize
+  if (url.includes('/api')) {
+    url = url.split('/api')[0];
+  }
+  return `${url}/api`;
 };
 
 const api = axios.create({
