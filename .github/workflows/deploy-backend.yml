@@ -49,11 +49,10 @@ jobs:
         working-directory: ./backend
         run: |
           rm -rf deploy
-          mkdir deploy
-          # Copy EVERYTHING (including hidden files like .env)
-          cp -rp . deploy/
-          # Clean up the self-reference
-          rm -rf deploy/deploy
+          # Create a temporary sibling directory to avoid circular copy
+          mkdir ../backend_deploy
+          cp -rp . ../backend_deploy/
+          mv ../backend_deploy deploy
 
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v2
