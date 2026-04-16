@@ -44,13 +44,15 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction --ignore-pl
 COPY docker/nginx.conf /etc/nginx/sites-enabled/default
 COPY docker/php.ini /usr/local/etc/php/conf.d/custom.ini
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 
-# Set permissions for the whole app and specific writable dirs
-RUN chown -R www-data:www-data /var/www && \
+# Set permissions
+RUN chmod +x /usr/local/bin/entrypoint.sh && \
+    chown -R www-data:www-data /var/www && \
     chmod -R 775 /var/www/storage /var/www/bootstrap/cache /var/www/database
 
 # Expose port 80
 EXPOSE 80
 
-# Start Supervisor
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+# Start via Entrypoint
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
