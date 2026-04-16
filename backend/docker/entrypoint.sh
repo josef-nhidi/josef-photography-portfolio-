@@ -16,10 +16,8 @@ if [ ! -f /var/www/database/database.sqlite ]; then
 fi
 
 # Run Laravel optimizations
-echo "Clearing cache and optimizing..."
+echo "Clearing cache..."
 php artisan optimize:clear || true
-php artisan config:cache || true
-php artisan route:cache || true
 
 # Run migrations if possible
 echo "Running migrations..."
