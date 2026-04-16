@@ -50,14 +50,10 @@ jobs:
         run: |
           rm -rf deploy
           mkdir deploy
-          # Copy files into deploy folder (excluding deploy itself)
-          cp -r [!d]* deploy/
-          cd deploy
-          cp -r public/* .
-          rm -rf public
-          cp server.php index.php
-          sed -i 's|../vendor/autoload.php|./vendor/autoload.php|g' index.php
-          sed -i 's|../bootstrap/app.php|./bootstrap/app.php|g' index.php
+          # Copy EVERYTHING (including hidden files like .env)
+          cp -rp . deploy/
+          # Clean up the self-reference
+          rm -rf deploy/deploy
 
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v2
