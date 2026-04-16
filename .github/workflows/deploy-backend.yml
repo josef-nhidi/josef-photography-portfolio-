@@ -45,26 +45,23 @@ jobs:
           php artisan config:cache
           php artisan route:cache
 
-      - name: Move public to root
+      - name: Prepare correct deployment folder
         working-directory: ./backend
         run: |
+          rm -rf deploy
+          mkdir deploy
+          # Copy files into deploy folder (excluding deploy itself)
+          cp -r [!d]* deploy/
+          cd deploy
           cp -r public/* .
           rm -rf public
-
-      - name: Fix Laravel paths
-        working-directory: ./backend
-        run: |
+          cp server.php index.php
           sed -i 's|../vendor/autoload.php|./vendor/autoload.php|g' index.php
           sed -i 's|../bootstrap/app.php|./bootstrap/app.php|g' index.php
-
-      - name: Use Laravel server.php
-        working-directory: ./backend
-        run: |
-          cp server.php index.php
 
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v2
         with:
           app-name: josefGroup
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: './backend'
+          package: './backend/deploy'
