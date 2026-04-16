@@ -26,35 +26,7 @@ Route::get('/settings', [SettingController::class, 'index']);
 
 
 // Admin login route (public)
-Route::get('/debug-admin-setup', function() {
-    try {
-        $user = \App\Models\User::updateOrCreate(
-            ['email' => env('INIT_ADMIN_USER', 'josef')],
-            [
-                'name' => env('INIT_ADMIN_USER', 'josef'),
-                'password' => \Illuminate\Support\Facades\Hash::make(env('INIT_ADMIN_PASS', 'josefpass'))
-            ]
-        );
-        return response()->json([
-            'success' => true,
-            'user' => [
-                'id' => $user->id,
-                'email' => $user->email,
-                'name' => $user->name,
-            ],
-            'env_check' => [
-                'user_set' => !empty(env('INIT_ADMIN_USER')),
-                'pass_set' => !empty(env('INIT_ADMIN_PASS')),
-            ]
-        ]);
-    } catch (\Exception $e) {
-        return response()->json([
-            'success' => false,
-            'error' => $e->getMessage(),
-            'trace' => $e->getTraceAsString()
-        ], 500);
-    }
-});
+Route::post('/admin/login', [AuthController::class, 'login']);
 
 // Admin routes (protected by auth:sanctum)
 Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
