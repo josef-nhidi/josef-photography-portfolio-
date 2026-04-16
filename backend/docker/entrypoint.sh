@@ -27,8 +27,8 @@ php artisan migrate --force || echo "Migration failed, continuing startup..."
 
 # Initial Admin Creation (One-time or on-demand)
 if [ ! -z "$INIT_ADMIN_USER" ] && [ ! -z "$INIT_ADMIN_PASS" ]; then
-    echo "Initializing admin user: $INIT_ADMIN_USER..."
-    php artisan tinker --execute="App\Models\User::updateOrCreate(['email' => '$INIT_ADMIN_USER'], ['name' => '$INIT_ADMIN_USER', 'password' => Hash::make('$INIT_ADMIN_PASS')]);"
+    echo "Checking for admin user: $INIT_ADMIN_USER..."
+    php artisan tinker --execute="\$u = App\Models\User::updateOrCreate(['email' => '$INIT_ADMIN_USER'], ['name' => '$INIT_ADMIN_USER', 'password' => Hash::make('$INIT_ADMIN_PASS')]); echo 'SUCCESS: Admin user created/updated id=' . \$u->id . PHP_EOL;"
 fi
 
 # Start supervisor
