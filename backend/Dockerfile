@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
     libwebp-dev \
     libjpeg62-turbo-dev \
     libfreetype6-dev \
+    libsqlite3-dev \
     nginx \
     supervisor
 
@@ -25,7 +26,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip opcache
+RUN docker-php-ext-install pdo_mysql pdo_sqlite mbstring exif pcntl bcmath gd zip opcache
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
