@@ -40,7 +40,7 @@ COPY . /var/www
 RUN composer install --no-dev --optimize-autoloader --no-interaction --ignore-platform-req=php+
 
 # Copy configuration files
-COPY docker/nginx.conf /etc/nginx/sites-available/default
+COPY docker/nginx.conf /etc/nginx/sites-enabled/default
 COPY docker/php.ini /usr/local/etc/php/conf.d/custom.ini
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
