@@ -1,4 +1,8 @@
-FROM php:8.4-apache
+FROM php:8.4-fpm
+
+# Arguments for the user
+ARG user=www-data
+ARG uid=1000
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -12,22 +16,16 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     libwebp-dev \
     libjpeg62-turbo-dev \
-    libfreetype6-dev
+    libfreetype6-dev \
+    nginx \
+    supervisor
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
-
-# Enable Apache mod_rewrite
-RUN a2enmod rewrite
-
-# Update Apache config for Laravel
-ENV APACHE_DOCUMENT_ROOT /var/www/public
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
-RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip opcache
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -41,13 +39,16 @@ COPY . /var/www
 # Install production dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction --ignore-platform-req=php+
 
-# Copy start script
-COPY start.sh /usr/local/bin/start.sh
-RUN chmod +x /usr/local/bin/start.sh
+# Copy configuration files
+COPY docker/nginx.conf /etc/nginx/sites-available/default
+COPY docker/php.ini /usr/local/etc/php/conf.d/custom.ini
+COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Final permissions
+# Set permissions
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
-# Start using the script
-CMD ["/usr/local/bin/start.sh"]
+# Expose port 80
+EXPOSE 80
 
+# Start Supervisor
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

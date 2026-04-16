@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<deployment>
+  <id>ca510e99-ed87-43d1-a898-9b04917e01ed</id>
+  <author>N/A</author>
+  <deployer>GITHUB_ZIP_DEPLOY</deployer>
+  <authorEmail>N/A</authorEmail>
+  <message>{"type":"deployment","sha":"95434064503af479630d42318734e86914710d87","repoName":"josef-nhidi/josef-photography-portfolio-","actor":"josef-nhidi","slotName":"production","commitMessage":"Wrapped Nginx config in server block for Azure compatibility"}</message>
+  <progress></progress>
+  <status>Success</status>
+  <statusText></statusText>
+  <lastSuccessEndTime>2026-04-15T18:10:21.2506456Z</lastSuccessEndTime>
+  <receivedTime>2026-04-15T18:09:45.3083159Z</receivedTime>
+  <startTime>2026-04-15T18:09:46.595696Z</startTime>
+  <endTime>2026-04-15T18:10:21.2506456Z</endTime>
+  <complete>True</complete>
+  <is_temp>False</is_temp>
+  <is_readonly>True</is_readonly>
+  <containerId>65d735241431</containerId>
+  <buildSummary />
+</deployment>

@@ -1,0 +1,4 @@
+<step title="Incoming Request" date="2026-04-15T19:54:50.625" instance="2da639" url="/api/logs/docker" method="GET" type="request" pid="770,1,5" Accept="*/*" Host="josefgroup-d7e4ekbfcngad4dt.scm.germanywestcentral-01.azurewebsites.net" User-Agent="curl/8.5.0" Authorization="Bas..." X-ARR-LOG-ID="5de3047e-419e-44f0-9e2b-4a082b502949" CLIENT-IP="165.51.105.232:43464" X-SITE-DEPLOYMENT-ID="josefGroup" WAS-DEFAULT-HOSTNAME="josefgroup-d7e4ekbfcngad4dt.scm.germanywestcentral-01.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/logs/docker" X-Client-IP="165.51.105.232" X-Client-Port="43464" >
+  <step title="DiagnosticsController.GetDockerLogs" date="2026-04-15T19:54:51.320" /><!-- duration: 19ms -->
+  <step title="Outgoing response" date="2026-04-15T19:54:51.379" type="response" statusCode="200" statusText="OK" /><!-- duration: 3ms -->
+</step><!-- duration: 770ms -->

@@ -1,0 +1,6 @@
+<step title="Incoming Request" date="2026-04-15T19:46:34.646" instance="2da639" url="/api/vfs/site/wwwroot/public/" method="GET" type="request" pid="770,1,16" Accept="*/*" Host="josefgroup-d7e4ekbfcngad4dt.scm.germanywestcentral-01.azurewebsites.net" User-Agent="curl/8.5.0" Authorization="Bas..." X-ARR-LOG-ID="863811d2-e6ce-4557-9ae7-b0c39921741c" CLIENT-IP="165.51.105.232:57308" X-SITE-DEPLOYMENT-ID="josefGroup" WAS-DEFAULT-HOSTNAME="josefgroup-d7e4ekbfcngad4dt.scm.germanywestcentral-01.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/vfs/site/wwwroot/public/" X-Client-IP="165.51.105.232" X-Client-Port="57308" >
+  <step title="Cleanup Xml Logs" date="2026-04-15T19:46:34.666" >
+    <step title="Cleanup Infos" date="2026-04-15T19:46:34.897" totalFiles="219" totalCleanup="59" /><!-- duration: 20ms -->
+  </step><!-- duration: 270ms -->
+  <step title="Outgoing response" date="2026-04-15T19:46:35.539" type="response" statusCode="200" statusText="OK" /><!-- duration: 29ms -->
+</step><!-- duration: 942ms -->

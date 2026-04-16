@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<deployment>
+  <id>5f96adc0-0ae9-4610-ab08-66478d9edaf7</id>
+  <author>N/A</author>
+  <deployer>GITHUB_ZIP_DEPLOY</deployer>
+  <authorEmail>N/A</authorEmail>
+  <message>{"type":"deployment","sha":"a915d21bed59114cae3cdffe3b5049ed3b21de20","repoName":"josef-nhidi/josef-photography-portfolio-","actor":"josef-nhidi","slotName":"production","commitMessage":"Restored config and applied hardened CORS with diagnostics"}</message>
+  <progress></progress>
+  <status>Success</status>
+  <statusText></statusText>
+  <lastSuccessEndTime>2026-04-15T18:06:07.6386799Z</lastSuccessEndTime>
+  <receivedTime>2026-04-15T18:05:38.702597Z</receivedTime>
+  <startTime>2026-04-15T18:05:40.1420655Z</startTime>
+  <endTime>2026-04-15T18:06:07.6386799Z</endTime>
+  <complete>True</complete>
+  <is_temp>False</is_temp>
+  <is_readonly>True</is_readonly>
+  <containerId>a4ac13b4765f</containerId>
+  <buildSummary />
+</deployment>

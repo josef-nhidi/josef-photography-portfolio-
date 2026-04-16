@@ -1,0 +1,11 @@
+<step title="Incoming Request" date="2026-04-15T19:07:18.374" instance="2da639" url="/api/deployments/latest?deployer=GITHUB_ZIP_DEPLOY&amp;time=2026-04-15_19-06-55Z" method="GET" type="request" pid="770,1,20" Host="josefgroup-d7e4ekbfcngad4dt.scm.germanywestcentral-01.azurewebsites.net" User-Agent="GITHUBACTIONS_DeployWebAppToAzure_c80ae8a6258f57bbc7798f9b79e6887f7900302c712065e66d69afec1b5d2de2_2.2.18" Authorization="Bas..." Content-Type="application/json; charset=utf-8" Cookie="ARRAffinity=2da639247cb8ac44d90e4991a0f2456d5f7826200f2204266c764f2840d78aca;Path=/;HttpOnly;Secure;Domain=josefgroup-d7e4ekbfcngad4dt.scm.germanywestcentral-01.azurewebsites.net; ARRAffinitySameSite=2da639247cb8ac44d90e4991a0f2456d5f7826200f2204266c764f2840d78aca;Path=/;HttpOnly;SameSite=None;Secure;Domain=josefgroup-d7e4ekbfcngad4dt.scm.germanywestcentral-01.azurewebsites.net" Content-Length="0" X-ARR-LOG-ID="4f6fa227-7393-4a02-a5af-c095feb677b3" CLIENT-IP="52.161.55.199:50225" X-SITE-DEPLOYMENT-ID="josefGroup" WAS-DEFAULT-HOSTNAME="josefgroup-d7e4ekbfcngad4dt.scm.germanywestcentral-01.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/deployments/latest?deployer=GITHUB_ZIP_DEPLOY&amp;time=2026-04-15_19-06-55Z" X-Client-IP="52.161.55.199" X-Client-Port="50225" >
+  <step title="Cleanup Xml Logs" date="2026-04-15T19:07:18.406" >
+    <step title="Cleanup Infos" date="2026-04-15T19:07:18.545" totalFiles="207" totalCleanup="47" /><!-- duration: 52ms -->
+  </step><!-- duration: 238ms -->
+  <step title="DeploymentService.GetResult" date="2026-04-15T19:07:18.715" >
+    <step title="DeploymentService.GetLatestDeployment" date="2026-04-15T19:07:18.747" >
+      <step title="DeploymentManager.GetResults" date="2026-04-15T19:07:18.807" /><!-- duration: 2281ms -->
+    </step><!-- duration: 2441ms -->
+  </step><!-- duration: 2545ms -->
+  <step title="Outgoing response" date="2026-04-15T19:07:21.318" type="response" statusCode="202" statusText="Accepted" /><!-- duration: 100ms -->
+</step><!-- duration: 3135ms -->

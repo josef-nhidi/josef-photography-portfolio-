@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<deployment>
+  <id>b50f3be8-c19d-435d-bc70-c5b5e59b2ffd</id>
+  <author>N/A</author>
+  <deployer>GITHUB_ZIP_DEPLOY</deployer>
+  <authorEmail>N/A</authorEmail>
+  <message>{"type":"deployment","sha":"c02722a902a8951169a8668f575825e575624b6c","repoName":"josef-nhidi/josef-photography-portfolio-","actor":"josef-nhidi","slotName":"production","commitMessage":"Optimize Nginx and Startup for Azure"}</message>
+  <progress></progress>
+  <status>Success</status>
+  <statusText></statusText>
+  <lastSuccessEndTime>2026-04-15T19:51:17.2383069Z</lastSuccessEndTime>
+  <receivedTime>2026-04-15T19:50:45.0147407Z</receivedTime>
+  <startTime>2026-04-15T19:50:46.3896865Z</startTime>
+  <endTime>2026-04-15T19:51:17.2383069Z</endTime>
+  <complete>True</complete>
+  <is_temp>False</is_temp>
+  <is_readonly>True</is_readonly>
+  <containerId>49a7fc3f3690</containerId>
+  <buildSummary />
+</deployment>

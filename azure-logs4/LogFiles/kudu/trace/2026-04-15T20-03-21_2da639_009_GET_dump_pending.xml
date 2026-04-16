@@ -1,0 +1,4 @@
+<step title="Incoming Request" date="2026-04-15T20:03:21.637" instance="2da639" url="/dump" method="GET" type="request" pid="770,1,16" Host="josefgroup-d7e4ekbfcngad4dt.scm.germanywestcentral-01.azurewebsites.net" User-Agent="AZURECLI/2.85.0 (PIP)" Accept-Encoding="identity" Authorization="Bas..." x-ms-client-request-id="23249824-3906-11f1-9222-c03532f02f11" X-ARR-LOG-ID="23249824-3906-11f1-9222-c03532f02f11" CLIENT-IP="165.51.105.232:60856" X-SITE-DEPLOYMENT-ID="josefGroup" WAS-DEFAULT-HOSTNAME="josefgroup-d7e4ekbfcngad4dt.scm.germanywestcentral-01.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/dump" X-Client-IP="165.51.105.232" X-Client-Port="60856" >
+  <step title="Cleanup Xml Logs" date="2026-04-15T20:03:21.646" >
+    <step title="Cleanup Infos" date="2026-04-15T20:03:21.667" totalFiles="250" totalCleanup="90" /><!-- duration: 5ms -->
+  </step><!-- duration: 30ms -->

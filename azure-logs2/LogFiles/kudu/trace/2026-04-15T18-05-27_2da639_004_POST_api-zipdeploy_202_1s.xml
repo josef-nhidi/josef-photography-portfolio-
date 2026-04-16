@@ -1,0 +1,17 @@
+<step title="Incoming Request" date="2026-04-15T18:05:27.134" instance="2da639" url="/api/zipdeploy?isAsync=true&amp;deployer=GITHUB_ZIP_DEPLOY&amp;message=%7B%22type%22%3A%22deployment%22%2C%22sha%22%3A%22a915d21bed59114cae3cdffe3b5049ed3b21de20%22%2C%22repoName%22%3A%22josef-nhidi%2Fjosef-photography-portfolio-%22%2C%22actor%22%3A%22josef-nhidi%22%2C%22slotName%22%3A%22production%22%2C%22commitMessage%22%3A%22Restored%20config%20and%20applied%20hardened%20CORS%20with%20diagnostics%22%7D" method="POST" type="request" pid="772,1,19" Host="josefgroup-d7e4ekbfcngad4dt.scm.germanywestcentral-01.azurewebsites.net" User-Agent="GITHUBACTIONS_DeployWebAppToAzure_c80ae8a6258f57bbc7798f9b79e6887f7900302c712065e66d69afec1b5d2de2_2.2.18" Authorization="Bas..." Content-Type="application/octet-stream" Cookie="ARRAffinity=2da639247cb8ac44d90e4991a0f2456d5f7826200f2204266c764f2840d78aca;Path=/;HttpOnly;Secure;Domain=josefgroup-d7e4ekbfcngad4dt.scm.germanywestcentral-01.azurewebsites.net; ARRAffinitySameSite=2da639247cb8ac44d90e4991a0f2456d5f7826200f2204266c764f2840d78aca;Path=/;HttpOnly;SameSite=None;Secure;Domain=josefgroup-d7e4ekbfcngad4dt.scm.germanywestcentral-01.azurewebsites.net" Transfer-Encoding="chunked" X-ARR-LOG-ID="36675589-87f2-4522-982e-12518a4ac28e" CLIENT-IP="132.196.19.18:56256" X-SITE-DEPLOYMENT-ID="josefGroup" WAS-DEFAULT-HOSTNAME="josefgroup-d7e4ekbfcngad4dt.scm.germanywestcentral-01.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/zipdeploy?isAsync=true&amp;deployer=GITHUB_ZIP_DEPLOY&amp;message=%7B%22type%22%3A%22deployment%22%2C%22sha%22%3A%22a915d21bed59114cae3cdffe3b5049ed3b21de20%22%2C%22repoName%22%3A%22josef-nhidi%2Fjosef-photography-portfolio-%22%2C%22actor%22%3A%22josef-nhidi%22%2C%22slotName%22%3A%22production%22%2C%22commitMessage%22%3A%22Restored%20config%20and%20applied%20hardened%20CORS%20with%20diagnostics%22%7D" X-Client-IP="132.196.19.18" X-Client-Port="56256" >
+  <step title="ZipPushDeploy" date="2026-04-15T18:05:27.192" >
+    <step title="ZipDeploy. Extract zip." date="2026-04-15T18:05:27.204" /><!-- duration: 2ms -->
+    <step title="None repository commit" date="2026-04-15T18:05:27.212" >
+      <step title="Commit id: 5f96adc0-0ae9-4610-ab08-66478d9edaf7" date="2026-04-15T18:05:27.214" Message="N/A" AuthorName="N/A" AuthorEmail="N/A" /><!-- duration: 3ms -->
+    </step><!-- duration: 9ms -->
+    <step title="Starting PushDeployAsync" date="2026-04-15T18:05:27.223" /><!-- duration: 2ms -->
+    <step title="Writing artifact to /tmp/zipdeploy/14f4773b-1459-4995-84e8-826600217c65.zip" date="2026-04-15T18:05:27.252" >
+      <step title="Writing multipart request body to /tmp/zipdeploy/14f4773b-1459-4995-84e8-826600217c65.zip" date="2026-04-15T18:05:27.264" /><!-- duration: 6ms -->
+    </step><!-- duration: 897ms -->
+    <step title="Start deployment in the background" date="2026-04-15T18:05:28.179" >
+      <step title="Acquiring Deployment Lock" date="2026-04-15T18:05:28.220" /><!-- duration: 2ms -->
+      <step title="Acquired Deployment Lock" date="2026-04-15T18:05:28.272" /><!-- duration: 3ms -->
+    </step><!-- duration: 195ms -->
+  </step><!-- duration: 1188ms -->
+  <step title="Outgoing response" date="2026-04-15T18:05:28.392" type="response" statusCode="202" statusText="Accepted" /><!-- duration: 8ms -->
+</step><!-- duration: 1268ms -->

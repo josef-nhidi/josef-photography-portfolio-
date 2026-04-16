@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<deployment>
+  <id>2bb0620d-6a91-46b6-b0e5-72a281ecef15</id>
+  <author>N/A</author>
+  <deployer>GITHUB_ZIP_DEPLOY</deployer>
+  <authorEmail>N/A</authorEmail>
+  <message>{"type":"deployment","sha":"3f46d2b7b81745f856f46c4e172cf4e8941f9aea","repoName":"josef-nhidi/josef-photography-portfolio-","actor":"josef-nhidi","slotName":"production","commitMessage":"Finalized bulletproof Nginx config for Azure App Service"}</message>
+  <progress></progress>
+  <status>Success</status>
+  <statusText></statusText>
+  <lastSuccessEndTime>2026-04-15T18:18:20.3080215Z</lastSuccessEndTime>
+  <receivedTime>2026-04-15T18:17:52.0937217Z</receivedTime>
+  <startTime>2026-04-15T18:17:53.463556Z</startTime>
+  <endTime>2026-04-15T18:18:20.3080215Z</endTime>
+  <complete>True</complete>
+  <is_temp>False</is_temp>
+  <is_readonly>True</is_readonly>
+  <containerId>65d735241431</containerId>
+  <buildSummary />
+</deployment>

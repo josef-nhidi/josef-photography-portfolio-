@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<deployment>
+  <id>bfb38377-7ec1-4964-aead-f60390d72aba</id>
+  <author>N/A</author>
+  <deployer>GITHUB_ZIP_DEPLOY</deployer>
+  <authorEmail>N/A</authorEmail>
+  <message>{"type":"deployment","sha":"ad78dc6a979c500429106085bbbd2e9e447f0471","repoName":"josef-nhidi/josef-photography-portfolio-","actor":"josef-nhidi","slotName":"production","commitMessage":"Reinforced CORS handling in both Nginx and Laravel for all domain variants"}</message>
+  <progress></progress>
+  <status>Success</status>
+  <statusText></statusText>
+  <lastSuccessEndTime>2026-04-15T18:00:47.1152858Z</lastSuccessEndTime>
+  <receivedTime>2026-04-15T18:00:15.8800803Z</receivedTime>
+  <startTime>2026-04-15T18:00:17.4924645Z</startTime>
+  <endTime>2026-04-15T18:00:47.1152858Z</endTime>
+  <complete>True</complete>
+  <is_temp>False</is_temp>
+  <is_readonly>True</is_readonly>
+  <containerId>4dfaf9ddc726</containerId>
+  <buildSummary />
+</deployment>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<deployment>
+  <id>edacd2af-c4a2-4927-af99-bfa01248b60e</id>
+  <author>N/A</author>
+  <deployer>GITHUB_ZIP_DEPLOY</deployer>
+  <authorEmail>N/A</authorEmail>
+  <message>{"type":"deployment","sha":"1592a884bf11867c623e168fbbda839decfb9380","repoName":"josef-nhidi/josef-photography-portfolio-","actor":"josef-nhidi","slotName":"production","commitMessage":"Refined Nginx CORS preflight"}</message>
+  <progress></progress>
+  <status>Success</status>
+  <statusText></statusText>
+  <lastSuccessEndTime>2026-04-15T17:54:47.9575021Z</lastSuccessEndTime>
+  <receivedTime>2026-04-15T17:54:22.9611426Z</receivedTime>
+  <startTime>2026-04-15T17:54:24.3147902Z</startTime>
+  <endTime>2026-04-15T17:54:47.9575021Z</endTime>
+  <complete>True</complete>
+  <is_temp>False</is_temp>
+  <is_readonly>True</is_readonly>
+  <containerId>af7042bc105c</containerId>
+  <buildSummary />
+</deployment>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<deployment>
+  <id>8cdda2ba-fc41-4971-9c6a-32e3d0cd4bff</id>
+  <author>N/A</author>
+  <deployer>GITHUB_ZIP_DEPLOY</deployer>
+  <authorEmail>N/A</authorEmail>
+  <message>{"type":"deployment","sha":"4bc6c8b03ced676cf37ee61baefb32e00e0db137","repoName":"josef-nhidi/josef-photography-portfolio-","actor":"josef-nhidi","slotName":"production","commitMessage":"Fix 502: Robust Nginx upstream and socket detection"}</message>
+  <progress></progress>
+  <status>Success</status>
+  <statusText></statusText>
+  <lastSuccessEndTime>2026-04-15T20:07:05.120313Z</lastSuccessEndTime>
+  <receivedTime>2026-04-15T20:06:37.6842263Z</receivedTime>
+  <startTime>2026-04-15T20:06:39.0503372Z</startTime>
+  <endTime>2026-04-15T20:07:05.120313Z</endTime>
+  <complete>True</complete>
+  <is_temp>False</is_temp>
+  <is_readonly>True</is_readonly>
+  <containerId>222330d191d1</containerId>
+  <buildSummary />
+</deployment>

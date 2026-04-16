@@ -1,0 +1,11 @@
+<step title="Incoming Request" date="2026-04-15T20:08:03.735" instance="2da639" url="/api/deployments/latest?deployer=GITHUB_ZIP_DEPLOY&amp;time=2026-04-15_20-07-49Z" method="GET" type="request" pid="770,1,27" Host="josefgroup-d7e4ekbfcngad4dt.scm.germanywestcentral-01.azurewebsites.net" User-Agent="GITHUBACTIONS_DeployWebAppToAzure_c80ae8a6258f57bbc7798f9b79e6887f7900302c712065e66d69afec1b5d2de2_2.2.18" Authorization="Bas..." Content-Type="application/json; charset=utf-8" Cookie="ARRAffinity=2da639247cb8ac44d90e4991a0f2456d5f7826200f2204266c764f2840d78aca;Path=/;HttpOnly;Secure;Domain=josefgroup-d7e4ekbfcngad4dt.scm.germanywestcentral-01.azurewebsites.net; ARRAffinitySameSite=2da639247cb8ac44d90e4991a0f2456d5f7826200f2204266c764f2840d78aca;Path=/;HttpOnly;SameSite=None;Secure;Domain=josefgroup-d7e4ekbfcngad4dt.scm.germanywestcentral-01.azurewebsites.net" Content-Length="0" X-ARR-LOG-ID="6c401dc5-9f6b-4c66-a2fd-faa73357e8e1" CLIENT-IP="128.24.161.181:19520" X-SITE-DEPLOYMENT-ID="josefGroup" WAS-DEFAULT-HOSTNAME="josefgroup-d7e4ekbfcngad4dt.scm.germanywestcentral-01.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/deployments/latest?deployer=GITHUB_ZIP_DEPLOY&amp;time=2026-04-15_20-07-49Z" X-Client-IP="128.24.161.181" X-Client-Port="19520" >
+  <step title="Cleanup Xml Logs" date="2026-04-15T20:08:03.746" >
+    <step title="Cleanup Infos" date="2026-04-15T20:08:03.824" totalFiles="271" totalCleanup="111" /><!-- duration: 12ms -->
+  </step><!-- duration: 120ms -->
+  <step title="DeploymentService.GetResult" date="2026-04-15T20:08:03.967" >
+    <step title="DeploymentService.GetLatestDeployment" date="2026-04-15T20:08:04.055" >
+      <step title="DeploymentManager.GetResults" date="2026-04-15T20:08:04.126" /><!-- duration: 3522ms -->
+    </step><!-- duration: 3644ms -->
+  </step><!-- duration: 3751ms -->
+  <step title="Outgoing response" date="2026-04-15T20:08:08.795" type="response" statusCode="202" statusText="Accepted" /><!-- duration: 62ms -->
+</step><!-- duration: 5182ms -->

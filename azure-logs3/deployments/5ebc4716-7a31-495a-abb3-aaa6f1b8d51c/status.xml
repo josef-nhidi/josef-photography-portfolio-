@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<deployment>
+  <id>5ebc4716-7a31-495a-abb3-aaa6f1b8d51c</id>
+  <author>N/A</author>
+  <deployer>GITHUB_ZIP_DEPLOY</deployer>
+  <authorEmail>N/A</authorEmail>
+  <message>{"type":"deployment","sha":"29c41d12e51dde32da97f69d3ee184ada5be7239","repoName":"josef-nhidi/josef-photography-portfolio-","actor":"josef-nhidi","slotName":"production","commitMessage":"Revert startup-command"}</message>
+  <progress></progress>
+  <status>Success</status>
+  <statusText></statusText>
+  <lastSuccessEndTime>2026-04-15T19:07:46.0115978Z</lastSuccessEndTime>
+  <receivedTime>2026-04-15T19:07:04.5546119Z</receivedTime>
+  <startTime>2026-04-15T19:07:05.9321042Z</startTime>
+  <endTime>2026-04-15T19:07:46.0115978Z</endTime>
+  <complete>True</complete>
+  <is_temp>False</is_temp>
+  <is_readonly>True</is_readonly>
+  <containerId>d163d745ce8e</containerId>
+  <buildSummary />
+</deployment>

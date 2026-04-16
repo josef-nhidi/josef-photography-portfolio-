@@ -1,0 +1,48 @@
+<step title="BackgroundTrace" date="2026-04-15T18:35:27.569" instance="2da639" url="/api/zipdeploy" method="POST" >
+  <step title="Cleanup Xml Logs" date="2026-04-15T18:35:27.627" /><!-- duration: 81ms -->
+  <step title="Creating temporary deployment - FetchDeploymentManager" date="2026-04-15T18:35:28.582" /><!-- duration: 31ms -->
+  <step title="Creating temporary deployment" date="2026-04-15T18:35:28.712" /><!-- duration: 897ms -->
+  <step title="Performing fetch based deployment" date="2026-04-15T18:35:30.743" >
+    <step title="Cleaning up temp folders from previous zip deployments and extracting pushed zip file /tmp/zipdeploy/eb5d54b5-290c-427b-8b60-6cfcb73f7dd2.zip (7.36 MB) to /tmp/zipdeploy/extracted" date="2026-04-15T18:35:33.650" >
+      <step title="ChmodRecursive Process exited with total time taken in ms: 443" date="2026-04-15T18:36:42.194" /><!-- duration: 90ms -->
+    </step><!-- duration: 68895ms -->
+    <step title="Deployment timer started" date="2026-04-15T18:36:44.906" >
+      <step title="DeploymentManager.Deploy(id:55264bc2-27a6-498d-9054-510d7ac7ca17)" date="2026-04-15T18:36:44.955" >
+        <step title="Collecting changeset information" date="2026-04-15T18:36:45.187" /><!-- duration: 329ms -->
+        <step title="Updating submodules" date="2026-04-15T18:36:45.566" /><!-- duration: 1648ms -->
+        <step title="Determining deployment builder" date="2026-04-15T18:36:47.948" >
+          <step title="Builder is BasicBuilder" date="2026-04-15T18:36:48.096" /><!-- duration: 62ms -->
+        </step><!-- duration: 269ms -->
+        <step title="PreDeployment: context.CleanOutputPath False" date="2026-04-15T18:36:48.469" >
+          <step title="PreDeployment: context.OutputPath /home/site/wwwroot" date="2026-04-15T18:36:49.032" >
+            <step title="Building" date="2026-04-15T18:36:49.666" >
+              <step title="Executing external process" date="2026-04-15T18:36:52.659" type="process" path="starter.sh" arguments="/opt/Kudu/Scripts/parallel_rsync.sh /tmp/zipdeploy/extracted /home/site/wwwroot 8 /tmp/ False True  " >
+                <step title="Cpu: rsync(1004,0.020s)+rsync(987,0.110s)+rsync(981,0.220s)+bash(976,0.010s)+rsync(1005,0.000s)+rsync(988,0.190s)+rsync(980,0.220s)+bash(977,0.010s)+rsync(1009,0.000s)+rsync(986,0.110s)+rsync(982,0.320s)+bash(978,0.010s)+rsync(1008,0.000s)+rsync(994,0.140s)+rsync(985,0.300s)+bash(979,0.010s)+rsync(1011,0.050s)+rsync(997,0.100s)+rsync(991,0.400s)+bash(983,0.010s)+rsync(1006,0.000s)+rsync(998,0.160s)+rsync(993,0.200s)+bash(984,0.010s)+rsync(1007,0.000s)+rsync(1000,0.110s)+rsync(995,0.200s)+bash(989,0.010s)+rsync(1010,0.000s)+rsync(1001,0.080s)+rsync(996,0.310s)+bash(992,0.010s)+xargs(975,0.010s)+parallel_rsync.sh(967,0.040s)=total(3.360s)" date="2026-04-15T18:38:07.259" /><!-- duration: 393ms -->
+                <step title="starter.sh: no io activity for 61s, prev-cpu=-1.000s, current-cpu=3.360s" date="2026-04-15T18:38:08.322" /><!-- duration: 493ms -->
+                <step title="Cpu: rsync(1041,0.000s)+rsync(1032,0.250s)+rsync(1031,2.040s)+parallel_rsync.sh(967,0.050s)=total(2.340s)" date="2026-04-15T18:39:55.179" /><!-- duration: 208ms -->
+                <step title="starter.sh: no io activity for 61s, prev-cpu=-1.000s, current-cpu=2.340s" date="2026-04-15T18:39:55.589" /><!-- duration: 103ms -->
+                <step title="Error occurred" date="2026-04-15T18:41:00.294" type="error" text="GetParentProcessLinux (1065) failed.: Could not find a part of the path &apos;/proc/1065/stat&apos;." stackTrace="   at Interop.ThrowExceptionForIoErrno(ErrorInfo errorInfo, String path, Boolean isDirError)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, UnixFileMode openPermissions, Int64&amp; fileLength, UnixFileMode&amp; filePermissions, Boolean failForSymlink, Boolean&amp; wasSymlink, Func`4 createOpenException)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Encoding encoding, Int32 bufferSize)
+   at System.IO.File.ReadLines(String path)
+   at Kudu.Core.Infrastructure.ProcessExtensions.GetParentProcessLinux(Process process, ITracer tracer) in /tmp/KuduLite/Kudu.Core/Infrastructure/ProcessExtensions.cs:line 155" /><!-- duration: 119ms -->
+                <step title="Cpu: rsync(1041,0.000s)+rsync(1032,0.580s)+rsync(1031,2.040s)+parallel_rsync.sh(967,0.050s)=total(2.670s)" date="2026-04-15T18:41:00.533" /><!-- duration: 163ms -->
+                <step title="starter.sh: no io activity for 122s, prev-cpu=2.340s, current-cpu=2.670s" date="2026-04-15T18:41:00.755" /><!-- duration: 111ms -->
+              </step><!-- duration: 301856ms -->
+              <step title="Triggering recycle (preview mode disabled)." date="2026-04-15T18:41:56.578" /><!-- duration: 79ms -->
+              <step title="Modified file to trigger a restart of the app container." date="2026-04-15T18:41:56.878" /><!-- duration: 121ms -->
+              <step title="Skip function trigger and logicapp sync because function is not enabled." date="2026-04-15T18:41:57.232" /><!-- duration: 90ms -->
+              <step title="Purge deployment items" date="2026-04-15T18:42:04.746" >
+                <step title="Remove 1e22b8a8-, Success, received at 04/15/2026 10:12:30" date="2026-04-15T18:42:05.910" /><!-- duration: 183ms -->
+              </step><!-- duration: 1487ms -->
+            </step><!-- duration: 316950ms -->
+          </step><!-- duration: 317694ms -->
+          <step title="Cleaning up temp files" date="2026-04-15T18:42:06.796" /><!-- duration: 716ms -->
+          <step title="Cleaning up temp files" date="2026-04-15T18:42:07.612" /><!-- duration: 642ms -->
+          <step title="Reloading status file with latest updates" date="2026-04-15T18:42:08.465" >
+            <step title="WebHooksManager.PublishEventAsync: PostDeployment" date="2026-04-15T18:42:08.636" /><!-- duration: 2794ms -->
+          </step><!-- duration: 3276ms -->
+          <step title="Cleaning up temporary deployment - fetch deployment was successful" date="2026-04-15T18:42:12.000" /><!-- duration: 61ms -->
+        </step><!-- duration: 324506ms -->
+      </step><!-- duration: 328333ms -->

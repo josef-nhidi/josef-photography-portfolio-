@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<deployment>
+  <id>76debc3b-173c-464b-a9e0-34bd10c8b71c</id>
+  <author>N/A</author>
+  <deployer>GITHUB_ZIP_DEPLOY</deployer>
+  <authorEmail>N/A</authorEmail>
+  <message>{"type":"deployment","sha":"7e95e69c2860471b823360657b69484c2a4aade3","repoName":"josef-nhidi/josef-photography-portfolio-","actor":"josef-nhidi","slotName":"production","commitMessage":"Simplify startup: use Azure default Nginx"}</message>
+  <progress></progress>
+  <status>Success</status>
+  <statusText></statusText>
+  <lastSuccessEndTime>2026-04-15T20:10:44.3303223Z</lastSuccessEndTime>
+  <receivedTime>2026-04-15T20:10:17.4294363Z</receivedTime>
+  <startTime>2026-04-15T20:10:19.2992834Z</startTime>
+  <endTime>2026-04-15T20:10:44.3303223Z</endTime>
+  <complete>True</complete>
+  <is_temp>False</is_temp>
+  <is_readonly>True</is_readonly>
+  <containerId>222330d191d1</containerId>
+  <buildSummary />
+</deployment>

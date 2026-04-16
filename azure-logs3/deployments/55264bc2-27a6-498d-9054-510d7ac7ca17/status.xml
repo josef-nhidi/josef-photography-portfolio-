@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<deployment>
+  <id>55264bc2-27a6-498d-9054-510d7ac7ca17</id>
+  <author>N/A</author>
+  <deployer>GITHUB_ZIP_DEPLOY</deployer>
+  <authorEmail>N/A</authorEmail>
+  <message>{"type":"deployment","sha":"17ac768d70b375e2ca5c91b67b568c90a26225df","repoName":"josef-nhidi/josef-photography-portfolio-","actor":"josef-nhidi","slotName":"production","commitMessage":"Final production stabilization for /api routes and CORS"}</message>
+  <progress></progress>
+  <status>Success</status>
+  <statusText></statusText>
+  <lastSuccessEndTime>2026-04-15T18:41:58.6395108Z</lastSuccessEndTime>
+  <receivedTime>2026-04-15T18:36:45.356899Z</receivedTime>
+  <startTime>2026-04-15T18:36:47.7752524Z</startTime>
+  <endTime>2026-04-15T18:41:58.6395108Z</endTime>
+  <complete>True</complete>
+  <is_temp>False</is_temp>
+  <is_readonly>True</is_readonly>
+  <containerId>08e626f2ce97</containerId>
+  <buildSummary />
+</deployment>

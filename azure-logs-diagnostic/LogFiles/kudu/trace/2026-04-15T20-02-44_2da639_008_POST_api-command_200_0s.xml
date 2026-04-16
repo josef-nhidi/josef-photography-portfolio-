@@ -1,0 +1,7 @@
+<step title="Incoming Request" date="2026-04-15T20:02:44.529" instance="2da639" url="/api/command" method="POST" type="request" pid="770,1,7" Accept="*/*" Host="josefgroup-d7e4ekbfcngad4dt.scm.germanywestcentral-01.azurewebsites.net" User-Agent="curl/8.5.0" Authorization="Bas..." Content-Type="application/json" Content-Length="161" X-ARR-LOG-ID="c443f021-bfb5-44d5-a49b-c43301d69f01" CLIENT-IP="165.51.105.232:33788" X-SITE-DEPLOYMENT-ID="josefGroup" WAS-DEFAULT-HOSTNAME="josefgroup-d7e4ekbfcngad4dt.scm.germanywestcentral-01.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/command" X-Client-IP="165.51.105.232" X-Client-Port="33788" >
+  <step title="Cleanup Xml Logs" date="2026-04-15T20:02:44.532" >
+    <step title="Cleanup Infos" date="2026-04-15T20:02:44.540" totalFiles="249" totalCleanup="89" /><!-- duration: 6ms -->
+  </step><!-- duration: 17ms -->
+  <step title="Executing user command. " date="2026-04-15T20:02:44.554" CWD="/home/site/wwwroot" /><!-- duration: 196ms -->
+  <step title="Outgoing response" date="2026-04-15T20:02:44.760" type="response" statusCode="200" statusText="OK" /><!-- duration: 3ms -->
+</step><!-- duration: 238ms -->

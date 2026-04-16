@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<deployment>
+  <id>95464c7f-667f-4854-bd57-83af3084ad7d</id>
+  <author>N/A</author>
+  <deployer>GITHUB_ZIP_DEPLOY</deployer>
+  <authorEmail>N/A</authorEmail>
+  <message>{"type":"deployment","sha":"84ba0072de2e40479a6fa1b124995278b41c6e36","repoName":"josef-nhidi/josef-photography-portfolio-","actor":"josef-nhidi","slotName":"production","commitMessage":"Added Nginx config for Azure document root fix"}</message>
+  <progress></progress>
+  <status>Success</status>
+  <statusText></statusText>
+  <lastSuccessEndTime>2026-04-15T10:56:25.5300576Z</lastSuccessEndTime>
+  <receivedTime>2026-04-15T10:55:56.4868563Z</receivedTime>
+  <startTime>2026-04-15T10:55:57.8370079Z</startTime>
+  <endTime>2026-04-15T10:56:25.5300576Z</endTime>
+  <complete>True</complete>
+  <is_temp>False</is_temp>
+  <is_readonly>True</is_readonly>
+  <containerId>3bdc630b95ee</containerId>
+  <buildSummary />
+</deployment>

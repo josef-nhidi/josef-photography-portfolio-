@@ -1,39 +1,29 @@
-# =============================================================================
-# STAGE 1: Build the React application
-# =============================================================================
+# Stage 1: Build stage
 FROM node:20-alpine AS build
 
 WORKDIR /app
 
-# Copy package files first for better Docker layer caching
+# Copy package files
 COPY package.json package-lock.json ./
 
 # Install dependencies
 RUN npm ci --silent
 
-# Copy the rest of the frontend source code
+# Copy source files
 COPY . .
 
-# Build argument for the API URL — set at build time
-ARG VITE_API_URL=/api
-ENV VITE_API_URL=${VITE_API_URL}
-
-# Build the production bundle
+# Build assets
 RUN npm run build
 
-# =============================================================================
-# STAGE 2: Serve with Nginx
-# =============================================================================
-FROM nginx:alpine AS production
+# Stage 2: Production stage
+FROM nginx:alpine
 
-# Remove default nginx website
-RUN rm -rf /usr/share/nginx/html/*
-
-# Copy built assets from the build stage
+# Copy build assets
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# The nginx config will be mounted from docker-compose
-# but we include a sensible default
+# Copy custom nginx configuration
+COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
+
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]

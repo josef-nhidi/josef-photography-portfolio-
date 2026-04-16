@@ -1,0 +1,6 @@
+<step title="Incoming Request" date="2026-04-15T19:59:18.881" instance="2da639" url="/api/vfs/site/wwwroot/storage/logs/laravel.log" method="GET" type="request" pid="770,1,5" Accept="*/*" Host="josefgroup-d7e4ekbfcngad4dt.scm.germanywestcentral-01.azurewebsites.net" User-Agent="curl/8.5.0" Authorization="Bas..." X-ARR-LOG-ID="c591ebf9-af55-4987-aeb5-c11b277c31ef" CLIENT-IP="165.51.105.232:48830" X-SITE-DEPLOYMENT-ID="josefGroup" WAS-DEFAULT-HOSTNAME="josefgroup-d7e4ekbfcngad4dt.scm.germanywestcentral-01.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/vfs/site/wwwroot/storage/logs/laravel.log" X-Client-IP="165.51.105.232" X-Client-Port="48830" >
+  <step title="Cleanup Xml Logs" date="2026-04-15T19:59:18.883" >
+    <step title="Cleanup Infos" date="2026-04-15T19:59:18.897" totalFiles="248" totalCleanup="88" /><!-- duration: 4ms -->
+  </step><!-- duration: 21ms -->
+  <step title="Outgoing response" date="2026-04-15T19:59:18.940" type="response" statusCode="200" statusText="OK" /><!-- duration: 10ms -->
+</step><!-- duration: 87ms -->

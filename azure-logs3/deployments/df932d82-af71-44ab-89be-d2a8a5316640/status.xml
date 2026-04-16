@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<deployment>
+  <id>df932d82-af71-44ab-89be-d2a8a5316640</id>
+  <author>N/A</author>
+  <deployer>GITHUB_ZIP_DEPLOY</deployer>
+  <authorEmail>N/A</authorEmail>
+  <message>{"type":"deployment","sha":"0441fb4a4449076e904cdb87ed7ebd17ad66ce44","repoName":"josef-nhidi/josef-photography-portfolio-","actor":"josef-nhidi","slotName":"production","commitMessage":"Fixed about content seeder format and frontend parsing resilience"}</message>
+  <progress></progress>
+  <status>Success</status>
+  <statusText></statusText>
+  <lastSuccessEndTime>2026-04-15T17:45:29.8039175Z</lastSuccessEndTime>
+  <receivedTime>2026-04-15T17:45:01.6995205Z</receivedTime>
+  <startTime>2026-04-15T17:45:03.3978344Z</startTime>
+  <endTime>2026-04-15T17:45:29.8039175Z</endTime>
+  <complete>True</complete>
+  <is_temp>False</is_temp>
+  <is_readonly>True</is_readonly>
+  <containerId>af7042bc105c</containerId>
+  <buildSummary />
+</deployment>
