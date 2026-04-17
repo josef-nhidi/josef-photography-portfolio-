@@ -6,8 +6,8 @@ const Portraits = ({ settings }) => {
     <PortfolioLayout
       settings={settings}
       category="portrait"
-      title={settings?.portraits_label || 'Portraits'}
-      bgText={settings?.gallery_bg_text || 'PORTRAITS'}
+      title="Portraits"
+      bgText="PORTRAITS"
       seoDescription="Professional portrait photographer in Tunisia providing premium photography services for cinematic headshots and creative sessions. High-fidelity visual storytelling by Josef Nhidi."
       seoKeywords={settings?.seo_keywords || "professional portrait photography, high-end headshots, cinematic portraits, Josef Nhidi, photographer Tunisia, studio photography Gabes, professional photography services"}
       url="/portraits"

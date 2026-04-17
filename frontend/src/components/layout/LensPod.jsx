@@ -24,9 +24,9 @@ const LensPod = ({ settings, isAdmin }) => {
   const location = useLocation();
 
   const menuItems = [
-    { name: settings?.portraits_label || 'Portraits', path: '/portraits', icon: <Camera size={24} /> },
-    { name: settings?.events_label || 'Events', path: '/events', icon: <Calendar size={24} /> },
-    { name: settings?.about_label || 'About', path: '/about', icon: <User size={24} /> },
+    { name: 'Portraits', path: '/portraits', icon: <Camera size={24} /> },
+    { name: 'Events', path: '/events', icon: <Calendar size={24} /> },
+    { name: 'About', path: '/about', icon: <User size={24} /> },
   ];
 
   const containerVariants = {
@@ -109,7 +109,7 @@ const LensPod = ({ settings, isAdmin }) => {
             >
               <div className="pod-menu-header">
                 <span className="pod-brand">
-                  {(settings?.logo_text || 'JOSEF').split(' ')[0]}
+                  JOSEF
                 </span>
                 <button className="pod-close" onClick={() => setIsExpanded(false)}>
                   <X size={20} />
