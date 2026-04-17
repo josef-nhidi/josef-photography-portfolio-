@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Save, Plus, X, Globe, Mail, Phone, MapPin } from 'lucide-react';
+import { Save, Plus, X, Globe, Mail, Phone, MapPin, FileText, MessageSquare } from 'lucide-react';
 
 const AboutPanel = ({ about, setAbout, aboutImage, setAboutImage, onUpdateAbout }) => {
   const fileRef = useRef(null);
