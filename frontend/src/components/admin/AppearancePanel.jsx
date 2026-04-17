@@ -1,6 +1,4 @@
-import React from 'react';
-import { Palette, Type, Search, Globe, Layout, CheckCircle, Upload } from 'lucide-react';
-
+import { Palette, Type, Search, CheckCircle, Upload, Layout } from 'lucide-react';
 const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) => {
   return (
     <div className="appearance-root">
@@ -148,50 +146,6 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
                   onChange={(e) => setCustomization({...customization, seo_keywords: e.target.value})} 
                 />
               </div>
-
-              <div className="form-group">
-                <label className="form-label">Portraits Page SEO Description</label>
-                <textarea 
-                  className="form-textarea" 
-                  value={customization.portrait_seo_description || ''} 
-                  placeholder="Specific description for the Portraits collection..."
-                  rows={2}
-                  onChange={(e) => setCustomization({...customization, portrait_seo_description: e.target.value})} 
-                />
-              </div>
-
-              <div className="form-group">
-                <label className="form-label">Events Page SEO Description</label>
-                <textarea 
-                  className="form-textarea" 
-                  value={customization.event_seo_description || ''} 
-                  placeholder="Specific description for the Events collection..."
-                  rows={2}
-                  onChange={(e) => setCustomization({...customization, event_seo_description: e.target.value})} 
-                />
-              </div>
-
-              <div className="form-group">
-                <label className="form-label">About Page SEO Description</label>
-                <textarea 
-                  className="form-textarea" 
-                  value={customization.about_seo_description || ''} 
-                  placeholder="Bio description for search results..."
-                  rows={2}
-                  onChange={(e) => setCustomization({...customization, about_seo_description: e.target.value})} 
-                />
-              </div>
-              <div className="form-group">
-                <label className="admin-label-premium">Production URL (Canonical)</label>
-                <div className="input-with-icon">
-                  <Globe size={14} />
-                  <input type="text" className="admin-input-premium" value={customization.site_url || ''} placeholder="https://josefnhidi.com" onChange={(e) => setCustomization({...customization, site_url: e.target.value})} />
-                </div>
-              </div>
-              <div className="form-group">
-                <label className="admin-label-premium">Google Site Verification</label>
-                <input type="text" className="admin-input-premium" value={customization.google_verification_tag || ''} placeholder="ID from Search Console" onChange={(e) => setCustomization({...customization, google_verification_tag: e.target.value})} />
-              </div>
             </div>
           </div>
         </div>
@@ -230,10 +184,6 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
         .form-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1rem; color: var(--admin-text-soft); font-weight: 800; }
         .form-input, .form-textarea { background: var(--admin-panel); border: 1px solid var(--admin-border); color: var(--admin-text); padding: 0.9rem 1rem; border-radius: 12px; font-family: var(--font-body); font-size: 0.95rem; outline: none; transition: all 0.2s; width: 100%; resize: none; box-shadow: inset 0 1px 2px rgba(0,0,0,0.02); }
         .form-input:focus, .form-textarea:focus { border-color: var(--admin-accent); background: var(--admin-panel); box-shadow: var(--shadow-focus), inset 0 1px 2px rgba(0,0,0,0.01); }
- 
-        .input-with-icon { position: relative; display: flex; align-items: center; }
-        .input-with-icon svg { position: absolute; left: 1rem; color: var(--admin-accent); pointer-events: none; opacity: 0.7; }
-        .input-with-icon .form-input { padding-left: 3rem; }
  
         .sticky-action { margin-top: 2rem; }
         .btn-save-settings { 

@@ -40,7 +40,7 @@ const About = ({ settings }) => {
       <SEO 
         settings={settings}
         title="About The Artist"
-        description={settings?.about_seo_description || content?.bio?.substring(0, 160) || "Learn more about Josef Nhidi, a professional photographer specializing in cinematic portraits and high-end event coverage. Discover the vision behind the lens."}
+        description={content?.bio?.substring(0, 160) || "Learn more about Josef Nhidi, a professional photographer specializing in cinematic portraits and high-end event coverage. Discover the vision behind the lens."}
         url="/about"
         schema={{
           "@context": "https://schema.org",

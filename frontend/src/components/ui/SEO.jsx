@@ -118,13 +118,6 @@ const SEO = ({
         </>
       )}
 
-      {settings?.google_verification_tag && (
-        <meta
-          name="google-site-verification"
-          content={settings.google_verification_tag}
-        />
-      )}
-
       {/* ✅ OPEN GRAPH */}
       <meta property="og:type" content={type} />
       <meta property="og:title" content={fullTitle} />
