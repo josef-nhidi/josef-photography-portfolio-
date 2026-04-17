@@ -63,7 +63,12 @@ function AppContent() {
 
   const isAdminDashboard = location.pathname === '/admin/dashboard';
 
-  if (loading) return <div className="loader-full">Loading Professional Portfolio...</div>;
+  if (loading) return (
+    <div className="loader-full">
+      <div className="loader-brand">JOSEF NHIDI</div>
+      <div className="loader-sub">Developing the vision</div>
+    </div>
+  );
 
   if (isAdminDashboard) {
     return <AnimatedRoutes settings={settings} setIsAdmin={setIsAdmin} refreshSettings={refreshSettings} />;
