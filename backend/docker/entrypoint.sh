@@ -3,41 +3,40 @@ set -e
 
 cd /var/www
 
-# ── STEP 1: PERSISTENT STORAGE (Azure /home survives restarts) ──────────────
-echo "Mounting persistent storage from /home..."
+# ── STEP 1: PERSISTENT PHOTO STORAGE (Azure /home survives restarts) ─────────
+echo "Mounting persistent photo storage from /home..."
 
-# Create persistent directories in /home if they don't exist yet
+# Create persistent photo directories in /home
 mkdir -p /home/storage/app/public/photos
-mkdir -p /home/storage/logs
-mkdir -p /home/storage/framework/views
-mkdir -p /home/storage/framework/sessions
-mkdir -p /home/storage/framework/cache
-mkdir -p /home/database
 
-# Replace ephemeral container dirs with symlinks to persistent /home
-rm -rf /var/www/storage
-ln -sf /home/storage /var/www/storage
+# Create local storage dirs (logs, cache, sessions stay local - fine to recreate)
+mkdir -p /var/www/storage/logs
+mkdir -p /var/www/storage/framework/views
+mkdir -p /var/www/storage/framework/sessions
+mkdir -p /var/www/storage/framework/cache
+mkdir -p /var/www/storage/app/public
 
-rm -rf /var/www/database
-ln -sf /home/database /var/www/database
+# Symlink ONLY the photos folder to persistent /home
+# Photos survive restarts; everything else is recreated cleanly
+rm -rf /var/www/storage/app/public/photos
+ln -sf /home/storage/app/public/photos /var/www/storage/app/public/photos
 
-# Ensure SQLite DB file exists in persistent location
-if [ ! -f /home/database/database.sqlite ]; then
-    echo "Creating fresh database.sqlite in persistent storage..."
-    touch /home/database/database.sqlite
+# Rebuild the public/storage symlink
+rm -rf /var/www/public/storage
+ln -sf /var/www/storage/app/public /var/www/public/storage
+
+# Ensure SQLite DB exists locally (recreated via migrations on each deploy if missing)
+mkdir -p /var/www/database
+if [ ! -f /var/www/database/database.sqlite ]; then
+    echo "Creating fresh local database.sqlite..."
+    touch /var/www/database/database.sqlite
 fi
 
-# Rebuild the public/storage symlink pointing to persistent photos
-rm -rf /var/www/public/storage
-ln -sf /home/storage/app/public /var/www/public/storage
+# Fix permissions
+chown -R www-data:www-data /home/storage /var/www/storage /var/www/database /var/www/bootstrap/cache /var/www/public
+chmod -R 775 /home/storage /var/www/storage /var/www/database /var/www/bootstrap/cache /var/www/public
 
-# Fix permissions on persistent dirs
-chown -R www-data:www-data /home/storage /home/database
-chmod -R 775 /home/storage /home/database
-chown -R www-data:www-data /var/www/bootstrap/cache /var/www/public
-chmod -R 775 /var/www/bootstrap/cache /var/www/public
-
-echo "Persistent storage ready."
+echo "Storage ready. Photos are persistent. DB is local."
 
 # ── STEP 2: LARAVEL BOOT ────────────────────────────────────────────────────
 echo "Clearing cache..."
