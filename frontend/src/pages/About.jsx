@@ -57,7 +57,7 @@ const About = ({ settings }) => {
         <header className="page-header">
           <div className="header-content">
             <span className="header-label">The Visionary</span>
-            <h1 className="header-title">Josef Nhidi - Professional Photographer </h1>
+            <h1 className="header-title">Josef Nhidi - Photographer </h1>
             <p className="header-subtitle">Providing cinematic visual storytelling and professional photography services across Tunisia.</p>
           </div>
           <div className="header-bg-text">ABOUT</div>
