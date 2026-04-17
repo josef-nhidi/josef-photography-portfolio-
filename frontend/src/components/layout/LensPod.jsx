@@ -278,9 +278,9 @@ const LensPod = ({ settings, isAdmin }) => {
         }
 
         .pod-link.active {
-          background: rgba(37, 99, 235, 0.2);
+          background: color-mix(in srgb, var(--accent) 20%, transparent);
           color: var(--accent);
-          box-shadow: 0 0 20px rgba(37, 99, 235, 0.1);
+          box-shadow: 0 0 20px color-mix(in srgb, var(--accent) 10%, transparent);
         }
 
         .pod-link.active .pod-link-icon {
