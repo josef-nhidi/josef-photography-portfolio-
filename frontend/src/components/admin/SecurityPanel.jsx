@@ -5,18 +5,18 @@ const SecurityPanel = ({ credentials, setCredentials, onUpdateCredentials }) => 
   return (
     <div className="security-root">
       <div className="panel-grid">
-        <div className="panel-card main-form">
-          <p className="panel-card-title"><ShieldCheck size={14} style={{marginRight: '8px'}} /> Administrator Credentials</p>
+        <div className="admin-card-premium main-form">
+          <p className="admin-heading-premium"><ShieldCheck size={14} style={{marginRight: '8px'}} /> Administrator Credentials</p>
           
           <form onSubmit={onUpdateCredentials}>
             <div className="form-column">
               <div className="form-group">
-                <label className="form-label">Admin Email/Username</label>
+                <label className="admin-label-premium">Admin Email/Username</label>
                 <div className="input-with-icon">
                   <Mail size={14} />
                   <input 
                     type="text" 
-                    className="form-input" 
+                    className="admin-input-premium" 
                     value={credentials.email} 
                     onChange={(e) => setCredentials({...credentials, email: e.target.value})} 
                     placeholder="e.g. josef@photography.com" 
@@ -27,13 +27,13 @@ const SecurityPanel = ({ credentials, setCredentials, onUpdateCredentials }) => 
 
               <div className="divider"></div>
 
-              <div className="form-group">
-                <label className="form-label">New Password</label>
+               <div className="form-group">
+                <label className="admin-label-premium">New Password</label>
                 <div className="input-with-icon">
                   <KeyRound size={14} />
                   <input 
                     type="password" 
-                    className="form-input" 
+                    className="admin-input-premium" 
                     value={credentials.password} 
                     onChange={(e) => setCredentials({...credentials, password: e.target.value})} 
                     placeholder="Leave blank to keep current" 
@@ -41,13 +41,13 @@ const SecurityPanel = ({ credentials, setCredentials, onUpdateCredentials }) => 
                 </div>
               </div>
 
-              <div className="form-group">
-                <label className="form-label">Confirm New Password</label>
+               <div className="form-group">
+                <label className="admin-label-premium">Confirm New Password</label>
                 <div className="input-with-icon">
                   <Lock size={14} />
                   <input 
                     type="password" 
-                    className="form-input" 
+                    className="admin-input-premium" 
                     value={credentials.password_confirmation} 
                     onChange={(e) => setCredentials({...credentials, password_confirmation: e.target.value})} 
                     placeholder="Repeat new password" 
@@ -70,8 +70,8 @@ const SecurityPanel = ({ credentials, setCredentials, onUpdateCredentials }) => 
           </form>
         </div>
 
-        <div className="panel-card info-card">
-          <p className="panel-card-title">Security Status</p>
+        <div className="admin-card-premium info-card">
+          <p className="admin-heading-premium">Security Status</p>
           <div className="status-item">
              <div className="status-dot active"></div>
              <div>

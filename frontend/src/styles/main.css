@@ -2,26 +2,25 @@
   --font-heading: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
   
-  /* Light Theme (Default) */
-  --primary: #0a0a0a;
+  /* Light Theme (Default - Cinematic Minimalist) */
+  --primary: #000000;
   --secondary: #ffffff;
   --accent: #2563eb; 
-  --bg: #fdfdfd;
+  --bg: #f9fafb;
   --bg-panel: #ffffff;
-  --text: #1a1a1a;
-  --muted: #666666;
-  --border: rgba(0, 0, 0, 0.05);
-  --border-subtle: rgba(0, 0, 0, 0.03);
-  --glass: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(0, 0, 0, 0.04);
+  --text: #020617;
+  --muted: #475569;
+  --border: #e2e8f0;
+  --border-subtle: #f1f5f9;
+  --glass: rgba(255, 255, 255, 0.92);
+  --glass-border: rgba(255, 255, 255, 0.6);
   
   --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.02);
   --shadow-md: 0 10px 40px rgba(0, 0, 0, 0.04);
   --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.08);
 
-  /* Shared Admin Variables (Now Respect Themes) */
-  /* Advanced Admin Tokens (Light Refinement) */
+  /* Advanced Admin Tokens */
   --admin-bg: #f8fafc;
   --admin-panel: #ffffff;
   --admin-sidebar: var(--admin-panel);
@@ -79,6 +78,8 @@
   --admin-text-soft: #999;
   --admin-active-bg: rgba(37, 99, 235, 0.15);
   --admin-hover-bg: rgba(255, 255, 255, 0.04);
+  --shadow-premium: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  --shadow-focus: 0 0 0 3px rgba(37, 99, 235, 0.2);
 
   /* Dark Mode Optimization (Refined) */
   --img-brightness: 0.9;
@@ -200,21 +201,23 @@ ul {
   margin-bottom: 0.5rem;
 }
 .header-title {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: clamp(2.5rem, 8vw, 4.5rem);
   line-height: 1;
-  font-weight: 500;
+  font-weight: 800;
   position: relative;
   z-index: 2;
+  letter-spacing: -0.04em;
+  color: var(--primary);
 }
 .header-bg-text {
   position: absolute;
   top: 0;
   left: -2rem;
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: clamp(5rem, 15vw, 10rem);
-  font-weight: 700;
-  opacity: 0.03;
+  font-weight: 800;
+  opacity: 0.04;
   z-index: 1;
   pointer-events: none;
   line-height: 0.8;
@@ -256,7 +259,58 @@ ul {
   color: var(--primary);
 }
 
-/* ── PORTFOLIO PANELS ── */
+/* ── SHARED ADMIN UTILITIES ── */
+.admin-card-premium {
+  background: var(--admin-panel);
+  border: 1px solid var(--admin-border);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: var(--shadow-premium);
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-bottom: 1.5rem;
+}
+.admin-card-premium:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.05);
+}
+.admin-label-premium {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--admin-text-soft);
+  font-weight: 800;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+.admin-input-premium {
+  background: var(--admin-panel);
+  border: 1px solid var(--admin-border);
+  color: var(--admin-text);
+  padding: 0.9rem 1.1rem;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s;
+  width: 100%;
+}
+.admin-input-premium:focus {
+  border-color: var(--admin-accent);
+  box-shadow: var(--shadow-focus);
+}
+.admin-heading-premium {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--admin-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  opacity: 0.9;
+}
+
 .portfolio-panel, .portfolio-content-panel {
   background: var(--bg-panel);
   border: 1px solid var(--border);
@@ -392,15 +446,16 @@ ul {
 }
 
 .aperture-pulse {
-  width: 32px;
-  height: 32px;
-  border: 1.5px solid var(--accent);
+  width: 42px;
+  height: 42px;
+  border: 2px solid var(--accent);
   border-radius: 50%;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   animation: aperture-breathe 2.5s infinite ease-in-out;
+  box-shadow: 0 0 20px rgba(37,99,235,0.1);
 }
 
 .aperture-pulse::after {

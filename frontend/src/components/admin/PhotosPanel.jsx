@@ -22,8 +22,8 @@ const PhotosPanel = ({
   return (
     <div className="photos-root">
       {/* Upload Card */}
-      <div className="panel-card">
-        <p className="panel-card-title">Upload Photos</p>
+      <div className="admin-card-premium">
+        <p className="admin-heading-premium"><Upload size={14} style={{marginRight: '8px'}} /> Upload Photos</p>
         <form onSubmit={onUpload}>
           <div
             className={`drop-zone ${dragOver ? 'drag-over' : ''} ${uploadFiles.length > 0 ? 'has-files' : ''}`}
@@ -72,9 +72,9 @@ const PhotosPanel = ({
           {/* Options */}
           <div className="upload-options">
             <div className="form-group">
-              <label className="form-label">Album</label>
+              <label className="admin-label-premium">Target Album</label>
               <select
-                className="form-select"
+                className="admin-input-premium"
                 value={uploadAlbumId}
                 onChange={(e) => {
                   const val = e.target.value;
@@ -90,9 +90,9 @@ const PhotosPanel = ({
               </select>
             </div>
             <div className="form-group">
-              <label className="form-label">Category</label>
+              <label className="admin-label-premium">Portfolio Category</label>
               <select
-                className="form-select"
+                className="admin-input-premium"
                 value={uploadCategory}
                 disabled={!!uploadAlbumId}
                 onChange={(e) => setUploadCategory(e.target.value)}
@@ -111,8 +111,8 @@ const PhotosPanel = ({
       </div>
 
       {/* Library */}
-      <div className="panel-card">
-        <p className="panel-card-title">Library — {photos.length} photos</p>
+      <div className="admin-card-premium">
+        <p className="admin-heading-premium"><Image size={14} style={{marginRight: '8px'}} /> Photo Library — {photos.length} photos</p>
         {photos.length === 0 ? (
           <div className="empty-state">
             <Image size={40} />

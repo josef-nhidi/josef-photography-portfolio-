@@ -7,25 +7,25 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
       <form onSubmit={onUpdateSettings}>
         <div className="panel-grid">
           {/* Visual Style */}
-          <div className="panel-card">
-            <p className="panel-card-title"><Palette size={14} style={{marginRight: '8px'}} /> Site Theme</p>
+          <div className="admin-card-premium">
+            <p className="admin-heading-premium"><Palette size={14} style={{marginRight: '8px'}} /> Site Theme</p>
             <div className="color-grid">
               <div className="color-input-group">
-                <label className="form-label">Primary Text</label>
+                <label className="admin-label-premium">Primary Text</label>
                 <div className="color-picker-wrapper">
                   <input type="color" value={customization.primary_color || '#050505'} onChange={(e) => setCustomization({...customization, primary_color: e.target.value})} />
                   <span className="color-code">{customization.primary_color}</span>
                 </div>
               </div>
               <div className="color-input-group">
-                <label className="form-label">Accent Color</label>
+                <label className="admin-label-premium">Accent Color</label>
                 <div className="color-picker-wrapper">
                   <input type="color" value={customization.accent_color || '#2563eb'} onChange={(e) => setCustomization({...customization, accent_color: e.target.value})} />
                   <span className="color-code">{customization.accent_color}</span>
                 </div>
               </div>
               <div className="color-input-group">
-                <label className="form-label">Background</label>
+                <label className="admin-label-premium">Background</label>
                 <div className="color-picker-wrapper">
                   <input type="color" value={customization.bg_color || '#ffffff'} onChange={(e) => setCustomization({...customization, bg_color: e.target.value})} />
                   <span className="color-code">{customization.bg_color}</span>
@@ -39,20 +39,20 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
           </div>
 
           {/* Branding Content */}
-          <div className="panel-card">
-            <p className="panel-card-title"><Type size={14} style={{marginRight: '8px'}} /> Branding & Identity</p>
+          <div className="admin-card-premium">
+            <p className="admin-heading-premium"><Type size={14} style={{marginRight: '8px'}} /> Branding & Identity</p>
             <div className="form-column">
                <div className="form-group">
-                <label className="form-label">Site Title (Tab Name)</label>
-                <input type="text" className="form-input" value={customization.site_title || ''} onChange={(e) => setCustomization({...customization, site_title: e.target.value})} placeholder="e.g. Josef Photography Portfilio" />
+                <label className="admin-label-premium">Site Title (Tab Name)</label>
+                <input type="text" className="admin-input-premium" value={customization.site_title || ''} onChange={(e) => setCustomization({...customization, site_title: e.target.value})} placeholder="e.g. Josef Photography Portfilio" />
               </div>
               <div className="form-group">
-                <label className="form-label">Navigation Logo Text</label>
-                <input type="text" className="form-input" value={customization.logo_text || ''} placeholder="e.g. JOSEF NHIDI" onChange={(e) => setCustomization({...customization, logo_text: e.target.value})} />
+                <label className="admin-label-premium">Navigation Logo Text</label>
+                <input type="text" className="admin-input-premium" value={customization.logo_text || ''} placeholder="e.g. JOSEF NHIDI" onChange={(e) => setCustomization({...customization, logo_text: e.target.value})} />
               </div>
               <div className="form-group">
-                <label className="form-label">Site Tagline</label>
-                <input type="text" className="form-input" value={customization.site_tagline || ''} onChange={(e) => setCustomization({...customization, site_tagline: e.target.value})} placeholder="Exclusive Events & Portraits" />
+                <label className="admin-label-premium">Site Tagline</label>
+                <input type="text" className="admin-input-premium" value={customization.site_tagline || ''} onChange={(e) => setCustomization({...customization, site_tagline: e.target.value})} placeholder="Exclusive Events & Portraits" />
               </div>
             </div>
           </div>
@@ -102,36 +102,36 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
           </div>
 
           {/* Section Labels */}
-          <div className="panel-card">
-            <p className="panel-card-title"><Layout size={14} style={{marginRight: '8px'}} /> Interface Labels</p>
+          <div className="admin-card-premium">
+            <p className="admin-heading-premium"><Layout size={14} style={{marginRight: '8px'}} /> Interface Labels</p>
             <div className="form-grid">
                <div className="form-group">
-                <label className="form-label">Portraits Tab Label</label>
-                <input type="text" className="form-input" value={customization.portraits_label || ''} onChange={(e) => setCustomization({...customization, portraits_label: e.target.value})} />
+                <label className="admin-label-premium">Portraits Tab Label</label>
+                <input type="text" className="admin-input-premium" value={customization.portraits_label || ''} onChange={(e) => setCustomization({...customization, portraits_label: e.target.value})} />
               </div>
               <div className="form-group">
-                <label className="form-label">Events Tab Label</label>
-                <input type="text" className="form-input" value={customization.events_label || ''} onChange={(e) => setCustomization({...customization, events_label: e.target.value})} />
+                <label className="admin-label-premium">Events Tab Label</label>
+                <input type="text" className="admin-input-premium" value={customization.events_label || ''} onChange={(e) => setCustomization({...customization, events_label: e.target.value})} />
               </div>
                <div className="form-group">
-                <label className="form-label">Intro Label (Small)</label>
-                <input type="text" className="form-input" value={customization.gallery_tagline || ''} onChange={(e) => setCustomization({...customization, gallery_tagline: e.target.value})} />
+                <label className="admin-label-premium">Intro Label (Small)</label>
+                <input type="text" className="admin-input-premium" value={customization.gallery_tagline || ''} onChange={(e) => setCustomization({...customization, gallery_tagline: e.target.value})} />
               </div>
               <div className="form-group">
-                <label className="form-label">Intro Heading (Large)</label>
-                <input type="text" className="form-input" value={customization.gallery_title || ''} onChange={(e) => setCustomization({...customization, gallery_title: e.target.value})} />
+                <label className="admin-label-premium">Intro Heading (Large)</label>
+                <input type="text" className="admin-input-premium" value={customization.gallery_title || ''} onChange={(e) => setCustomization({...customization, gallery_title: e.target.value})} />
               </div>
             </div>
           </div>
 
           {/* SEO Settings */}
-          <div className="panel-card">
-            <p className="panel-card-title"><Search size={14} style={{marginRight: '8px'}} /> SEO & Analytics</p>
+          <div className="admin-card-premium">
+            <p className="admin-heading-premium"><Search size={14} style={{marginRight: '8px'}} /> SEO & Analytics</p>
             <div className="form-column">
                <div className="form-group">
-                <label className="form-label">Meta Description (Search Snippet)</label>
+                <label className="admin-label-premium">Meta Description (Search Snippet)</label>
                 <textarea 
-                  className="form-textarea" 
+                  className="admin-input-premium" 
                   value={customization.seo_description || ''} 
                   placeholder="Appears in search results (max 160 characters)..."
                   rows={3}
@@ -139,10 +139,10 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
                 />
               </div>
               <div className="form-group">
-                <label className="form-label">Meta Keywords (Search Authority)</label>
+                <label className="admin-label-premium">Meta Keywords (Search Authority)</label>
                 <input 
                   type="text" 
-                  className="form-input" 
+                  className="admin-input-premium" 
                   value={customization.seo_keywords || ''} 
                   placeholder="e.g. josef photography, Tunisia photographer, portraits" 
                   onChange={(e) => setCustomization({...customization, seo_keywords: e.target.value})} 
@@ -182,15 +182,15 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
                 />
               </div>
               <div className="form-group">
-                <label className="form-label">Production URL (Canonical)</label>
+                <label className="admin-label-premium">Production URL (Canonical)</label>
                 <div className="input-with-icon">
                   <Globe size={14} />
-                  <input type="text" className="form-input" value={customization.site_url || ''} placeholder="https://josefnhidi.com" onChange={(e) => setCustomization({...customization, site_url: e.target.value})} />
+                  <input type="text" className="admin-input-premium" value={customization.site_url || ''} placeholder="https://josefnhidi.com" onChange={(e) => setCustomization({...customization, site_url: e.target.value})} />
                 </div>
               </div>
               <div className="form-group">
-                <label className="form-label">Google Site Verification</label>
-                <input type="text" className="form-input" value={customization.google_verification_tag || ''} placeholder="ID from Search Console" onChange={(e) => setCustomization({...customization, google_verification_tag: e.target.value})} />
+                <label className="admin-label-premium">Google Site Verification</label>
+                <input type="text" className="admin-input-premium" value={customization.google_verification_tag || ''} placeholder="ID from Search Console" onChange={(e) => setCustomization({...customization, google_verification_tag: e.target.value})} />
               </div>
             </div>
           </div>

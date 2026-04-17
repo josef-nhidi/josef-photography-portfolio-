@@ -24,8 +24,8 @@ const AboutPanel = ({ about, setAbout, aboutImage, setAboutImage, onUpdateAbout 
       <form onSubmit={onUpdateAbout}>
         <div className="panel-grid">
           {/* Main Info */}
-          <div className="panel-card main-info">
-            <p className="panel-card-title">Public Identity</p>
+          <div className="admin-card-premium main-info">
+            <p className="admin-heading-premium"><FileText size={14} style={{marginRight: '8px'}} /> Biography & Vision</p>
             
             <div className="profile-upload-section">
               <div className="profile-preview-wrapper" onClick={() => fileRef.current?.click()}>
@@ -53,10 +53,10 @@ const AboutPanel = ({ about, setAbout, aboutImage, setAboutImage, onUpdateAbout 
               </div>
             </div>
 
-            <div className="form-group" style={{ marginTop: '2rem' }}>
-              <label className="form-label">Biography</label>
+            <div className="form-group" style={{ marginTop: '2.5rem' }}>
+              <label className="admin-label-premium">Artist Biography</label>
               <textarea 
-                className="form-textarea" 
+                className="admin-input-premium" 
                 value={about.bio} 
                 onChange={(e) => setAbout({...about, bio: e.target.value})} 
                 placeholder="Write your story..."
@@ -68,28 +68,28 @@ const AboutPanel = ({ about, setAbout, aboutImage, setAboutImage, onUpdateAbout 
 
           <div className="right-column">
              {/* Contact Info */}
-            <div className="panel-card">
-              <p className="panel-card-title">Contact & Studio</p>
+            <div className="admin-card-premium">
+              <p className="admin-heading-premium"><MessageSquare size={14} style={{marginRight: '8px'}} /> Contact & Studio</p>
               <div className="form-column">
                 <div className="form-group">
-                  <label className="form-label"><Mail size={12} style={{marginRight: '6px'}} /> Email Address</label>
-                  <input type="email" className="form-input" value={about.email} onChange={(e) => setAbout({...about, email: e.target.value})} placeholder="hello@josefnhidi.com" />
+                  <label className="admin-label-premium"><Mail size={12} style={{marginRight: '6px'}} /> Email Address</label>
+                  <input type="email" className="admin-input-premium" value={about.email} onChange={(e) => setAbout({...about, email: e.target.value})} placeholder="hello@josefnhidi.com" />
                 </div>
                 <div className="form-group">
-                  <label className="form-label"><Phone size={12} style={{marginRight: '6px'}} /> Phone Number</label>
-                  <input type="text" className="form-input" value={about.phone} onChange={(e) => setAbout({...about, phone: e.target.value})} placeholder="+216 ..." />
+                  <label className="admin-label-premium"><Phone size={12} style={{marginRight: '6px'}} /> Phone Number</label>
+                  <input type="text" className="admin-input-premium" value={about.phone} onChange={(e) => setAbout({...about, phone: e.target.value})} placeholder="+216 ..." />
                 </div>
                 <div className="form-group">
-                  <label className="form-label"><MapPin size={12} style={{marginRight: '6px'}} /> Studio Address</label>
-                  <input type="text" className="form-input" value={about.address} onChange={(e) => setAbout({...about, address: e.target.value})} placeholder="Sousse, Tunisia" />
+                  <label className="admin-label-premium"><MapPin size={12} style={{marginRight: '6px'}} /> Studio Address</label>
+                  <input type="text" className="admin-input-premium" value={about.address} onChange={(e) => setAbout({...about, address: e.target.value})} placeholder="Sousse, Tunisia" />
                 </div>
               </div>
             </div>
 
             {/* Social Links */}
-            <div className="panel-card social-card">
+            <div className="admin-card-premium social-card">
               <div className="card-header">
-                <p className="panel-card-title" style={{marginBottom: 0}}>Social Links</p>
+                <p className="admin-heading-premium" style={{marginBottom: 0}}><Globe size={14} style={{marginRight: '8px'}} /> Social Links</p>
                 <button type="button" onClick={addSocialLink} className="btn-add-social">
                   <Plus size={12} /> Add
                 </button>
@@ -103,14 +103,14 @@ const AboutPanel = ({ about, setAbout, aboutImage, setAboutImage, onUpdateAbout 
                   <div key={index} className="social-row">
                     <input 
                       type="text" 
-                      className="form-input row-platform" 
+                      className="admin-input-premium row-platform" 
                       placeholder="Instagram" 
                       value={link.platform} 
                       onChange={(e) => updateSocialLink(index, 'platform', e.target.value)} 
                     />
                     <input 
                       type="url" 
-                      className="form-input row-url" 
+                      className="admin-input-premium row-url" 
                       placeholder="URL" 
                       value={link.url} 
                       onChange={(e) => updateSocialLink(index, 'url', e.target.value)} 

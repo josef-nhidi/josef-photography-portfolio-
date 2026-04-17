@@ -5,17 +5,17 @@ const AlbumsPanel = ({ albums, onCreateAlbum, onEditAlbum, onDeleteAlbum }) => {
   return (
     <div className="albums-root">
       {/* Create Album */}
-      <div className="panel-card">
-        <p className="panel-card-title">Create New Album</p>
+      <div className="admin-card-premium">
+        <p className="admin-heading-premium"><Plus size={14} style={{marginRight: '8px'}} /> Create New Album</p>
         <form onSubmit={onCreateAlbum} className="album-form">
           <div className="form-grid">
             <div className="form-group">
-              <label className="form-label">Album Name</label>
-              <input name="name" type="text" className="form-input" placeholder="e.g. Summer Wedding 2024" required />
+              <label className="admin-label-premium">Album Name</label>
+              <input name="name" type="text" className="admin-input-premium" placeholder="e.g. Summer Wedding 2024" required />
             </div>
             <div className="form-group">
-              <label className="form-label">Type / Category</label>
-              <select name="type" className="form-select">
+              <label className="admin-label-premium">Type / Category</label>
+              <select name="type" className="admin-input-premium">
                 <option value="portrait">Portrait</option>
                 <option value="event">Event</option>
               </select>
@@ -30,8 +30,8 @@ const AlbumsPanel = ({ albums, onCreateAlbum, onEditAlbum, onDeleteAlbum }) => {
       </div>
 
       {/* Album List */}
-      <div className="panel-card">
-        <p className="panel-card-title">Existing Albums — {albums.length}</p>
+      <div className="admin-card-premium">
+        <p className="admin-heading-premium"><FolderOpen size={14} style={{marginRight: '8px'}} /> Existing Albums — {albums.length}</p>
         {albums.length === 0 ? (
           <div className="empty-state">
             <FolderOpen size={40} />
