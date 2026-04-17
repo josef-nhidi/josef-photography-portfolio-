@@ -1,5 +1,5 @@
 import React from 'react';
-import { Palette, Type, Search, Globe, Layout, CheckCircle } from 'lucide-react';
+import { Palette, Type, Search, Globe, Layout, CheckCircle, Upload } from 'lucide-react';
 
 const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) => {
   return (
