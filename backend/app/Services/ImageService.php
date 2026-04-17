@@ -18,9 +18,13 @@ class ImageService
     public function upload(UploadedFile $file, string $folder = 'photos'): ?string
     {
         try {
-            // Native GD Resizing & WebP Conversion
+            // Native GD Resizing & WebP Conversion (Only if GD extension exists)
             $imageString = file_get_contents($file->getRealPath());
-            $image = @\imagecreatefromstring($imageString);
+            $image = null;
+            
+            if (function_exists('imagecreatefromstring')) {
+                $image = @\imagecreatefromstring($imageString);
+            }
             
             if ($image) {
                 // Resize if needed (Targeting max 2500px for Platinum Performance)
