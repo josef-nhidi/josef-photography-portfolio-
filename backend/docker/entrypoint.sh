@@ -16,6 +16,10 @@ if [ ! -f /var/www/database/database.sqlite ]; then
     chown www-data:www-data /var/www/database/database.sqlite
 fi
 
+# Link storage
+echo "Linking storage..."
+php artisan storage:link --force || echo "Storage link already exists, skipping..."
+
 # Run Laravel optimizations
 echo "Clearing cache..."
 php artisan config:clear || true
