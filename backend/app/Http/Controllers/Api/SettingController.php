@@ -27,7 +27,7 @@ class SettingController extends Controller
             'logo_text' => 'JOSEF NHIDI',
             'site_logo' => '', // Global Social/Favicon Image
             'primary_color' => '#050505',
-            'accent_color' => '#d4af37',
+            'accent_color' => '#2563eb',
             'bg_color' => '#ffffff',
             'portraits_label' => 'PORTRAITS',
             'events_label' => 'EVENTS',
