@@ -16,7 +16,16 @@ return new class extends Migration
             $table->text('bio');
             $table->string('profile_image_url')->nullable();
             $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->text('address')->nullable();
             $table->json('social_links')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('settings', function (Blueprint $table) {
+            $table->id();
+            $table->string('key')->unique();
+            $table->text('value')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +35,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('settings');
         Schema::dropIfExists('about_contents');
     }
 };

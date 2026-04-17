@@ -18,12 +18,36 @@ class ImageService
     public function upload(UploadedFile $file, string $folder = 'photos'): ?string
     {
         try {
-            // Native GD WebP Conversion
+            // Native GD Resizing & WebP Conversion
             $imageString = file_get_contents($file->getRealPath());
             $image = @\imagecreatefromstring($imageString);
             
-            $webpData = null;
             if ($image) {
+                // Resize if needed (Targeting max 2500px for Platinum Performance)
+                $width = imagesx($image);
+                $height = imagesy($image);
+                $maxDim = 2500;
+                
+                if ($width > $maxDim || $height > $maxDim) {
+                    $ratio = $width / $height;
+                    if ($ratio > 1) {
+                        $newWidth = $maxDim;
+                        $newHeight = $maxDim / $ratio;
+                    } else {
+                        $newHeight = $maxDim;
+                        $newWidth = $maxDim * $ratio;
+                    }
+                    $resizedImage = \imagecreatetruecolor($newWidth, $newHeight);
+                    
+                    // Maintain transparency for some formats before conversion
+                    \imagealphablending($resizedImage, false);
+                    \imagesavealpha($resizedImage, true);
+                    
+                    \imagecopyresampled($resizedImage, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+                    \imagedestroy($image);
+                    $image = $resizedImage;
+                }
+
                 ob_start();
                 \imagewebp($image, null, 85);
                 $webpData = ob_get_clean();

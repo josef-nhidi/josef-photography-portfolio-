@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {

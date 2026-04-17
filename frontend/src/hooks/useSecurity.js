@@ -8,9 +8,9 @@ import { useEffect } from 'react';
 export const useSecurity = () => {
   useEffect(() => {
     const handleGlobalSecurity = (e) => {
-      // Logic from App.jsx - bypass for admin dashboard if needed
-      // (Bypassing is handled better by checking the route outside or here)
-      if (window.location.pathname.includes('admin/dashboard')) return;
+      // Logic from App.jsx - bypass for admin dashboard
+      const isAdminPath = window.location.pathname.includes('/admin/');
+      if (isAdminPath) return;
 
       if (e.type === 'contextmenu') {
         e.preventDefault();
