@@ -161,6 +161,17 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
                     placeholder="e.g. Exclusive Events & Portraits" 
                   />
                 </div>
+                <div className="form-group">
+                  <label className="admin-label-premium">Browser Tab Format</label>
+                  <input 
+                    type="text" 
+                    className="admin-input-premium" 
+                    value={customization.title_format || '{page} | {site}'} 
+                    onChange={(e) => setCustomization({ ...customization, title_format: e.target.value })} 
+                    placeholder="e.g. {page} - {site} or {site} • {page}" 
+                  />
+                  <span style={{ fontSize: '0.65rem', color: 'var(--admin-text-soft)', marginTop: '-0.3rem' }}>Use <strong>{page}</strong> for the tab name and <strong>{site}</strong> for website title.</span>
+                </div>
               </div>
             </div>
 

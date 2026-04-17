@@ -43,7 +43,10 @@ const SEO = ({
     metaUrl = siteUrl;
   }
 
-  const fullTitle = title ? `${title} | ${siteName}` : siteName;
+  const titleFormat = settings?.title_format || '{page} | {site}';
+  const fullTitle = title 
+    ? titleFormat.replace('{page}', title).replace('{site}', siteName) 
+    : siteName;
   const metaDescription = description || defaultDescription;
 
   // ✅ TUNISIA LOCAL BUSINESS SCHEMA
