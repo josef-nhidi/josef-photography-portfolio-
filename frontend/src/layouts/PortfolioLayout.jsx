@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import api from '../api/axios';
+import { usePortfolio } from '../context/PortfolioContext';
 import MasonryGrid from '../components/portfolio/MasonryGrid';
 import AlbumCard from '../components/portfolio/AlbumCard';
 import SEO from '../components/ui/SEO';
@@ -13,52 +13,34 @@ const PortfolioLayout = ({
   seoKeywords, 
   url 
 }) => {
-  const [groupedImages, setImages] = useState({});
-  const [allImages, setAllImages] = useState([]);
+  const { cache, loadingMap, fetchCategoryData } = usePortfolio();
+  
+  // Local state for UI responsiveness
   const [activeTab, setActiveTab] = useState('all'); // 'all' or 'albums'
-  const [loading, setLoading] = useState(true);
+  const [localData, setLocalData] = useState(cache[category] || null);
 
   useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const response = await api.get(`/photos/category/${category}`);
-        const data = response.data;
-        
-        // Group by album ID
-        let grouped = data.reduce((acc, photo) => {
-          const albumId = photo.album_id || 'null';
-          if (!acc[albumId]) {
-            acc[albumId] = {
-              name: photo.album ? photo.album.name : 'null',
-              photos: []
-            };
-          }
-          acc[albumId].photos.push(photo);
-          return acc;
-        }, {});
-
-        // Sort by views
-        Object.keys(grouped).forEach(id => {
-          grouped[id].photos.sort((a, b) => (b.views_count || 0) - (a.views_count || 0));
-        });
-        
-        setAllImages(data);
-        setImages(grouped);
-      } catch (error) {
-        console.error(`Error fetching ${category}:`, error);
-      } finally {
-        setLoading(false);
-      }
+    const load = async () => {
+      const data = await fetchCategoryData(category);
+      if (data) setLocalData(data);
     };
-    fetchImages();
-  }, [category]);
+    load();
+  }, [category, fetchCategoryData]);
 
-  if (loading) return (
+  // Determine if we should show the loader
+  const isGlobalLoading = loadingMap[category];
+  const hasData = !!localData;
+  const showLoader = isGlobalLoading && !hasData;
+
+  if (showLoader) return (
     <div className="loader-page">
       <div className="aperture-pulse"></div>
       <span className="loader-sub">Developing</span>
     </div>
   );
+
+  const allImages = localData?.photos || [];
+  const groupedImages = localData?.grouped || {};
 
   return (
     <section className={`page ${category}-page`} style={{ paddingTop: '4rem' }}>
