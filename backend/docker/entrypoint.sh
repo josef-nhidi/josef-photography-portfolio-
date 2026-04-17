@@ -18,11 +18,11 @@ fi
 
 # Link storage (Absolute Force Reconstruction)
 echo "Force-reconstructing storage bridge..."
-rm -rf /var/www/public/storage 
-mkdir -p /var/www/storage/app/public/photos
-cd /var/www/public && ln -snf ../storage/app/public storage
-chown -R www-data:www-data /var/www/public /var/www/storage
-chmod -R 775 /var/www/public /var/www/storage
+rm -rf /var/www/public/storage || true
+mkdir -p /var/www/storage/app/public/photos || true
+cd /var/www/public && ln -snf ../storage/app/public storage || true
+chown -R www-data:www-data /var/www/public /var/www/storage || true
+chmod -R 775 /var/www/public /var/www/storage || true
 cd /var/www
 
 # Run Laravel optimizations
