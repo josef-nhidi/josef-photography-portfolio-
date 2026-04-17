@@ -9,114 +9,144 @@ const SEO = ({
   url,
   type = 'website',
   articlePublishedAt,
-  settings, 
-  schema, // Custom JSON-LD schema object
+  settings,
+  schema,
 }) => {
   const siteName = settings?.site_title || 'Josef Nhidi Photography';
-  const defaultDescription = settings?.seo_description ||
-    'Professional photography by Josef Nhidi. Specializing in premium portraits and events, Youssef Nhidi captures the essence of every moment with a cinematic and high-end aesthetic.';
-  const defaultKeywords = settings?.seo_keywords || 
-    'Josef Nhidi, Youssef Nhidi, photography, portrait photographer, event photographer, luxury photography, professional portfolio';
-  
-  const defaultImage = '/og-image.png'; 
-  const siteUrl = 'https://josefnhidi.me'; 
+
+  const defaultDescription =
+    settings?.seo_description ||
+    'Professional photography by Josef Nhidi, based in Tunisia. Specializing in portraits, events, and luxury visual storytelling.';
+
+  const defaultKeywords =
+    settings?.seo_keywords ||
+    'Josef Nhidi, Youssef Nhidi, photographer Tunisia, portrait photographer Tunisia, event photographer Tunisia';
+
+  const siteUrl = 'https://josefnhidi.me';
+  const defaultImage = '/og-image.png';
+
+  // ✅ FIXED IMAGE LOGIC
+  let metaImage;
+  if (image) {
+    metaImage = image.startsWith('http')
+      ? image
+      : `${siteUrl}${image}`;
+  } else {
+    metaImage = `${siteUrl}${defaultImage}`;
+  }
+
+  // ✅ URL FIX
+  let metaUrl;
+  if (url) {
+    metaUrl = url.startsWith('http')
+      ? url
+      : `${siteUrl}${url}`;
+  } else {
+    metaUrl = siteUrl;
+  }
 
   const fullTitle = title ? `${title} | ${siteName}` : siteName;
   const metaDescription = description || defaultDescription;
-  const metaKeywords = keywords || defaultKeywords;
-  const metaImage = image || (image?.startsWith('http') ? image : `${siteUrl}${defaultImage}`);
-  const metaUrl = url ? (url.startsWith('http') ? url : `${siteUrl}${url}`) : siteUrl;
 
-  // Create Default Schema (Photographer / LocalBusiness)
+  // ✅ TUNISIA LOCAL BUSINESS SCHEMA
   const defaultSchema = {
     "@context": "https://schema.org",
-    "@type": "Photographer",
+    "@type": "ProfessionalService",
     "name": "Josef Nhidi",
     "url": siteUrl,
     "image": metaImage,
-    "description": defaultDescription,
+    "description": metaDescription,
+    "telephone": "+21652287170", // ⚠️ حط رقمك
+    "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Paris", // Default locality
-      "addressCountry": "FR"
+      "addressLocality": "Gabès",
+      "addressCountry": "TN"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Tunisia"
     },
     "sameAs": [
-      "https://instagram.com/josefnhidi", // Placeholders, real ones will be picked up from settings if available
-      "https://linkedin.com/in/josefnhidi"
+      settings?.instagram || "https://www.instagram.com/josef_nhidi",
+      settings?.linkedin || "https://www.linkedin.com/in/youssef-nhidi"
     ]
   };
 
-  // Create Breadcrumb Schema
-  const breadcrumbSchema = url && url !== '/' ? {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Portfolios",
-        "item": `${siteUrl}/portraits`
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": title || "Gallery",
-        "item": metaUrl
-      }
-    ]
-  } : null;
+  // ✅ BREADCRUMB
+  const breadcrumbSchema =
+    url && url !== '/'
+      ? {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": siteUrl
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": title || "Page",
+              "item": metaUrl
+            }
+          ]
+        }
+      : null;
 
   const finalSchema = schema || defaultSchema;
 
   return (
     <Helmet>
-      {/* ── PRIMARY META ── */}
+      {/* ✅ PRIMARY META */}
       <title>{fullTitle}</title>
       <meta name="description" content={metaDescription} />
-      <meta name="keywords" content={metaKeywords} />
       <meta name="author" content="Josef Nhidi" />
       <link rel="canonical" href={metaUrl} />
+
       {settings?.google_verification_tag && (
-        <meta name="google-site-verification" content={settings.google_verification_tag} />
+        <meta
+          name="google-site-verification"
+          content={settings.google_verification_tag}
+        />
       )}
 
-      {/* ── OPEN GRAPH ── */}
+      {/* ✅ OPEN GRAPH */}
       <meta property="og:type" content={type} />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={metaDescription} />
       <meta property="og:image" content={metaImage} />
-      <meta property="og:image:alt" content={fullTitle} />
       <meta property="og:url" content={metaUrl} />
       <meta property="og:site_name" content={siteName} />
-      <meta property="og:locale" content="en_US" />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
-      {articlePublishedAt && (
-        <meta property="article:published_time" content={articlePublishedAt} />
-      )}
+      <meta property="og:locale" content="fr_FR" />
 
-      {/* ── TWITTER CARD ── */}
+      {/* ✅ TWITTER */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={metaDescription} />
       <meta name="twitter:image" content={metaImage} />
-      <meta name="twitter:image:alt" content={fullTitle} />
-      <meta name="twitter:creator" content="@josefnhidi" />
 
-      {/* ── STRUCTURED DATA (JSON-LD) ── */}
+      {/* ✅ ROBOTS */}
+      <meta name="robots" content="index, follow, max-image-preview:large" />
+
+      {/* ✅ STRUCTURED DATA */}
       <script type="application/ld+json">
         {JSON.stringify(finalSchema)}
       </script>
+
       {breadcrumbSchema && (
         <script type="application/ld+json">
           {JSON.stringify(breadcrumbSchema)}
         </script>
       )}
 
-      {/* ── EXTRAS ── */}
-      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-      <meta name="theme-color" content={settings?.primary_color || "#0a0a0a"} />
-      <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+      {/* ✅ EXTRA */}
+      <meta
+        name="theme-color"
+        content={settings?.primary_color || "#000000"}
+      />
     </Helmet>
   );
 };
