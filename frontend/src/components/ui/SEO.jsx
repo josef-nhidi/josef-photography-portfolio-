@@ -101,51 +101,50 @@ const SEO = ({
   return (
     <Helmet>
       {/* ✅ PRIMARY META */}
-      <title key="title">{fullTitle}</title>
-      <meta key="description" name="description" content={metaDescription} />
-      <meta key="author" name="author" content="Josef Nhidi" />
-      <link key="canonical" rel="canonical" href={metaUrl} />
+      <title>{fullTitle}</title>
+      <meta name="description" content={metaDescription} />
+      <meta name="keywords" content={keywords || defaultKeywords} />
+      <meta name="author" content="Josef Nhidi" />
+      <link rel="canonical" href={metaUrl} />
 
       {settings?.google_verification_tag && (
         <meta
-          key="google-verify"
           name="google-site-verification"
           content={settings.google_verification_tag}
         />
       )}
 
       {/* ✅ OPEN GRAPH */}
-      <meta key="og-type" property="og:type" content={type} />
-      <meta key="og-title" property="og:title" content={fullTitle} />
-      <meta key="og-description" property="og:description" content={metaDescription} />
-      <meta key="og-image" property="og:image" content={metaImage} />
-      <meta key="og-url" property="og:url" content={metaUrl} />
-      <meta key="og-site-name" property="og:site_name" content={siteName} />
-      <meta key="og-locale" property="og:locale" content="fr_FR" />
+      <meta property="og:type" content={type} />
+      <meta property="og:title" content={fullTitle} />
+      <meta property="og:description" content={metaDescription} />
+      <meta property="og:image" content={metaImage} />
+      <meta property="og:url" content={metaUrl} />
+      <meta property="og:site_name" content={siteName} />
+      <meta property="og:locale" content="fr_FR" />
 
       {/* ✅ TWITTER */}
-      <meta key="twitter-card" name="twitter:card" content="summary_large_image" />
-      <meta key="twitter-title" name="twitter:title" content={fullTitle} />
-      <meta key="twitter-description" name="twitter:description" content={metaDescription} />
-      <meta key="twitter-image" name="twitter:image" content={metaImage} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={fullTitle} />
+      <meta name="twitter:description" content={metaDescription} />
+      <meta name="twitter:image" content={metaImage} />
 
       {/* ✅ ROBOTS */}
-      <meta key="robots" name="robots" content="index, follow, max-image-preview:large" />
+      <meta name="robots" content="index, follow, max-image-preview:large" />
 
       {/* ✅ STRUCTURED DATA */}
-      <script key="schema-main" type="application/ld+json">
+      <script type="application/ld+json">
         {JSON.stringify(finalSchema)}
       </script>
 
       {breadcrumbSchema && (
-        <script key="schema-breadcrumb" type="application/ld+json">
+        <script type="application/ld+json">
           {JSON.stringify(breadcrumbSchema)}
         </script>
       )}
 
       {/* ✅ EXTRA */}
       <meta
-        key="theme-color"
         name="theme-color"
         content={settings?.primary_color || "#000000"}
       />
