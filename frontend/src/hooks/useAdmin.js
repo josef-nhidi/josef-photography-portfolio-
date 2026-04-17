@@ -253,9 +253,7 @@ export const useAdmin = (setIsAdmin) => {
         formData.append('site_logo_file', customization.site_logo_file);
       }
 
-      await api.post('admin/settings', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' }
-      });
+      await api.post('admin/settings', formData);
 
       addToast('Site Appearance Updated! Page will refresh.');
       setTimeout(() => window.location.reload(), 1500);
