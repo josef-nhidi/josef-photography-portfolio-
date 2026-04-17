@@ -129,13 +129,56 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
             <p className="panel-card-title"><Search size={14} style={{marginRight: '8px'}} /> SEO & Analytics</p>
             <div className="form-column">
                <div className="form-group">
-                <label className="form-label">Meta Description</label>
+                <label className="form-label">Meta Description (Search Snippet)</label>
                 <textarea 
                   className="form-textarea" 
                   value={customization.seo_description || ''} 
-                  placeholder="Appears in search results..."
+                  placeholder="Appears in search results (max 160 characters)..."
                   rows={3}
                   onChange={(e) => setCustomization({...customization, seo_description: e.target.value})} 
+                />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Meta Keywords (Search Authority)</label>
+                <input 
+                  type="text" 
+                  className="form-input" 
+                  value={customization.seo_keywords || ''} 
+                  placeholder="e.g. josef photography, Tunisia photographer, portraits" 
+                  onChange={(e) => setCustomization({...customization, seo_keywords: e.target.value})} 
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Portraits Page SEO Description</label>
+                <textarea 
+                  className="form-textarea" 
+                  value={customization.portrait_seo_description || ''} 
+                  placeholder="Specific description for the Portraits collection..."
+                  rows={2}
+                  onChange={(e) => setCustomization({...customization, portrait_seo_description: e.target.value})} 
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Events Page SEO Description</label>
+                <textarea 
+                  className="form-textarea" 
+                  value={customization.event_seo_description || ''} 
+                  placeholder="Specific description for the Events collection..."
+                  rows={2}
+                  onChange={(e) => setCustomization({...customization, event_seo_description: e.target.value})} 
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">About Page SEO Description</label>
+                <textarea 
+                  className="form-textarea" 
+                  value={customization.about_seo_description || ''} 
+                  placeholder="Bio description for search results..."
+                  rows={2}
+                  onChange={(e) => setCustomization({...customization, about_seo_description: e.target.value})} 
                 />
               </div>
               <div className="form-group">
