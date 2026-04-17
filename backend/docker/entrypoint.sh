@@ -55,9 +55,12 @@ fi
 
 # ── STEP 3: FINAL PERMISSION PASS & LAUNCH ─────────────────────────────────
 echo "Fixing final permissions..."
-touch /home/storage/logs/laravel.log || true
-chown -R www-data:www-data /home/storage /home/database /var/www/bootstrap/cache || true
-chmod -R 775 /home/storage /home/database /var/www/bootstrap/cache || true
+# Ensure log file exists so we can chown it
+touch /var/www/storage/logs/laravel.log || true
+
+# Fix all relevant directories for the web user
+chown -R www-data:www-data /home/storage /var/www/storage /var/www/database /var/www/bootstrap/cache || true
+chmod -R 775 /home/storage /var/www/storage /var/www/database /var/www/bootstrap/cache || true
 
 echo "Starting services..."
 exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf

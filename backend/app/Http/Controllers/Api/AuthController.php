@@ -11,22 +11,29 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $request->validate([
-            'username' => 'required|string',
-            'password' => 'required',
-        ]);
+        try {
+            $request->validate([
+                'username' => 'required|string',
+                'password' => 'required',
+            ]);
 
-        $user = User::where('email', $request->username)
-                    ->orWhere('name', $request->username)
-                    ->first();
+            $user = User::where('email', $request->username)
+                        ->orWhere('name', $request->username)
+                        ->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            return response()->json(['message' => 'Invalid credentials'], 401);
+            if (!$user || !Hash::check($request->password, $user->password)) {
+                return response()->json(['message' => 'Invalid credentials'], 401);
+            }
+
+            $token = $user->createToken('admin-token')->plainTextToken;
+
+            return response()->json(['token' => $token]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'message' => 'Login engine failure: ' . $e->getMessage(),
+                'hint' => 'Check if database migrations completed successfully.'
+            ], 500);
         }
-
-        $token = $user->createToken('admin-token')->plainTextToken;
-
-        return response()->json(['token' => $token]);
     }
 
     public function updateCredentials(Request $request)
