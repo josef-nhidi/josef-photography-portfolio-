@@ -3,40 +3,46 @@ set -e
 
 cd /var/www
 
-# ── STEP 1: PERSISTENT PHOTO STORAGE (Azure /home survives restarts) ─────────
-echo "Mounting persistent photo storage from /home..."
+# ── STEP 1: PERSISTENT STORAGE (Azure /home survives restarts) ──────────────
+echo "Mounting persistent storage layer from /home..."
 
-# Create persistent photo directories in /home
+# 1.1 PROVISIONS
 mkdir -p /home/storage/app/public/photos
+mkdir -p /home/database
 
-# Create local storage dirs (logs, cache, sessions stay local - fine to recreate)
+# 1.2 LINK PHOTOS
+# Create local storage base if it somehow vanished
+mkdir -p /var/www/storage/app/public
+rm -rf /var/www/storage/app/public/photos
+ln -sf /home/storage/app/public/photos /var/www/storage/app/public/photos
+
+# 1.3 LINK DATABASE
+# We move the entire DB directory to /home to allow SQLite to create journal files on persistent disk
+rm -rf /var/www/database
+ln -sf /home/database /var/www/database
+
+# 1.4 ENSURE DB FILE
+if [ ! -f /home/database/database.sqlite ]; then
+    echo "Creating fresh persistent database.sqlite..."
+    touch /home/database/database.sqlite
+fi
+
+# 1.5 LINK PUBLIC STORAGE
+rm -rf /var/www/public/storage
+ln -sf /var/www/storage/app/public /var/www/public/storage
+
+# 1.6 LOCAL HELPER DIRS
 mkdir -p /var/www/storage/logs
 mkdir -p /var/www/storage/framework/views
 mkdir -p /var/www/storage/framework/sessions
 mkdir -p /var/www/storage/framework/cache
-mkdir -p /var/www/storage/app/public
 
-# Symlink ONLY the photos folder to persistent /home
-# Photos survive restarts; everything else is recreated cleanly
-rm -rf /var/www/storage/app/public/photos
-ln -sf /home/storage/app/public/photos /var/www/storage/app/public/photos
+# 1.7 PERMISSIONS
+echo "Fixing permissions on persistent and ephemeral paths..."
+chown -R www-data:www-data /home/storage /home/database /var/www/storage /var/www/bootstrap/cache /var/www/public || true
+chmod -R 775 /home/storage /home/database /var/www/storage /var/www/bootstrap/cache /var/www/public || true
 
-# Rebuild the public/storage symlink
-rm -rf /var/www/public/storage
-ln -sf /var/www/storage/app/public /var/www/public/storage
-
-# Ensure SQLite DB exists locally (recreated via migrations on each deploy if missing)
-mkdir -p /var/www/database
-if [ ! -f /var/www/database/database.sqlite ]; then
-    echo "Creating fresh local database.sqlite..."
-    touch /var/www/database/database.sqlite
-fi
-
-# Fix permissions
-chown -R www-data:www-data /home/storage /var/www/storage /var/www/database /var/www/bootstrap/cache /var/www/public
-chmod -R 775 /home/storage /var/www/storage /var/www/database /var/www/bootstrap/cache /var/www/public
-
-echo "Storage ready. Photos are persistent. DB is local."
+echo "Storage systems unified and persistent."
 
 # ── STEP 2: LARAVEL BOOT ────────────────────────────────────────────────────
 echo "Clearing cache..."
@@ -54,13 +60,10 @@ if [ ! -z "$INIT_ADMIN_USER" ] && [ ! -z "$INIT_ADMIN_PASS" ]; then
 fi
 
 # ── STEP 3: FINAL PERMISSION PASS & LAUNCH ─────────────────────────────────
-echo "Fixing final permissions..."
-# Ensure log file exists so we can chown it
+echo "Fixing final logging permissions..."
 touch /var/www/storage/logs/laravel.log || true
-
-# Fix all relevant directories for the web user
-chown -R www-data:www-data /home/storage /var/www/storage /var/www/database /var/www/bootstrap/cache || true
-chmod -R 775 /home/storage /var/www/storage /var/www/database /var/www/bootstrap/cache || true
+chown -R www-data:www-data /home/storage /home/database /var/www/storage /var/www/bootstrap/cache || true
+chmod -R 775 /home/storage /home/database /var/www/storage /var/www/bootstrap/cache || true
 
 echo "Starting services..."
 exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
