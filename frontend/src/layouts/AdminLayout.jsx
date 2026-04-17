@@ -132,8 +132,12 @@ const AdminLayout = ({ children, activeTab, setActiveTab, onLogout }) => {
         <header className="admin-top-bar">
           <div className="header-left">
             {!isLensMode && (
-              <button className="sidebar-toggle-btn" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
-                <Menu size={20} />
+              <button 
+                className={`sidebar-toggle-btn ${isSidebarOpen ? 'active' : ''}`} 
+                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                title={isSidebarOpen ? "Close Sidebar" : "Open Sidebar"}
+              >
+                {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
               </button>
             )}
             <div className="breadcrumb">
@@ -217,7 +221,23 @@ const AdminLayout = ({ children, activeTab, setActiveTab, onLogout }) => {
         .main-viewport { flex: 1; display: flex; flex-direction: column; height: 100%; min-width: 0; position: relative; }
         .admin-top-bar { height: 74px; background: var(--admin-header); border-bottom: 1px solid var(--admin-border); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; }
         .header-left { display: flex; align-items: center; gap: 1.5rem; }
-        .sidebar-toggle-btn { background: var(--admin-hover-bg); border: 1px solid var(--admin-border); color: #888; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .sidebar-toggle-btn { 
+          background: var(--admin-hover-bg); 
+          border: 1px solid var(--admin-border); 
+          color: var(--admin-text-soft); 
+          width: 40px; 
+          height: 40px; 
+          border-radius: 10px; 
+          display: flex; 
+          align-items: center; 
+          justify-content: center; 
+          cursor: pointer; 
+          transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+          z-index: 1100;
+        }
+        .sidebar-toggle-btn:hover { background: var(--admin-active-bg); color: var(--admin-text); border-color: var(--admin-accent); }
+        .sidebar-toggle-btn.active { background: var(--admin-accent); color: white; border-color: var(--admin-accent); box-shadow: 0 4px 12px rgba(37,99,235,0.25); }
+
         .breadcrumb { display: flex; align-items: center; gap: 0.75rem; font-size: 0.8rem; color: #999; font-weight: 600; }
         .header-right { display: flex; align-items: center; gap: 1rem; }
         
