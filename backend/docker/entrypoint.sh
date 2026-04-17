@@ -19,7 +19,7 @@ fi
 # Link storage (Absolute Force Reconstruction)
 echo "Force-reconstructing storage bridge..."
 rm -rf /var/www/public/storage || true
-mkdir -p /var/www/storage/app/public/photos || true
+mkdir -p /var/www/storage/app/public/photos /var/www/storage/app/public/about || true
 cd /var/www/public && ln -snf ../storage/app/public storage || true
 chown -R www-data:www-data /var/www/public /var/www/storage || true
 chmod -R 775 /var/www/public /var/www/storage || true
@@ -31,14 +31,22 @@ php artisan config:clear || true
 php artisan optimize:clear || true
 php artisan route:clear || true
 
-# Run migrations if possible (60s timeout)
-echo "Running migrations..."
-timeout 60 php artisan migrate --force || echo "Migration skipped or failed, continuing startup..."
+# Wait for Database (Handshake Guard)
+echo "Waiting for database connection..."
+until php artisan tinker --execute="DB::connection()->getPdo();" > /dev/null 2>&1; do
+    echo "Database not ready yet... Retrying in 2 seconds..."
+    sleep 2
+done
+echo "Database handshake success!"
 
-# Initial Admin Creation (60s timeout)
+# Run migrations (Force Synchronization)
+echo "Running migrations..."
+php artisan migrate --force
+
+# Initial Admin Creation
 if [ ! -z "$INIT_ADMIN_USER" ] && [ ! -z "$INIT_ADMIN_PASS" ]; then
     echo "Checking for admin user: $INIT_ADMIN_USER..."
-    timeout 60 php artisan tinker --execute="\$u = App\Models\User::updateOrCreate(['email' => '$INIT_ADMIN_USER'], ['name' => '$INIT_ADMIN_USER', 'password' => Hash::make('$INIT_ADMIN_PASS')]); echo 'SUCCESS: Admin user created/updated id=' . \$u->id . PHP_EOL;" || echo "Admin setup skipped or failed..."
+    php artisan tinker --execute="\$u = App\Models\User::updateOrCreate(['email' => '$INIT_ADMIN_USER'], ['name' => '$INIT_ADMIN_USER', 'password' => Hash::make('$INIT_ADMIN_PASS')]); echo 'SUCCESS: Admin user created/updated id=' . \$u->id . PHP_EOL;" || echo "Admin setup skipped or failed..."
 fi
 
 # Start supervisor
