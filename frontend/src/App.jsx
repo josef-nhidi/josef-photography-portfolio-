@@ -73,7 +73,6 @@ function AppContent() {
     <div className={`app-layout ${isLensMode ? 'lens-mode' : ''}`}>
       <Navbar settings={settings} isAdmin={isAdmin} />
       <div className="main-content-wrapper">
-        <SEO settings={settings} />
         <main className="main-content">
           <AnimatedRoutes settings={settings} setIsAdmin={setIsAdmin} refreshSettings={refreshSettings} />
         </main>

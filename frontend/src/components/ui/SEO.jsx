@@ -98,6 +98,11 @@ const SEO = ({
 
   const finalSchema = schema || defaultSchema;
 
+  const allSchemas = [finalSchema];
+  if (breadcrumbSchema) {
+    allSchemas.push(breadcrumbSchema);
+  }
+
   return (
     <Helmet>
       {/* ✅ PRIMARY META */}
@@ -132,16 +137,10 @@ const SEO = ({
       {/* ✅ ROBOTS */}
       <meta name="robots" content="index, follow, max-image-preview:large" />
 
-      {/* ✅ STRUCTURED DATA */}
+      {/* ✅ STRUCTURED DATA (Merged) */}
       <script type="application/ld+json">
-        {JSON.stringify(finalSchema)}
+        {JSON.stringify(allSchemas)}
       </script>
-
-      {breadcrumbSchema && (
-        <script type="application/ld+json">
-          {JSON.stringify(breadcrumbSchema)}
-        </script>
-      )}
 
       {/* ✅ EXTRA */}
       <meta
