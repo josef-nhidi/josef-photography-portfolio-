@@ -62,12 +62,25 @@ php artisan optimize:clear || true
 php artisan route:clear || true
 
 echo "Running migrations..."
-timeout 60 php artisan migrate --force || echo "Migration skipped or failed, continuing..."
+# Increase timeout and force migration
+timeout 120 php artisan migrate --force || echo "Migration command failed, trying repair..."
 
-# Initial Admin Creation
+# Health Check: Ensure the 'photos' table actually exists
+TABLE_EXISTS=$(php artisan tinker --execute="echo (int) Schema::hasTable('photos');" | tail -n 1)
+
+if [ "$TABLE_EXISTS" != "1" ]; then
+    echo "CRITICAL: 'photos' table is missing! Forcing a repair..."
+    # If the table is missing, the DB might be in a bad state (marked as migrated but empty)
+    # Since it's currently unusable anyway, we force a fresh migration
+    php artisan migrate:fresh --force --seed || echo "Repair failed..."
+else
+    echo "Database health check passed: 'photos' table found."
+fi
+
+# Initial Admin Creation (Ensures admin exists even if fresh is run)
 if [ ! -z "$INIT_ADMIN_USER" ] && [ ! -z "$INIT_ADMIN_PASS" ]; then
-    echo "Checking for admin user: $INIT_ADMIN_USER..."
-    timeout 60 php artisan tinker --execute="\$u = App\Models\User::updateOrCreate(['email' => '$INIT_ADMIN_USER'], ['name' => '$INIT_ADMIN_USER', 'password' => Hash::make('$INIT_ADMIN_PASS')]); echo 'SUCCESS: Admin user created/updated id=' . \$u->id . PHP_EOL;" || echo "Admin setup skipped..."
+    echo "Ensuring admin user: $INIT_ADMIN_USER..."
+    php artisan tinker --execute="\$u = App\Models\User::updateOrCreate(['email' => '$INIT_ADMIN_USER'], ['name' => '$INIT_ADMIN_USER', 'password' => Hash::make('$INIT_ADMIN_PASS')]); echo 'SUCCESS: Admin user verified id=' . \$u->id . PHP_EOL;" || echo "Admin setup failed..."
 fi
 
 # ── STEP 3: FINAL PERMISSION PASS & LAUNCH ─────────────────────────────────
