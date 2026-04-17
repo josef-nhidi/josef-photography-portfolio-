@@ -45,8 +45,9 @@ fi
 echo "READY: Signaling startup completion..."
 echo "Fixing final logging permissions..."
 touch /var/www/storage/logs/laravel.log || true
-chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache /var/www/database || true
-chmod -R 775 /var/www/storage /var/www/bootstrap/cache /var/www/database || true
+chown www-data:www-data /var/www/storage/logs/laravel.log || true
+chown -R www-data:www-data /var/www/bootstrap/cache /var/www/storage/framework || true
+chmod -R 775 /var/www/bootstrap/cache /var/www/storage/framework || true
 
 echo "Starting services..."
 exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
