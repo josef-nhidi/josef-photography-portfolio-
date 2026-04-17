@@ -21,16 +21,19 @@
   --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.08);
 
   /* Shared Admin Variables (Now Respect Themes) */
-  --admin-bg: var(--bg);
-  --admin-sidebar: var(--bg-panel);
-  --admin-header: var(--bg-panel);
-  --admin-panel: var(--bg-panel);
-  --admin-border: var(--border);
-  --admin-text: var(--primary);
-  --admin-text-soft: var(--muted);
-  --admin-accent: var(--accent);
-  --admin-active-bg: rgba(37, 99, 235, 0.08);
+  /* Advanced Admin Tokens (Light Refinement) */
+  --admin-bg: #f8fafc;
+  --admin-panel: #ffffff;
+  --admin-sidebar: var(--admin-panel);
+  --admin-header: var(--admin-panel);
+  --admin-border: #e2e8f0;
+  --admin-text: #0f172a;
+  --admin-text-soft: #475569;
+  --admin-accent: #2563eb;
+  --admin-active-bg: #eff6ff;
   --admin-hover-bg: rgba(0, 0, 0, 0.02);
+  --shadow-premium: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  --shadow-focus: 0 0 0 3px rgba(37, 99, 235, 0.1);
 
   /* Cinematic Image Tokens */
   --img-brightness: 1;

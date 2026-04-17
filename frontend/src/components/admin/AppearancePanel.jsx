@@ -206,8 +206,9 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
       <style jsx="true">{`
         .appearance-root { padding-bottom: 5rem; }
         .panel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; align-items: start; }
-        .panel-card { background: var(--admin-panel, white); border: 1px solid var(--admin-border, rgba(0,0,0,0.06)); border-radius: 12px; padding: 1.75rem; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-        .panel-card-title { font-family: var(--font-heading); font-size: 0.75rem; font-weight: 700; color: var(--admin-text-soft); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem; display: flex; align-items: center; opacity: 0.6; }
+        .panel-card { background: var(--admin-panel, white); border: 1px solid var(--admin-border); border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-premium); transition: transform 0.2s, box-shadow 0.2s; }
+        .panel-card:hover { transform: translateY(-2px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.05); }
+        .panel-card-title { font-family: var(--font-heading); font-size: 0.7rem; font-weight: 800; color: var(--admin-accent); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 1.75rem; display: flex; align-items: center; opacity: 0.9; }
         
         /* Theme */
         .color-grid { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
@@ -225,14 +226,14 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
         /* Forms */
         .form-column { display: flex; flex-direction: column; gap: 1.25rem; }
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-        .form-group { display: flex; flex-direction: column; gap: 0.45rem; }
-        .form-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12rem; color: var(--admin-text-soft); font-weight: 700; opacity: 0.8; }
-        .form-input, .form-textarea { background: var(--admin-bg); border: 1px solid var(--admin-border); color: var(--admin-text); padding: 0.8rem; border-radius: 10px; font-family: var(--font-body); font-size: 0.875rem; outline: none; transition: all 0.2s; width: 100%; resize: none; }
-        .form-input:focus, .form-textarea:focus { border-color: var(--admin-accent); background: var(--admin-panel); box-shadow: 0 4px 12px rgba(37,99,235,0.05); }
+        .form-group { display: flex; flex-direction: column; gap: 0.6rem; }
+        .form-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1rem; color: var(--admin-text-soft); font-weight: 800; }
+        .form-input, .form-textarea { background: var(--admin-panel); border: 1px solid var(--admin-border); color: var(--admin-text); padding: 0.9rem 1rem; border-radius: 12px; font-family: var(--font-body); font-size: 0.95rem; outline: none; transition: all 0.2s; width: 100%; resize: none; box-shadow: inset 0 1px 2px rgba(0,0,0,0.02); }
+        .form-input:focus, .form-textarea:focus { border-color: var(--admin-accent); background: var(--admin-panel); box-shadow: var(--shadow-focus), inset 0 1px 2px rgba(0,0,0,0.01); }
  
         .input-with-icon { position: relative; display: flex; align-items: center; }
-        .input-with-icon svg { position: absolute; left: 0.9rem; color: var(--admin-text-soft); pointer-events: none; opacity: 0.5; }
-        .input-with-icon .form-input { padding-left: 2.75rem; }
+        .input-with-icon svg { position: absolute; left: 1rem; color: var(--admin-accent); pointer-events: none; opacity: 0.7; }
+        .input-with-icon .form-input { padding-left: 3rem; }
  
         .sticky-action { margin-top: 2rem; }
         .btn-save-settings { 
@@ -269,6 +270,19 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
         .btn-upload { background: var(--admin-panel); border: 1px solid var(--admin-border); color: var(--admin-text); padding: 0.85rem 1.5rem; border-radius: 10px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.75rem; transition: var(--transition); }
         .btn-upload:hover { border-color: var(--admin-accent); color: var(--admin-accent); background: var(--admin-active-bg); }
         .upload-hint { font-size: 0.7rem; color: var(--admin-text-soft); opacity: 0.6; line-height: 1.4; }
+
+        /* Advanced Admin Tokens (Light Refinement) */
+        :root {
+          --admin-bg: #f8fafc;
+          --admin-panel: #ffffff;
+          --admin-active-bg: #eff6ff;
+          --admin-border: #e2e8f0;
+          --admin-text: #0f172a;
+          --admin-text-soft: #475569;
+          --admin-accent: #2563eb;
+          --shadow-premium: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+          --shadow-focus: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
 
         @media (max-width: 800px) {
           .panel-grid { grid-template-columns: 1fr; }
