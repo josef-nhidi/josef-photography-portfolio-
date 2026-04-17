@@ -16,10 +16,11 @@ if [ ! -f /var/www/database/database.sqlite ]; then
     chown www-data:www-data /var/www/database/database.sqlite
 fi
 
-# Link storage (Force recreation)
-echo "Recreating storage link..."
+# Link storage (Relative symlink for maximum resilience)
+echo "Recreating relative storage link..."
 rm -rf /var/www/public/storage
-php artisan storage:link --force
+cd /var/www/public && ln -snf ../storage/app/public storage
+cd /var/www
 
 # Ensure photos directory exists and is writable
 mkdir -p /var/www/storage/app/public/photos
