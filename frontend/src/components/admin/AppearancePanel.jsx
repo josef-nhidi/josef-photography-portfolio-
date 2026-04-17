@@ -191,10 +191,6 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
             </div>
           </div>
         </div>
-</div>
-          </div>
-
-        </div>
 
         {/* Global Save Action */}
         <div className="admin-action-footer">
