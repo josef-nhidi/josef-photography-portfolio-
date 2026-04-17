@@ -111,9 +111,9 @@ const SecurityPanel = ({ credentials, setCredentials, onUpdateCredentials }) => 
 
         .divider { height: 1px; background: var(--admin-border); margin: 0.5rem 0; opacity: 0.5; }
 
-        .warning-box { background: rgba(245, 158, 11, 0.05); border: 1px dashed rgba(245, 158, 11, 0.2); border-radius: 10px; padding: 1.25rem; display: flex; gap: 1.2rem; align-items: flex-start; }
-        .warning-box svg { color: #f59e0b; flex-shrink: 0; margin-top: 0.1rem; }
-        .warning-box p { font-size: 0.75rem; color: #f59e0b; line-height: 1.5; margin: 0; font-weight: 500; }
+        .warning-box { background: rgba(37, 99, 235, 0.05); border: 1px dashed rgba(37, 99, 235, 0.2); border-radius: 10px; padding: 1.25rem; display: flex; gap: 1.2rem; align-items: flex-start; }
+        .warning-box svg { color: #2563eb; flex-shrink: 0; margin-top: 0.1rem; }
+        .warning-box p { font-size: 0.75rem; color: #2563eb; line-height: 1.5; margin: 0; font-weight: 500; }
 
         .btn-save-security { background: var(--admin-panel); color: var(--admin-text-soft); border: 1px solid var(--admin-border); padding: 0.9rem; border-radius: 10px; font-family: var(--font-body); font-size: 0.875rem; font-weight: 700; cursor: pointer; transition: all 0.25s; }
         .btn-save-security:hover { background: #fee2e2; color: #ef4444; border-color: #fecaca; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(239, 68, 68, 0.15); }
