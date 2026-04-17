@@ -20,7 +20,11 @@ class ImageService
         try {
             // Native GD Resizing & WebP Conversion
             $imageString = file_get_contents($file->getRealPath());
-            $image = @\imagecreatefromstring($imageString);
+            if ($imageString === false) {
+                throw new \Exception("Failed to read image buffer from disk.");
+            }
+            
+            $image = \imagecreatefromstring($imageString);
             
             if ($image) {
                 // Resize if needed (Targeting max 2500px for Platinum Performance)
@@ -66,9 +70,10 @@ class ImageService
 
             return $this->uploadToLocal($webpData, $folder);
 
-        } catch (\Exception $e) {
-            Log::error('ImageService Upload Error: ' . $e->getMessage());
-            return null;
+        } catch (\Throwable $e) {
+            Log::error('ImageService Upload Error: ' . $e->getMessage() . ' Trace: ' . $e->getTraceAsString());
+            // Rethrow so the Controller catches the exact error
+            throw $e;
         }
     }
 

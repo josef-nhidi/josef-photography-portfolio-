@@ -62,11 +62,12 @@ class PhotoController extends Controller
             ]);
 
             return response()->json($photo, 201);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             Log::error('Upload Exception: ' . $e->getMessage());
             return response()->json([
                 'error' => 'Upload failed',
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString() // Adding trace might be useful for debugging directly 
             ], 500);
         }
     }
