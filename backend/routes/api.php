@@ -44,5 +44,5 @@ Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
     
     Route::get('/analytics', [AnalyticsController::class, 'index']);
 
-    Route::post('/settings', [SettingController::class, 'update']);
+    Route::match(['post', 'put'], '/settings', [SettingController::class, 'update']);
 });
