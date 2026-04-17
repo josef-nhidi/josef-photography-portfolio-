@@ -1,4 +1,4 @@
-import { Palette, Type, Search, CheckCircle, Upload, Layout } from 'lucide-react';
+import { Palette, Type, Search, CheckCircle, Upload, Layout, Globe } from 'lucide-react';
 const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) => {
   return (
     <div className="appearance-root">
@@ -56,12 +56,12 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
           </div>
 
           {/* Branding & SEO Section */}
-          <div className="panel-card">
-            <p className="panel-card-title"><Globe size={14} style={{marginRight: '8px'}} /> Branding & SEO</p>
-            <p className="panel-desc">Manage your professional branding, logos, and global SEO imagery.</p>
-            <div className="form-section">
-              <div className="form-group full-width">
-                <label className="form-label">Site Logo / SEO Image (512x512 recommended)</label>
+          <div className="admin-card-premium">
+            <p className="admin-heading-premium"><Globe size={14} style={{marginRight: '8px'}} /> Branding & SEO</p>
+            <p className="admin-label-premium" style={{textTransform: 'none', opacity: 0.6}}>Manage your professional branding, logos, and global SEO imagery.</p>
+            <div className="form-column">
+               <div className="form-group">
+                <label className="admin-label-premium">Site Logo / SEO Image (512x512 recommended)</label>
                 <div className="branding-upload-area">
                   <div className="logo-preview-box">
                     {customization.site_logo ? (
