@@ -25,7 +25,12 @@ const AlbumDetail = ({ settings }) => {
     fetchAlbum();
   }, [id]);
 
-  if (loading) return <div className="loader container">Loading...</div>;
+  if (loading) return (
+    <div className="loader-page">
+      <div className="aperture-pulse"></div>
+      <span className="loader-sub">Refining Collection</span>
+    </div>
+  );
   if (!album) return <div className="container" style={{paddingTop: '10rem'}}>Album not found.</div>;
 
   return (

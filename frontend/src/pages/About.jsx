@@ -28,7 +28,12 @@ const About = ({ settings }) => {
     fetchAbout();
   }, []);
 
-  if (loading) return <div className="loader container">Loading...</div>;
+  if (loading) return (
+    <div className="loader-page">
+      <div className="aperture-pulse"></div>
+      <span className="loader-sub">Aesthetic Analysis</span>
+    </div>
+  );
 
   return (
     <section className="about-page">

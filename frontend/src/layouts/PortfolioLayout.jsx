@@ -53,7 +53,12 @@ const PortfolioLayout = ({
     fetchImages();
   }, [category]);
 
-  if (loading) return <div className="loader container">Loading...</div>;
+  if (loading) return (
+    <div className="loader-page">
+      <div className="aperture-pulse"></div>
+      <span className="loader-sub">Developing</span>
+    </div>
+  );
 
   return (
     <section className={`page ${category}-page`} style={{ paddingTop: '4rem' }}>

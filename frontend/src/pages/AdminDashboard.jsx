@@ -19,7 +19,12 @@ import SecurityPanel from '../components/admin/SecurityPanel';
 const AdminDashboard = ({ setIsAdmin }) => {
   const admin = useAdmin(setIsAdmin);
 
-  if (admin.loading) return <div className="admin-loading">Loading Dashboard...</div>;
+  if (admin.loading) return (
+    <div className="loader-page">
+      <div className="aperture-pulse"></div>
+      <span className="loader-sub">Synchronizing Studio</span>
+    </div>
+  );
 
   return (
     <AdminLayout 

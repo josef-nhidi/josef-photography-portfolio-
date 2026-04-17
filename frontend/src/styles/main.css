@@ -375,3 +375,50 @@ ul {
     transform: scale(1);
   }
 }
+
+/* ── INTERIOR APERTURE LOADER ── */
+.loader-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  width: 100%;
+  gap: 1.5rem;
+  padding: 4rem;
+}
+
+.aperture-pulse {
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: aperture-breathe 2.5s infinite ease-in-out;
+}
+
+.aperture-pulse::after {
+  content: '';
+  width: 60%;
+  height: 60%;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: aperture-breathe 2.5s infinite ease-in-out reverse;
+}
+
+@keyframes aperture-breathe {
+  0%, 100% {
+    transform: scale(0.8);
+    opacity: 0.3;
+    border-width: 1px;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+    border-width: 2px;
+  }
+}
