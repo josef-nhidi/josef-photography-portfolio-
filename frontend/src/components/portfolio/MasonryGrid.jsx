@@ -28,7 +28,7 @@ const MasonryGrid = ({ images }) => {
         >
           <ProtectedImage
             src={image.url}
-            alt={image.title || 'Josef Nhidi Photography'}
+            alt={image.title ? `${image.title} | Josef Nhidi Photographer Tunisia` : 'Josef Nhidi Photographer Tunisia - Professional Services'}
             className="masonry-img"
           />
         </motion.div>

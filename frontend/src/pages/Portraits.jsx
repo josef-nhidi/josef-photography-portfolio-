@@ -8,8 +8,8 @@ const Portraits = ({ settings }) => {
       category="portrait"
       title={settings?.portraits_label || 'Portraits'}
       bgText={settings?.gallery_bg_text || 'PORTRAITS'}
-      seoDescription="Explore cinematic and high-end portrait photography by Josef Nhidi. Personal branding, artistic studio sessions, and intimate lifestyle portraits captured with professional lighting and creative vision."
-      seoKeywords="professional portrait photography, high-end headshots, cinematic portraits, Josef Nhidi, studio photography Paris, lifestyle photographer, artistic portraits"
+      seoDescription="Professional portrait photographer in Tunisia providing premium photography services. Cinematic and high-end personal branding, artistic studio sessions, and lifestyle portraits by Josef Nhidi."
+      seoKeywords="professional portrait photography, high-end headshots, cinematic portraits, Josef Nhidi, photographer Tunisia, studio photography Gabes, professional photography services"
       url="/portraits"
     />
   );

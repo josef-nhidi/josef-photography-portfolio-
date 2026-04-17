@@ -16,11 +16,11 @@ const SEO = ({
 
   const defaultDescription =
     settings?.seo_description ||
-    'Professional photography by Josef Nhidi, based in Tunisia. Specializing in portraits, events, and luxury visual storytelling.';
+    'Professional photographer in Tunisia providing premium photography services for portraits and events. Cinematic visual storytelling by Josef Nhidi.';
 
   const defaultKeywords =
     settings?.seo_keywords ||
-    'Josef Nhidi, Youssef Nhidi, photographer Tunisia, portrait photographer Tunisia, event photographer Tunisia';
+    'Josef Nhidi, Youssef Nhidi, photographer Tunisia, portrait photographer Tunisia, event photographer Tunisia, professional photography services';
 
   const siteUrl = 'https://josefnhidi.me';
   const defaultImage = '/og-image.png';

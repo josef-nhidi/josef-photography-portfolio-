@@ -51,17 +51,18 @@ const About = ({ settings }) => {
       <div className="container">
         <header className="page-header">
           <div className="header-content">
-            <span className="header-label">The Artist Behind the Lens</span>
-            <h1 className="header-title">Josef Nhidi</h1>
-            <p className="header-subtitle">Professional Photographer & Visual Storyteller</p>
+            <span className="header-label">The Visionary</span>
+            <h1 className="header-title">Josef Nhidi - Professional Photographer Tunisia</h1>
+            <p className="header-subtitle">Providing cinematic visual storytelling and professional photography services across Tunisia.</p>
           </div>
+          <div className="header-bg-text">ABOUT</div>
         </header>
 
         <div className="portfolio-content-panel about-panel">
           <div className="panel-body about-grid">
         <div className="about-image">
           {content?.profile_image_url ? (
-            <img src={content.profile_image_url} alt="Josef Nhidi" />
+            <img src={content.profile_image_url} alt="Josef Nhidi - Professional Photographer Tunisia" />
           ) : (
             <div className="image-placeholder">PROFILE PICTURE</div>
           )}
@@ -69,7 +70,7 @@ const About = ({ settings }) => {
         
         <div className="about-text">
           <div className="bio">
-            {content?.bio || "Josef Nhidi is a passionate photographer specializing in portraits and events. With a keen eye for details and the soul of his subjects, he captures the fleeting to make it eternal."}
+            {content?.bio || "Josef Nhidi is a professional photographer providing cinematic photography services in Tunisia. Specializing in high-end portraits and events, he captures the soul of his subjects with creative excellence."}
           </div>
           
           <span className="contact-section-title">Get in Touch</span>
