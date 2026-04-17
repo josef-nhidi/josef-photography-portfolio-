@@ -97,7 +97,7 @@ const AlbumDetail = ({ settings }) => {
           border-radius: 20px; 
           overflow: hidden; 
           margin-bottom: 4rem;
-          box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+          box-shadow: var(--shadow-premium);
         }
         
         .panel-toolbar { 
