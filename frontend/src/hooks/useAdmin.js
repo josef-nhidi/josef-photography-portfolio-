@@ -240,7 +240,23 @@ export const useAdmin = (setIsAdmin) => {
   const handleUpdateSettings = async (e) => {
     e.preventDefault();
     try {
-      await api.put('admin/settings', customization);
+      // Use FormData to support file uploads (logo/favicon)
+      const formData = new FormData();
+      Object.keys(customization).forEach(key => {
+        // Skip null values and special internal states
+        if (customization[key] !== null && key !== 'site_logo_file') {
+          formData.append(key, customization[key]);
+        }
+      });
+
+      if (customization.site_logo_file) {
+        formData.append('site_logo_file', customization.site_logo_file);
+      }
+
+      await api.post('admin/settings', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+
       addToast('Site Appearance Updated! Page will refresh.');
       setTimeout(() => window.location.reload(), 1500);
     } catch (err) { showAlert('Error updating site settings.', true); }

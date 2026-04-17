@@ -23,24 +23,22 @@ const SEO = ({
     'Josef Nhidi, Youssef Nhidi, photographer Tunisia, portrait photographer Tunisia, event photographer Tunisia, professional photography services';
 
   const siteUrl = 'https://josefnhidi.me';
-  const defaultImage = '/og-image.png';
+  
+  // ✅ LOGO / FAVICON LOGIC (Priority: Page Image > Site Logo > Default)
+  const siteLogo = settings?.site_logo;
+  const defaultImage = siteLogo || '/og-image.png';
 
-  // ✅ FIXED IMAGE LOGIC
   let metaImage;
   if (image) {
-    metaImage = image.startsWith('http')
-      ? image
-      : `${siteUrl}${image}`;
+    metaImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
   } else {
-    metaImage = `${siteUrl}${defaultImage}`;
+    metaImage = defaultImage.startsWith('http') ? defaultImage : `${siteUrl}${defaultImage}`;
   }
 
   // ✅ URL FIX
   let metaUrl;
   if (url) {
-    metaUrl = url.startsWith('http')
-      ? url
-      : `${siteUrl}${url}`;
+    metaUrl = url.startsWith('http') ? url : `${siteUrl}${url}`;
   } else {
     metaUrl = siteUrl;
   }
@@ -111,6 +109,14 @@ const SEO = ({
       <meta name="keywords" content={keywords || defaultKeywords} />
       <meta name="author" content="Josef Nhidi" />
       <link rel="canonical" href={metaUrl} />
+
+      {/* ✅ DYNAMIC BRANDING (Favicon) */}
+      {siteLogo && (
+        <>
+          <link rel="icon" type="image/webp" href={siteLogo} />
+          <link rel="apple-touch-icon" href={siteLogo} />
+        </>
+      )}
 
       {settings?.google_verification_tag && (
         <meta

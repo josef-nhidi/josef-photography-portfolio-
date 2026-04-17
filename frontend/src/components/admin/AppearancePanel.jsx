@@ -57,6 +57,50 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
             </div>
           </div>
 
+          {/* Branding & SEO Section */}
+          <div className="panel-card">
+            <p className="panel-card-title"><Globe size={14} style={{marginRight: '8px'}} /> Branding & SEO</p>
+            <p className="panel-desc">Manage your professional branding, logos, and global SEO imagery.</p>
+            <div className="form-section">
+              <div className="form-group full-width">
+                <label className="form-label">Site Logo / SEO Image (512x512 recommended)</label>
+                <div className="branding-upload-area">
+                  <div className="logo-preview-box">
+                    {customization.site_logo ? (
+                      <img src={customization.site_logo} alt="Site Logo" className="logo-preview-img" />
+                    ) : (
+                      <div className="logo-placeholder">No Logo Set</div>
+                    )}
+                  </div>
+                  <div className="upload-controls">
+                    <input 
+                      type="file" 
+                      accept="image/*" 
+                      id="site_logo_file"
+                      onChange={(e) => {
+                        const file = e.target.files[0];
+                        if (file) {
+                          setCustomization(prev => ({ ...prev, site_logo_file: file }));
+                          const reader = new FileReader();
+                          reader.onloadend = () => {
+                            setCustomization(prev => ({ ...prev, site_logo: reader.result }));
+                          };
+                          reader.readAsDataURL(file);
+                        }
+                      }}
+                      className="hidden-file-input"
+                    />
+                    <label htmlFor="site_logo_file" className="btn-upload">
+                      <Upload size={18} />
+                      Change Logo
+                    </label>
+                    <p className="upload-hint">This image appears in Google search results and social previews.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Section Labels */}
           <div className="panel-card">
             <p className="panel-card-title"><Layout size={14} style={{marginRight: '8px'}} /> Interface Labels</p>
@@ -172,6 +216,17 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
           box-shadow: 0 15px 35px rgba(37,99,235,0.35); 
         }
  
+        /* Branding Upload */
+        .branding-upload-area { display: flex; gap: 2rem; align-items: center; background: var(--admin-bg); padding: 2rem; border-radius: 12px; border: 1px dashed var(--admin-border); }
+        .logo-preview-box { width: 120px; height: 120px; background: var(--admin-panel); border: 1px solid var(--admin-border); border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: var(--shadow-sm); }
+        .logo-preview-img { width: 100%; height: 100%; object-fit: contain; padding: 0.5rem; }
+        .logo-placeholder { font-size: 0.65rem; color: var(--admin-text-soft); font-weight: 700; text-transform: uppercase; opacity: 0.5; }
+        .upload-controls { flex: 1; display: flex; flex-direction: column; gap: 0.75rem; }
+        .hidden-file-input { display: none; }
+        .btn-upload { background: var(--admin-panel); border: 1px solid var(--admin-border); color: var(--admin-text); padding: 0.85rem 1.5rem; border-radius: 10px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.75rem; transition: var(--transition); }
+        .btn-upload:hover { border-color: var(--admin-accent); color: var(--admin-accent); background: var(--admin-active-bg); }
+        .upload-hint { font-size: 0.7rem; color: var(--admin-text-soft); opacity: 0.6; line-height: 1.4; }
+
         @media (max-width: 800px) {
           .panel-grid { grid-template-columns: 1fr; }
           .form-grid { grid-template-columns: 1fr; }

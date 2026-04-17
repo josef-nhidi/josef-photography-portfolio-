@@ -4,10 +4,18 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Services\ImageService;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
+    protected $imageService;
+
+    public function __construct(ImageService $imageService)
+    {
+        $this->imageService = $imageService;
+    }
+
     public function index()
     {
         $settings = Setting::all()->pluck('value', 'key');
@@ -17,6 +25,7 @@ class SettingController extends Controller
             'site_title' => 'Josef Nhidi Photography',
             'site_tagline' => 'Professional Portrait & Event Photographer',
             'logo_text' => 'JOSEF NHIDI',
+            'site_logo' => '', // Global Social/Favicon Image
             'primary_color' => '#050505',
             'accent_color' => '#d4af37',
             'bg_color' => '#ffffff',
@@ -46,7 +55,21 @@ class SettingController extends Controller
     public function update(Request $request)
     {
         $settings = $request->all();
+
+        // Handle Branding Image Upload if present
+        if ($request->hasFile('site_logo_file')) {
+            $logoUrl = $this->imageService->upload($request->file('site_logo_file'), 'branding');
+            if ($logoUrl) {
+                Setting::updateOrCreate(['key' => 'site_logo'], ['value' => $logoUrl]);
+                // Mirror to legacy og_image_url for compatibility
+                Setting::updateOrCreate(['key' => 'og_image_url'], ['value' => $logoUrl]);
+            }
+        }
+
         foreach ($settings as $key => $value) {
+            // Skip the file input itself if it's here
+            if ($key === 'site_logo_file') continue;
+            
             Setting::updateOrCreate(['key' => $key], ['value' => $value]);
         }
         return response()->json(['message' => 'Settings updated successfully']);
