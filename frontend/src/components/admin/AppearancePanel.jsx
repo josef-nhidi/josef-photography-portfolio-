@@ -191,8 +191,8 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
         </div>
 
         {/* Global Save Action */}
-        <div className="sticky-action">
-          <button type="submit" className="btn-save-settings-premium">
+        <div className="admin-action-footer">
+          <button type="submit" className="btn-publish-premium">
             <CheckCircle size={18} /> Publish Studio Identity
           </button>
         </div>
@@ -250,26 +250,37 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
         .btn-upload-premium:hover { border-color: var(--admin-accent); color: var(--admin-accent); }
         .upload-hint { font-size: 0.7rem; color: var(--admin-text-soft); opacity: 0.6; line-height: 1.4; }
 
-        .sticky-action { margin-top: 2rem; }
-        .btn-save-settings-premium { 
+        .admin-action-footer { 
+          margin-top: 3rem; 
+          display: flex; 
+          justify-content: flex-end; 
+          border-top: 1px solid var(--admin-border);
+          padding-top: 2rem;
+        }
+
+        .btn-publish-premium { 
           background: var(--admin-accent); 
           color: white; 
           border: none; 
-          padding: 1.25rem; 
-          border-radius: 16px; 
+          padding: 0.85rem 2.5rem; 
+          border-radius: 14px; 
           font-family: var(--font-body); 
-          font-size: 1rem; 
+          font-size: 0.9rem; 
           font-weight: 800; 
-          width: 100%;
           display: flex; 
           align-items: center; 
           justify-content: center;
-          gap: 0.85rem; 
+          gap: 0.75rem; 
           cursor: pointer; 
           transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-          box-shadow: 0 10px 25px rgba(37,99,235,0.25); 
+          box-shadow: 0 8px 20px rgba(37,99,235,0.2); 
         }
-        .btn-save-settings-premium:hover { transform: translateY(-4px); box-shadow: 0 15px 35px rgba(37,99,235,0.35); background: #1d4ed8; }
+
+        .btn-publish-premium:hover { 
+          transform: translateY(-3px); 
+          box-shadow: 0 12px 30px rgba(37,99,235,0.3); 
+          background: #1d4ed8; 
+        }
 
         @media (max-width: 900px) { color-grid { grid-template-columns: 1fr; } .form-grid-2col { grid-template-columns: 1fr; } }
       `}</style>
