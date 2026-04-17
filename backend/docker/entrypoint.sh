@@ -18,6 +18,8 @@ fi
 # Run Laravel optimizations
 echo "Clearing cache..."
 php artisan optimize:clear || true
+php artisan config:clear || true
+php artisan route:clear || true
 
 # Run migrations if possible
 echo "Running migrations..."
