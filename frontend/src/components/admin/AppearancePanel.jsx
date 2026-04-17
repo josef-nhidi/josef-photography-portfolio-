@@ -10,182 +10,188 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
   return (
     <div className="appearance-root">
       <form onSubmit={onUpdateSettings}>
-        <div className="panel-grid">
-          
-          {/* ── 1. VISUAL THEME ── */}
-          <div className="admin-card-premium">
-            <p className="admin-heading-premium">
-              <Palette size={14} style={{ marginRight: '8px' }} /> 
-              Site Theme & Atmosphere
-            </p>
-            <div className="color-grid">
-              <div className="color-input-group">
-                <label className="admin-label-premium">Primary Text</label>
-                <div className="color-picker-wrapper">
-                  <input type="color" value={customization.primary_color || '#0f172a'} onChange={(e) => setCustomization({ ...customization, primary_color: e.target.value })} />
-                  <span className="color-code">{customization.primary_color}</span>
-                </div>
-              </div>
-              <div className="color-input-group">
-                <label className="admin-label-premium">Accent Color</label>
-                <div className="color-picker-wrapper">
-                  <input type="color" value={customization.accent_color || '#2563eb'} onChange={(e) => setCustomization({ ...customization, accent_color: e.target.value })} />
-                  <span className="color-code">{customization.accent_color}</span>
-                </div>
-              </div>
-              <div className="color-input-group">
-                <label className="admin-label-premium">Background</label>
-                <div className="color-picker-wrapper">
-                  <input type="color" value={customization.bg_color || '#f8fafc'} onChange={(e) => setCustomization({ ...customization, bg_color: e.target.value })} />
-                  <span className="color-code">{customization.bg_color}</span>
-                </div>
-              </div>
-            </div>
-            <div className="info-box-premium">
-              <p>Updates logo accents, active links, and various UI highlights across the portfolio.</p>
-            </div>
-          </div>
-
-          {/* ── 2. BRANDING IDENTITY ── */}
-          <div className="admin-card-premium">
-            <p className="admin-heading-premium">
-              <Type size={14} style={{ marginRight: '8px' }} /> 
-              Branding & Tab Identity
-            </p>
-            <div className="form-column">
-              <div className="form-group">
-                <label className="admin-label-premium">Website Title (Tab Name)</label>
-                <input 
-                  type="text" 
-                  className="admin-input-premium" 
-                  value={customization.site_title || ''} 
-                  onChange={(e) => setCustomization({ ...customization, site_title: e.target.value })} 
-                  placeholder="e.g. Josef Nhidi | Professional Photographer" 
-                />
-              </div>
-              <div className="form-group">
-                <label className="admin-label-premium">Navigation Logo Text</label>
-                <input 
-                  type="text" 
-                  className="admin-input-premium" 
-                  value={customization.logo_text || ''} 
-                  placeholder="e.g. JOSEF NHIDI" 
-                  onChange={(e) => setCustomization({ ...customization, logo_text: e.target.value })} 
-                />
-              </div>
-              <div className="form-group">
-                <label className="admin-label-premium">Site Tagline</label>
-                <input 
-                  type="text" 
-                  className="admin-input-premium" 
-                  value={customization.site_tagline || ''} 
-                  onChange={(e) => setCustomization({ ...customization, site_tagline: e.target.value })} 
-                  placeholder="e.g. Exclusive Events & Portraits" 
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* ── 3. WEBSITE FAVICON ── */}
-          <div className="admin-card-premium">
-            <p className="admin-heading-premium">
-              <Globe size={14} style={{ marginRight: '8px' }} /> 
-              Website Favicon & Global SEO Image
-            </p>
-            <div className="form-column">
-              <div className="form-group">
-                <label className="admin-label-premium">Site Logo / Favicon (512x512 recommended)</label>
-                <div className="branding-upload-area">
-                  <div className="logo-preview-box">
-                    {customization.site_logo ? (
-                      <img src={customization.site_logo} alt="Site Logo" className="logo-preview-img" />
-                    ) : (
-                      <div className="logo-placeholder">No Favicon</div>
-                    )}
+        <div className="panel-columns">
+          <div className="admin-column">
+            {/* ── 1. VISUAL THEME ── */}
+            <div className="admin-card-premium">
+              <p className="admin-heading-premium">
+                <Palette size={14} style={{ marginRight: '8px' }} /> 
+                Site Theme & Atmosphere
+              </p>
+              <div className="color-grid">
+                <div className="color-input-group">
+                  <label className="admin-label-premium">Primary Text</label>
+                  <div className="color-picker-wrapper">
+                    <input type="color" value={customization.primary_color || '#0f172a'} onChange={(e) => setCustomization({ ...customization, primary_color: e.target.value })} />
+                    <span className="color-code">{customization.primary_color}</span>
                   </div>
-                  <div className="upload-controls">
-                    <input 
-                      type="file" 
-                      accept="image/*" 
-                      id="site_logo_file_restored"
-                      onChange={(e) => {
-                        const file = e.target.files[0];
-                        if (file) {
-                          setCustomization(prev => ({ ...prev, site_logo_file: file }));
-                          const reader = new FileReader();
-                          reader.onloadend = () => {
-                            setCustomization(prev => ({ ...prev, site_logo: reader.result }));
-                          };
-                          reader.readAsDataURL(file);
-                        }
-                      }}
-                      className="hidden-file-input"
-                    />
-                    <label htmlFor="site_logo_file_restored" className="btn-upload-premium">
-                      <Upload size={18} />
-                      Replace Favicon
-                    </label>
-                    <p className="upload-hint">Appears in Google search results and browser tabs.</p>
+                </div>
+                <div className="color-input-group">
+                  <label className="admin-label-premium">Accent Color</label>
+                  <div className="color-picker-wrapper">
+                    <input type="color" value={customization.accent_color || '#2563eb'} onChange={(e) => setCustomization({ ...customization, accent_color: e.target.value })} />
+                    <span className="color-code">{customization.accent_color}</span>
+                  </div>
+                </div>
+                <div className="color-input-group">
+                  <label className="admin-label-premium">Background</label>
+                  <div className="color-picker-wrapper">
+                    <input type="color" value={customization.bg_color || '#f8fafc'} onChange={(e) => setCustomization({ ...customization, bg_color: e.target.value })} />
+                    <span className="color-code">{customization.bg_color}</span>
+                  </div>
+                </div>
+              </div>
+              <div className="info-box-premium">
+                <p>Updates logo accents, active links, and various UI highlights across the portfolio.</p>
+              </div>
+            </div>
+
+            {/* ── 3. WEBSITE FAVICON ── */}
+            <div className="admin-card-premium">
+              <p className="admin-heading-premium">
+                <Globe size={14} style={{ marginRight: '8px' }} /> 
+                Website Favicon & Global SEO Image
+              </p>
+              <div className="form-column">
+                <div className="form-group">
+                  <label className="admin-label-premium">Site Logo / Favicon (512x512 recommended)</label>
+                  <div className="branding-upload-area">
+                    <div className="logo-preview-box">
+                      {customization.site_logo ? (
+                        <img src={customization.site_logo} alt="Site Logo" className="logo-preview-img" />
+                      ) : (
+                        <div className="logo-placeholder">No Favicon</div>
+                      )}
+                    </div>
+                    <div className="upload-controls">
+                      <input 
+                        type="file" 
+                        accept="image/*" 
+                        id="site_logo_file_restored"
+                        onChange={(e) => {
+                          const file = e.target.files[0];
+                          if (file) {
+                            setCustomization(prev => ({ ...prev, site_logo_file: file }));
+                            const reader = new FileReader();
+                            reader.onloadend = () => {
+                              setCustomization(prev => ({ ...prev, site_logo: reader.result }));
+                            };
+                            reader.readAsDataURL(file);
+                          }
+                        }}
+                        className="hidden-file-input"
+                      />
+                      <label htmlFor="site_logo_file_restored" className="btn-upload-premium">
+                        <Upload size={18} />
+                        Replace Favicon
+                      </label>
+                      <p className="upload-hint">Appears in Google search results and browser tabs.</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* ── 4. INTERFACE LABELS ── */}
-          <div className="admin-card-premium">
-            <p className="admin-heading-premium">
-              <Layout size={14} style={{ marginRight: '8px' }} /> 
-              Gallery & Navigation Labels
-            </p>
-            <div className="form-grid-2col">
-              <div className="form-group">
-                <label className="admin-label-premium">Portraits Tab Label</label>
-                <input type="text" className="admin-input-premium" value={customization.portraits_label || 'Portraits'} onChange={(e) => setCustomization({ ...customization, portraits_label: e.target.value })} />
-              </div>
-              <div className="form-group">
-                <label className="admin-label-premium">Events Tab Label</label>
-                <input type="text" className="admin-input-premium" value={customization.events_label || 'Events'} onChange={(e) => setCustomization({ ...customization, events_label: e.target.value })} />
-              </div>
-              <div className="form-group">
-                <label className="admin-label-premium">Intro Label (Small)</label>
-                <input type="text" className="admin-input-premium" value={customization.gallery_tagline || ''} onChange={(e) => setCustomization({ ...customization, gallery_tagline: e.target.value })} />
-              </div>
-              <div className="form-group">
-                <label className="admin-label-premium">Intro Heading (Large)</label>
-                <input type="text" className="admin-input-premium" value={customization.gallery_title || ''} onChange={(e) => setCustomization({ ...customization, gallery_title: e.target.value })} />
+            {/* ── 5. SEO & SEARCH AUTHORITY ── */}
+            <div className="admin-card-premium">
+              <p className="admin-heading-premium">
+                <Search size={14} style={{ marginRight: '8px' }} /> 
+                SEO Metadata & Search Snippets
+              </p>
+              <div className="form-column">
+                <div className="form-group">
+                  <label className="admin-label-premium">Meta Description (Search Snippet)</label>
+                  <textarea 
+                    className="admin-input-premium" 
+                    value={customization.seo_description || ''} 
+                    placeholder="Appears in search results (max 160 characters)..."
+                    rows={3}
+                    onChange={(e) => setCustomization({ ...customization, seo_description: e.target.value })} 
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="admin-label-premium">Meta Keywords</label>
+                  <input 
+                    type="text" 
+                    className="admin-input-premium" 
+                    value={customization.seo_keywords || ''} 
+                    placeholder="e.g. josef photography, Tunisia photographer" 
+                    onChange={(e) => setCustomization({ ...customization, seo_keywords: e.target.value })} 
+                  />
+                </div>
               </div>
             </div>
           </div>
 
-          {/* ── 5. SEO & SEARCH AUTHORITY ── */}
-          <div className="admin-card-premium">
-            <p className="admin-heading-premium">
-              <Search size={14} style={{ marginRight: '8px' }} /> 
-              SEO Metadata & Search Snippets
-            </p>
-            <div className="form-column">
-              <div className="form-group">
-                <label className="admin-label-premium">Meta Description (Search Snippet)</label>
-                <textarea 
-                  className="admin-input-premium" 
-                  value={customization.seo_description || ''} 
-                  placeholder="Appears in search results (max 160 characters)..."
-                  rows={3}
-                  onChange={(e) => setCustomization({ ...customization, seo_description: e.target.value })} 
-                />
-              </div>
-              <div className="form-group">
-                <label className="admin-label-premium">Meta Keywords</label>
-                <input 
-                  type="text" 
-                  className="admin-input-premium" 
-                  value={customization.seo_keywords || ''} 
-                  placeholder="e.g. josef photography, Tunisia photographer" 
-                  onChange={(e) => setCustomization({ ...customization, seo_keywords: e.target.value })} 
-                />
+          <div className="admin-column">
+            {/* ── 2. BRANDING IDENTITY ── */}
+            <div className="admin-card-premium">
+              <p className="admin-heading-premium">
+                <Type size={14} style={{ marginRight: '8px' }} /> 
+                Branding & Tab Identity
+              </p>
+              <div className="form-column">
+                <div className="form-group">
+                  <label className="admin-label-premium">Website Title (Tab Name)</label>
+                  <input 
+                    type="text" 
+                    className="admin-input-premium" 
+                    value={customization.site_title || ''} 
+                    onChange={(e) => setCustomization({ ...customization, site_title: e.target.value })} 
+                    placeholder="e.g. Josef Nhidi | Professional Photographer" 
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="admin-label-premium">Navigation Logo Text</label>
+                  <input 
+                    type="text" 
+                    className="admin-input-premium" 
+                    value={customization.logo_text || ''} 
+                    placeholder="e.g. JOSEF NHIDI" 
+                    onChange={(e) => setCustomization({ ...customization, logo_text: e.target.value })} 
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="admin-label-premium">Site Tagline</label>
+                  <input 
+                    type="text" 
+                    className="admin-input-premium" 
+                    value={customization.site_tagline || ''} 
+                    onChange={(e) => setCustomization({ ...customization, site_tagline: e.target.value })} 
+                    placeholder="e.g. Exclusive Events & Portraits" 
+                  />
+                </div>
               </div>
             </div>
+
+            {/* ── 4. INTERFACE LABELS ── */}
+            <div className="admin-card-premium">
+              <p className="admin-heading-premium">
+                <Layout size={14} style={{ marginRight: '8px' }} /> 
+                Gallery & Navigation Labels
+              </p>
+              <div className="form-grid-2col">
+                <div className="form-group">
+                  <label className="admin-label-premium">Portraits Tab Label</label>
+                  <input type="text" className="admin-input-premium" value={customization.portraits_label || 'Portraits'} onChange={(e) => setCustomization({ ...customization, portraits_label: e.target.value })} />
+                </div>
+                <div className="form-group">
+                  <label className="admin-label-premium">Events Tab Label</label>
+                  <input type="text" className="admin-input-premium" value={customization.events_label || 'Events'} onChange={(e) => setCustomization({ ...customization, events_label: e.target.value })} />
+                </div>
+                <div className="form-group">
+                  <label className="admin-label-premium">Intro Label (Small)</label>
+                  <input type="text" className="admin-input-premium" value={customization.gallery_tagline || ''} onChange={(e) => setCustomization({ ...customization, gallery_tagline: e.target.value })} />
+                </div>
+                <div className="form-group">
+                  <label className="admin-label-premium">Intro Heading (Large)</label>
+                  <input type="text" className="admin-input-premium" value={customization.gallery_title || ''} onChange={(e) => setCustomization({ ...customization, gallery_title: e.target.value })} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+</div>
           </div>
 
         </div>
@@ -200,7 +206,8 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
 
       <style jsx="true">{`
         .appearance-root { padding-bottom: 5rem; }
-        .panel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 2rem; align-items: start; }
+        .panel-columns { display: flex; gap: 2rem; align-items: flex-start; }
+        .admin-column { flex: 1; display: flex; flex-direction: column; gap: 2rem; min-width: 450px; }
         
         .admin-card-premium {
           background: var(--admin-panel);
@@ -282,7 +289,11 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
           background: #1d4ed8; 
         }
 
-        @media (max-width: 900px) { color-grid { grid-template-columns: 1fr; } .form-grid-2col { grid-template-columns: 1fr; } }
+        @media (max-width: 1024px) { 
+          .panel-columns { flex-direction: column; } 
+          .admin-column { min-width: 100%; }
+        }
+        @media (max-width: 600px) { .form-grid-2col { grid-template-columns: 1fr; } }
       `}</style>
     </div>
   );
