@@ -10,6 +10,7 @@ import { useAuth } from './hooks/useAuth';
 // Components
 import Navbar from './components/layout/Navbar';
 import PageTransition from './components/ui/PageTransition';
+import SEO from './components/ui/SEO';
 
 // Pages
 import Portraits from './pages/Portraits';
@@ -72,6 +73,7 @@ function AppContent() {
     <div className={`app-layout ${isLensMode ? 'lens-mode' : ''}`}>
       <Navbar settings={settings} isAdmin={isAdmin} />
       <div className="main-content-wrapper">
+        <SEO settings={settings} />
         <main className="main-content">
           <AnimatedRoutes settings={settings} setIsAdmin={setIsAdmin} refreshSettings={refreshSettings} />
         </main>
