@@ -16,16 +16,14 @@ if [ ! -f /var/www/database/database.sqlite ]; then
     chown www-data:www-data /var/www/database/database.sqlite
 fi
 
-# Link storage (Relative symlink for maximum resilience)
-echo "Recreating relative storage link..."
-rm -rf /var/www/public/storage
-cd /var/www/public && ln -snf ../storage/app/public storage
-cd /var/www
-
-# Ensure photos directory exists and is writable
+# Link storage (Absolute Force Reconstruction)
+echo "Force-reconstructing storage bridge..."
+rm -rf /var/www/public/storage 
 mkdir -p /var/www/storage/app/public/photos
-chmod -R 775 /var/www/storage/app/public/photos
-chown -R www-data:www-data /var/www/storage/app/public/photos
+cd /var/www/public && ln -snf ../storage/app/public storage
+chown -R www-data:www-data /var/www/public /var/www/storage
+chmod -R 775 /var/www/public /var/www/storage
+cd /var/www
 
 # Run Laravel optimizations
 echo "Clearing cache..."

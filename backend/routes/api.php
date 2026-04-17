@@ -46,3 +46,24 @@ Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
 
     Route::put('/settings', [SettingController::class, 'update']);
 });
+
+// 🛠️ Diagnostic Route: Storage Pulse Check
+Route::get('/debug-storage', function () {
+    $publicLink = public_path('storage');
+    $storageTarget = storage_path('app/public');
+    $samplePhoto = 'photos'; // Directory check
+
+    return response()->json([
+        'backend_status' => 'ALIVE',
+        'public_link_exists' => file_exists($publicLink),
+        'is_link' => is_link($publicLink),
+        'link_target' => is_link($publicLink) ? readlink($publicLink) : 'NOT A LINK',
+        'storage_target_exists' => file_exists($storageTarget),
+        'storage_photos_exists' => file_exists($storageTarget . '/photos'),
+        'permissions' => [
+            'public_link' => substr(sprintf('%o', fileperms($publicLink)), -4),
+            'storage_target' => file_exists($storageTarget) ? substr(sprintf('%o', fileperms($storageTarget)), -4) : 'N/A'
+        ],
+        'sample_files' => file_exists($storageTarget . '/photos') ? array_slice(scandir($storageTarget . '/photos'), 2, 5) : []
+    ]);
+});
