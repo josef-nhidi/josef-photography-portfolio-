@@ -196,8 +196,14 @@ const AdminLayout = ({ children, activeTab, setActiveTab, onLogout }) => {
           transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1); 
           z-index: 1000; 
           flex-shrink: 0; 
+          overflow: hidden;
         }
-        .sidebar.closed { margin-left: -260px; width: 0; opacity: 0; visibility: hidden; }
+        .sidebar.closed { 
+          width: 0; 
+          opacity: 0; 
+          visibility: hidden; 
+          border-right-width: 0;
+        }
         
         .sidebar-header { padding: 2rem 1.5rem; display: flex; align-items: center; }
         .admin-logo { display: flex; align-items: center; gap: 0.75rem; }
