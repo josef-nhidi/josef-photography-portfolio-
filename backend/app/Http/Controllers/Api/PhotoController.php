@@ -40,7 +40,7 @@ class PhotoController extends Controller
         set_time_limit(300);
 
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:51200',
+            'image' => 'required|file|max:51200',
             'category' => 'required|string',
             'album_id' => 'nullable|exists:albums,id',
             'title' => 'nullable|string',
