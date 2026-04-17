@@ -1,9 +1,10 @@
 import React from 'react';
-import { Type, Globe, Upload, CheckCircle } from 'lucide-react';
+import { Palette, Type, Search, CheckCircle, Upload, Layout, Globe } from 'lucide-react';
 
 /**
- * AppearancePanel (Minimalist Version)
- * Streamlined to core identity essentials: Favicon, Title, and SEO Description.
+ * AppearancePanel (Full Unified Version)
+ * Restored with all management sections: Theme, Branding, Labels, and SEO.
+ * All sections use the unified Premium High-Fidelity design system.
  */
 const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) => {
   return (
@@ -11,17 +12,49 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
       <form onSubmit={onUpdateSettings}>
         <div className="panel-grid">
           
-          {/* Unified Identity Card */}
+          {/* ── 1. VISUAL THEME ── */}
           <div className="admin-card-premium">
             <p className="admin-heading-premium">
-              <Globe size={14} style={{ marginRight: '8px' }} /> 
-              Website Identity & SEO
+              <Palette size={14} style={{ marginRight: '8px' }} /> 
+              Site Theme & Atmosphere
             </p>
-            
+            <div className="color-grid">
+              <div className="color-input-group">
+                <label className="admin-label-premium">Primary Text</label>
+                <div className="color-picker-wrapper">
+                  <input type="color" value={customization.primary_color || '#0f172a'} onChange={(e) => setCustomization({ ...customization, primary_color: e.target.value })} />
+                  <span className="color-code">{customization.primary_color}</span>
+                </div>
+              </div>
+              <div className="color-input-group">
+                <label className="admin-label-premium">Accent Color</label>
+                <div className="color-picker-wrapper">
+                  <input type="color" value={customization.accent_color || '#2563eb'} onChange={(e) => setCustomization({ ...customization, accent_color: e.target.value })} />
+                  <span className="color-code">{customization.accent_color}</span>
+                </div>
+              </div>
+              <div className="color-input-group">
+                <label className="admin-label-premium">Background</label>
+                <div className="color-picker-wrapper">
+                  <input type="color" value={customization.bg_color || '#f8fafc'} onChange={(e) => setCustomization({ ...customization, bg_color: e.target.value })} />
+                  <span className="color-code">{customization.bg_color}</span>
+                </div>
+              </div>
+            </div>
+            <div className="info-box-premium">
+              <p>Updates logo accents, active links, and various UI highlights across the portfolio.</p>
+            </div>
+          </div>
+
+          {/* ── 2. BRANDING IDENTITY ── */}
+          <div className="admin-card-premium">
+            <p className="admin-heading-premium">
+              <Type size={14} style={{ marginRight: '8px' }} /> 
+              Branding & Tab Identity
+            </p>
             <div className="form-column">
-              {/* 1. WEBSITE TITLE TAG */}
               <div className="form-group">
-                <label className="admin-label-premium">Website Title Tag</label>
+                <label className="admin-label-premium">Website Title (Tab Name)</label>
                 <input 
                   type="text" 
                   className="admin-input-premium" 
@@ -29,31 +62,43 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
                   onChange={(e) => setCustomization({ ...customization, site_title: e.target.value })} 
                   placeholder="e.g. Josef Nhidi | Professional Photographer" 
                 />
-                <p className="upload-hint">The title displayed on browser tabs and search links.</p>
               </div>
-
-              {/* 2. META DESCRIPTION */}
               <div className="form-group">
-                <label className="admin-label-premium">Meta Description</label>
-                <textarea 
+                <label className="admin-label-premium">Navigation Logo Text</label>
+                <input 
+                  type="text" 
                   className="admin-input-premium" 
-                  value={customization.seo_description || ''} 
-                  placeholder="Appears in search results (max 160 characters)..."
-                  rows={4}
-                  onChange={(e) => setCustomization({ ...customization, seo_description: e.target.value })} 
+                  value={customization.logo_text || ''} 
+                  placeholder="e.g. JOSEF NHIDI" 
+                  onChange={(e) => setCustomization({ ...customization, logo_text: e.target.value })} 
                 />
-                <p className="upload-hint">A brief summary of your site for search engines.</p>
               </div>
-
-              <div className="divider" />
-
-              {/* 3. WEBSITE FAVICON */}
               <div className="form-group">
-                <label className="admin-label-premium">Website Favicon / SEO Image</label>
+                <label className="admin-label-premium">Site Tagline</label>
+                <input 
+                  type="text" 
+                  className="admin-input-premium" 
+                  value={customization.site_tagline || ''} 
+                  onChange={(e) => setCustomization({ ...customization, site_tagline: e.target.value })} 
+                  placeholder="e.g. Exclusive Events & Portraits" 
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* ── 3. WEBSITE FAVICON ── */}
+          <div className="admin-card-premium">
+            <p className="admin-heading-premium">
+              <Globe size={14} style={{ marginRight: '8px' }} /> 
+              Website Favicon & Global SEO Image
+            </p>
+            <div className="form-column">
+              <div className="form-group">
+                <label className="admin-label-premium">Site Logo / Favicon (512x512 recommended)</label>
                 <div className="branding-upload-area">
                   <div className="logo-preview-box">
                     {customization.site_logo ? (
-                      <img src={customization.site_logo} alt="Site Favicon" className="logo-preview-img" />
+                      <img src={customization.site_logo} alt="Site Logo" className="logo-preview-img" />
                     ) : (
                       <div className="logo-placeholder">No Favicon</div>
                     )}
@@ -62,7 +107,7 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
                     <input 
                       type="file" 
                       accept="image/*" 
-                      id="site_logo_file"
+                      id="site_logo_file_restored"
                       onChange={(e) => {
                         const file = e.target.files[0];
                         if (file) {
@@ -76,38 +121,93 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
                       }}
                       className="hidden-file-input"
                     />
-                    <label htmlFor="site_logo_file" className="btn-upload">
+                    <label htmlFor="site_logo_file_restored" className="btn-upload-premium">
                       <Upload size={18} />
                       Replace Favicon
                     </label>
-                    <p className="upload-hint">This image appears in browser tabs and search snippets.</p>
+                    <p className="upload-hint">Appears in Google search results and browser tabs.</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+          {/* ── 4. INTERFACE LABELS ── */}
+          <div className="admin-card-premium">
+            <p className="admin-heading-premium">
+              <Layout size={14} style={{ marginRight: '8px' }} /> 
+              Gallery & Navigation Labels
+            </p>
+            <div className="form-grid-2col">
+              <div className="form-group">
+                <label className="admin-label-premium">Portraits Tab Label</label>
+                <input type="text" className="admin-input-premium" value={customization.portraits_label || 'Portraits'} onChange={(e) => setCustomization({ ...customization, portraits_label: e.target.value })} />
+              </div>
+              <div className="form-group">
+                <label className="admin-label-premium">Events Tab Label</label>
+                <input type="text" className="admin-input-premium" value={customization.events_label || 'Events'} onChange={(e) => setCustomization({ ...customization, events_label: e.target.value })} />
+              </div>
+              <div className="form-group">
+                <label className="admin-label-premium">Intro Label (Small)</label>
+                <input type="text" className="admin-input-premium" value={customization.gallery_tagline || ''} onChange={(e) => setCustomization({ ...customization, gallery_tagline: e.target.value })} />
+              </div>
+              <div className="form-group">
+                <label className="admin-label-premium">Intro Heading (Large)</label>
+                <input type="text" className="admin-input-premium" value={customization.gallery_title || ''} onChange={(e) => setCustomization({ ...customization, gallery_title: e.target.value })} />
+              </div>
+            </div>
+          </div>
+
+          {/* ── 5. SEO & SEARCH AUTHORITY ── */}
+          <div className="admin-card-premium">
+            <p className="admin-heading-premium">
+              <Search size={14} style={{ marginRight: '8px' }} /> 
+              SEO Metadata & Search Snippets
+            </p>
+            <div className="form-column">
+              <div className="form-group">
+                <label className="admin-label-premium">Meta Description (Search Snippet)</label>
+                <textarea 
+                  className="admin-input-premium" 
+                  value={customization.seo_description || ''} 
+                  placeholder="Appears in search results (max 160 characters)..."
+                  rows={3}
+                  onChange={(e) => setCustomization({ ...customization, seo_description: e.target.value })} 
+                />
+              </div>
+              <div className="form-group">
+                <label className="admin-label-premium">Meta Keywords</label>
+                <input 
+                  type="text" 
+                  className="admin-input-premium" 
+                  value={customization.seo_keywords || ''} 
+                  placeholder="e.g. josef photography, Tunisia photographer" 
+                  onChange={(e) => setCustomization({ ...customization, seo_keywords: e.target.value })} 
+                />
+              </div>
+            </div>
+          </div>
+
         </div>
 
         {/* Global Save Action */}
         <div className="sticky-action">
-          <button type="submit" className="btn-save-settings">
-            <CheckCircle size={18} /> Update Studio Identity
+          <button type="submit" className="btn-save-settings-premium">
+            <CheckCircle size={18} /> Publish Studio Identity
           </button>
         </div>
       </form>
 
       <style jsx="true">{`
         .appearance-root { padding-bottom: 5rem; }
-        .panel-grid { max-width: 800px; margin: 0 auto; }
+        .panel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 2rem; align-items: start; }
         
-        /* Premium Card Standard */
         .admin-card-premium {
           background: var(--admin-panel);
           border: 1px solid var(--admin-border);
-          border-radius: 20px;
+          border-radius: 24px;
           padding: 2.5rem;
           box-shadow: var(--shadow-premium);
-          margin-bottom: 2rem;
         }
 
         .admin-heading-premium {
@@ -122,94 +222,43 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
           align-items: center;
         }
 
-        .form-column { display: flex; flex-direction: column; gap: 2rem; }
+        .color-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 1.5rem; }
+        .color-input-group { display: flex; flex-direction: column; gap: 0.75rem; }
+        .color-picker-wrapper { background: var(--admin-bg); padding: 0.5rem; border-radius: 12px; border: 1px solid var(--admin-border); display: flex; align-items: center; gap: 0.75rem; cursor: pointer; transition: all 0.2s; }
+        .color-picker-wrapper input[type="color"] { width: 32px; height: 32px; border-radius: 8px; border: none; cursor: pointer; }
+        .color-code { font-family: 'monospace'; font-size: 0.7rem; color: var(--admin-text-soft); font-weight: 700; text-transform: uppercase; opacity: 0.6; }
+
+        .info-box-premium { background: var(--admin-active-bg); border-radius: 12px; padding: 1rem; border: 1px dashed rgba(37,99,235,0.2); }
+        .info-box-premium p { font-size: 0.75rem; color: var(--admin-accent); font-weight: 600; margin: 0; line-height: 1.4; }
+
+        .form-column { display: flex; flex-direction: column; gap: 1.5rem; }
+        .form-grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
         .form-group { display: flex; flex-direction: column; gap: 0.75rem; }
         
-        .admin-label-premium {
-          font-size: 0.72rem;
-          text-transform: uppercase;
-          letter-spacing: 0.12em;
-          color: var(--admin-text-soft);
-          font-weight: 800;
-        }
+        .admin-label-premium { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--admin-text-soft); font-weight: 800; }
+        .admin-input-premium { background: var(--admin-bg); border: 1px solid var(--admin-border); color: var(--admin-text); padding: 1.1rem; border-radius: 14px; font-family: var(--font-body); font-size: 0.95rem; outline: none; transition: all 0.2s; width: 100%; resize: none; }
+        .admin-input-premium:focus { border-color: var(--admin-accent); background: var(--admin-panel); box-shadow: var(--shadow-focus); }
 
-        .admin-input-premium {
-          background: var(--admin-bg);
-          border: 1px solid var(--admin-border);
-          color: var(--admin-text);
-          padding: 1.1rem;
-          border-radius: 12px;
-          font-family: var(--font-body);
-          font-size: 1rem;
-          outline: none;
-          transition: all 0.2s;
-          width: 100%;
-          resize: none;
-        }
-
-        .admin-input-premium:focus {
-          border-color: var(--admin-accent);
-          background: var(--admin-panel);
-          box-shadow: var(--shadow-focus);
-        }
-
-        .divider { height: 1px; background: var(--admin-border); margin: 0.5rem 0; opacity: 0.5; }
-
-        /* Upload Area */
-        .branding-upload-area { 
-          display: flex; 
-          gap: 2rem; 
-          align-items: center; 
-          background: var(--admin-bg); 
-          padding: 1.5rem; 
-          border-radius: 16px; 
-          border: 1px dashed var(--admin-border); 
-        }
-        .logo-preview-box { 
-          width: 100px; 
-          height: 100px; 
-          background: var(--admin-panel); 
-          border: 1px solid var(--admin-border); 
-          border-radius: 12px; 
-          display: flex; 
-          align-items: center; 
-          justify-content: center; 
-          overflow: hidden; 
-          box-shadow: var(--shadow-sm); 
-        }
+        .branding-upload-area { display: flex; gap: 2rem; align-items: center; background: var(--admin-bg); padding: 2rem; border-radius: 20px; border: 1px dashed var(--admin-border); }
+        .logo-preview-box { width: 120px; height: 120px; background: var(--admin-panel); border: 1px solid var(--admin-border); border-radius: 16px; display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: var(--shadow-sm); }
         .logo-preview-img { width: 100%; height: 100%; object-fit: contain; padding: 10px; }
-        .logo-placeholder { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; opacity: 0.4; text-align: center; }
+        .logo-placeholder { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; opacity: 0.4; }
         
         .upload-controls { flex: 1; display: flex; flex-direction: column; gap: 0.75rem; }
         .hidden-file-input { display: none; }
-        
-        .btn-upload { 
-          background: var(--admin-panel); 
-          border: 1px solid var(--admin-border); 
-          color: var(--admin-text); 
-          padding: 0.8rem 1.2rem; 
-          border-radius: 10px; 
-          font-size: 0.8rem; 
-          font-weight: 700; 
-          cursor: pointer; 
-          display: flex; 
-          align-items: center; 
-          justify-content: center; 
-          gap: 0.75rem; 
-          transition: all 0.2s; 
-        }
-        .btn-upload:hover { border-color: var(--admin-accent); color: var(--admin-accent); }
+        .btn-upload-premium { background: var(--admin-panel); border: 1px solid var(--admin-border); color: var(--admin-text); padding: 0.85rem 1.5rem; border-radius: 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.75rem; transition: all 0.2s; }
+        .btn-upload-premium:hover { border-color: var(--admin-accent); color: var(--admin-accent); }
         .upload-hint { font-size: 0.7rem; color: var(--admin-text-soft); opacity: 0.6; line-height: 1.4; }
 
-        /* Save Button */
-        .btn-save-settings { 
+        .sticky-action { margin-top: 2rem; }
+        .btn-save-settings-premium { 
           background: var(--admin-accent); 
           color: white; 
           border: none; 
           padding: 1.25rem; 
-          border-radius: 14px; 
+          border-radius: 16px; 
           font-family: var(--font-body); 
-          font-size: 0.95rem; 
+          font-size: 1rem; 
           font-weight: 800; 
           width: 100%;
           display: flex; 
@@ -220,15 +269,9 @@ const AppearancePanel = ({ customization, setCustomization, onUpdateSettings }) 
           transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
           box-shadow: 0 10px 25px rgba(37,99,235,0.25); 
         }
-        .btn-save-settings:hover { 
-          background: #1d4ed8; 
-          transform: translateY(-4px); 
-          box-shadow: 0 15px 35px rgba(37,99,235,0.35); 
-        }
+        .btn-save-settings-premium:hover { transform: translateY(-4px); box-shadow: 0 15px 35px rgba(37,99,235,0.35); background: #1d4ed8; }
 
-        @media (max-width: 600px) {
-          .branding-upload-area { flex-direction: column; text-align: center; }
-        }
+        @media (max-width: 900px) { color-grid { grid-template-columns: 1fr; } .form-grid-2col { grid-template-columns: 1fr; } }
       `}</style>
     </div>
   );

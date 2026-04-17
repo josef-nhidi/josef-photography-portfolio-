@@ -35,8 +35,8 @@ const Navbar = ({ settings, isAdmin }) => {
     {
       title: 'Gallery',
       links: [
-        { name: 'Portraits', path: '/portraits', icon: <Camera size={18} /> },
-        { name: 'Events', path: '/events', icon: <Calendar size={18} /> },
+        { name: settings?.portraits_label || 'Portraits', path: '/portraits', icon: <Camera size={18} /> },
+        { name: settings?.events_label || 'Events', path: '/events', icon: <Calendar size={18} /> },
       ]
     },
     {
@@ -64,9 +64,9 @@ const Navbar = ({ settings, isAdmin }) => {
                 </div>
                 <div className="logo-text-group">
                   <div className="logo-main">
-                    <span className="logo-first">JOSEF</span>
+                    <span className="logo-first">{(settings?.logo_text || 'JOSEF NHIDI').split(' ')[0]}</span>
                     <div className="logo-divider"></div>
-                    <span className="logo-type">NHIDI</span>
+                    <span className="logo-type">{(settings?.logo_text || 'JOSEF NHIDI').split(' ').slice(1).join(' ') || 'NHIDI'}</span>
                   </div>
                   <span className="logo-tagline">PHOTOGRAPHER</span>
                 </div>
