@@ -38,7 +38,7 @@ WORKDIR /var/www
 COPY . /var/www
 
 # Install production dependencies
-RUN composer install --no-dev --optimize-autoloader --no-interaction --ignore-platform-req=php+
+RUN composer install --no-dev --optimize-autoloader --no-interaction --ignore-platform-req=php
 
 # Copy configuration files
 COPY docker/nginx.conf /etc/nginx/sites-enabled/default
