@@ -16,9 +16,15 @@ if [ ! -f /var/www/database/database.sqlite ]; then
     chown www-data:www-data /var/www/database/database.sqlite
 fi
 
-# Link storage
-echo "Linking storage..."
-php artisan storage:link --force || echo "Storage link already exists, skipping..."
+# Link storage (Force recreation)
+echo "Recreating storage link..."
+rm -rf /var/www/public/storage
+php artisan storage:link --force
+
+# Ensure photos directory exists and is writable
+mkdir -p /var/www/storage/app/public/photos
+chmod -R 775 /var/www/storage/app/public/photos
+chown -R www-data:www-data /var/www/storage/app/public/photos
 
 # Run Laravel optimizations
 echo "Clearing cache..."
