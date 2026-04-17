@@ -50,61 +50,46 @@ class AboutController extends Controller
                 $apiKey = env('CLOUDINARY_API_KEY');
                 $apiSecret = env('CLOUDINARY_API_SECRET');
 
-                // Defensive Check: Only attempt Cloudinary if CURL exists and keys are present
-                if (function_exists('curl_init') && $cloudName && $apiKey && $apiSecret) {
-                    try {
-                        // --- UPLOAD TO CLOUDINARY ---
-                        $params = [
-                            'folder' => 'josef-about',
-                            'timestamp' => time(),
-                        ];
-                        ksort($params);
-                        $signString = "";
-                        foreach ($params as $key => $val) {
-                            $signString .= "$key=$val&";
-                        }
-                        $signString = rtrim($signString, '&');
-                        $signature = sha1($signString . $apiSecret);
-                        
-                        $url = "https://api.cloudinary.com/v1_1/{$cloudName}/image/upload";
-                        
-                        $ch = curl_init($url);
-                        curl_setopt($ch, CURLOPT_POST, 1);
-                        curl_setopt($ch, CURLOPT_POSTFIELDS, array_merge($params, [
-                            'file' => new \CURLFile($request->file('image')->getRealPath()),
-                            'api_key' => $apiKey,
-                            'signature' => $signature,
-                        ]));
-                        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                        curl_setopt($ch, CURLOPT_TIMEOUT, 60);
-                        $exec = curl_exec($ch);
-                        $error = curl_error($ch);
-                        curl_close($ch);
+                if ($cloudName && $apiKey && $apiSecret) {
+                    // --- UPLOAD TO CLOUDINARY ---
+                    $params = [
+                        'folder' => 'josef-about',
+                        'timestamp' => time(),
+                    ];
+                    ksort($params);
+                    $signString = "";
+                    foreach ($params as $key => $val) {
+                        $signString .= "$key=$val&";
+                    }
+                    $signString = rtrim($signString, '&');
+                    $signature = sha1($signString . $apiSecret);
+                    
+                    $url = "https://api.cloudinary.com/v1_1/{$cloudName}/image/upload";
+                    
+                    $ch = curl_init($url);
+                    curl_setopt($ch, CURLOPT_POST, 1);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, array_merge($params, [
+                        'file' => new \CURLFile($request->file('image')->getRealPath()),
+                        'api_key' => $apiKey,
+                        'signature' => $signature,
+                    ]));
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+                    $exec = curl_exec($ch);
+                    $error = curl_error($ch);
+                    curl_close($ch);
 
-                        if ($error) throw new \Exception('CURL Error: ' . $error);
+                    if ($error) throw new \Exception('CURL Error: ' . $error);
 
-                        $response = json_decode($exec, true);
-                        if (isset($response['secure_url'])) {
-                            $about->profile_image_url = $response['secure_url'];
-                        } else {
-                            Log::error('Cloudinary About Image Upload Failed', ['response' => $response]);
-                            // Fallback to local if Cloudinary fails but we have the file
-                            throw new \Exception('Cloudinary upload failed');
-                        }
-                    } catch (\Exception $e) {
-                        Log::warning('Cloudinary Fallback Triggered: ' . $e->getMessage());
-                        $path = $request->file('image')->store('about', 'public');
-                        $about->profile_image_url = $path;
+                    $response = json_decode($exec, true);
+                    if (isset($response['secure_url'])) {
+                        $about->profile_image_url = $response['secure_url'];
+                    } else {
+                        Log::error('Cloudinary About Image Upload Failed', ['response' => $response]);
+                        throw new \Exception('Cloudinary upload failed');
                     }
                 } else {
-                    // --- LOCAL STORAGE FALLBACK ---
-                    // Log the reason for fallback
-                    if (!function_exists('curl_init')) {
-                        Log::warning('Local Storage Fallback: PHP CURL extension missing.');
-                    } else {
-                        Log::warning('Local Storage Fallback: Cloudinary credentials incomplete.');
-                    }
-
+                    // --- LOCAL STORAGE ---
                     if ($about->profile_image_url && !str_starts_with($about->profile_image_url, 'http')) {
                         Storage::disk('public')->delete($about->profile_image_url);
                     }

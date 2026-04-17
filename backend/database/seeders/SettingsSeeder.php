@@ -11,7 +11,7 @@ class SettingsSeeder extends Seeder
     {
         $settings = [
             'primary_color' => '#050505',
-            'accent_color' => '#2563eb',
+            'accent_color' => '#d4af37',
             'bg_color' => '#ffffff',
             'glass_bg' => 'rgba(255, 255, 255, 0.4)',
             'site_title' => 'Josef Nhidi Photography',
