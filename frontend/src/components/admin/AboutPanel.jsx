@@ -39,7 +39,7 @@ const AboutPanel = ({ about, setAbout, aboutImage, setAboutImage, onUpdateAbout 
                  {aboutImage ? (
                     <img src={URL.createObjectURL(aboutImage)} alt="Preview" className="profile-img" />
                  ) : about.profile_image_url ? (
-                    <img src={about.profile_image_url} alt="Profile" className="profile-img" />
+                    <img src={about.profile_image_url} alt="Profile" className="profile-img" crossOrigin="anonymous" />
                  ) : (
                     <div className="profile-placeholder">NO IMAGE</div>
                  )}

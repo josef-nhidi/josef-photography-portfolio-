@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\AboutContent;
 use App\Models\User;
+use App\Services\ImageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -12,6 +13,13 @@ use Illuminate\Support\Facades\Storage;
 
 class AboutController extends Controller
 {
+    protected $imageService;
+
+    public function __construct(ImageService $imageService)
+    {
+        $this->imageService = $imageService;
+    }
+
     public function show()
     {
         return AboutContent::first() ?? response()->json(['bio' => ''], 200);
@@ -89,11 +97,10 @@ class AboutController extends Controller
                         throw new \Exception('Cloudinary upload failed');
                     }
                 } else {
-                    // --- LOCAL STORAGE ---
                     if ($about->profile_image_url && !str_starts_with($about->profile_image_url, 'http')) {
                         Storage::disk('public')->delete($about->profile_image_url);
                     }
-                    $path = $request->file('image')->store('about', 'public');
+                    $path = $this->imageService->upload($request->file('image'), 'about');
                     $about->profile_image_url = $path;
                 }
             }
