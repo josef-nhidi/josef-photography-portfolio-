@@ -145,7 +145,7 @@ const PhotosPanel = ({
         .photos-root { display: flex; flex-direction: column; gap: 1.5rem; }
         .panel-card { background: var(--admin-panel, white); border: 1px solid var(--admin-border, rgba(0,0,0,0.06)); border-radius: 12px; padding: 1.75rem; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
         .panel-card-title { font-family: var(--font-heading); font-size: 0.75rem; font-weight: 700; color: var(--admin-text-soft); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem; opacity: 0.6; }
-        .drop-zone { border: 2px dashed var(--admin-border); border-radius: 12px; padding: 2.5rem; text-align: center; cursor: pointer; transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1); background: var(--admin-bg); }
+        .drop-zone { border: 2px dashed var(--admin-border); border-radius: 0; padding: 2.5rem; text-align: center; cursor: pointer; transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1); background: var(--admin-bg); }
         .drop-zone:hover, .drop-zone.drag-over { border-color: var(--admin-accent); background: var(--admin-active-bg); transform: scale(0.99); }
         .drop-zone.has-files { border-style: solid; border-color: rgba(37,99,235,0.2); background: var(--admin-panel); }
         .dz-icon { color: var(--admin-text-soft); opacity: 0.5; margin: 0 auto 1.2rem; }
@@ -153,7 +153,7 @@ const PhotosPanel = ({
         .dz-text { font-size: 0.95rem; color: var(--admin-text); margin-bottom: 0.25rem; font-weight: 600; }
         .dz-sub { font-size: 0.75rem; color: var(--admin-text-soft); opacity: 0.6; }
         .preview-strip { display: flex; gap: 0.6rem; margin-top: 1.5rem; overflow-x: auto; padding-bottom: 0.5rem; }
-        .preview-thumb { width: 58px; height: 58px; border-radius: 8px; overflow: hidden; flex-shrink: 0; background: var(--admin-bg); border: 1px solid var(--admin-border); }
+        .preview-thumb { width: 58px; height: 58px; border-radius: 0; overflow: hidden; flex-shrink: 0; background: var(--admin-bg); border: 1px solid var(--admin-border); }
         .preview-thumb img { width: 100%; height: 100%; object-fit: cover; }
         .preview-more { display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: var(--admin-text-soft); font-weight: 700; }
         .upload-options { display: flex; gap: 1.25rem; margin-top: 1.5rem; flex-wrap: wrap; align-items: flex-end; }
@@ -167,7 +167,7 @@ const PhotosPanel = ({
         .btn-primary:hover:not(:disabled) { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 12px 25px rgba(37,99,235,0.3); }
         .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
         .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.5rem; }
-        .photo-grid-item { aspect-ratio: 1; border-radius: 12px; overflow: hidden; position: relative; background: var(--admin-bg); border: 1px solid var(--admin-border); }
+        .photo-grid-item { aspect-ratio: 1; border-radius: 0; overflow: hidden; position: relative; background: var(--admin-bg); border: 1px solid var(--admin-border); }
         .photo-grid-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1); }
         .photo-grid-item:hover img { transform: scale(1.08); }
         .photo-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%); display: flex; flex-direction: column; justify-content: flex-end; padding: 0.75rem; opacity: 1; /* Always visible on mobile for clarity */ }

@@ -126,13 +126,14 @@ const About = ({ settings }) => {
 
       <style jsx="true">{`
         .about-page {
-          padding-top: 4rem;
+          padding-top: 2rem;
           padding-bottom: 6rem;
         }
 
         .about-panel {
           padding: 0;
           overflow: hidden;
+          border-radius: 0;
         }
 
         .about-grid {

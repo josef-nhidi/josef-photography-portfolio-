@@ -188,8 +188,8 @@ ul {
 /* ── PORTFOLIO PAGES (SHARED) ── */
 .page-header {
   position: relative;
-  margin-bottom: 4rem;
-  padding-top: 2rem;
+  margin-bottom: 2rem;
+  padding-top: 1rem;
 }
 .header-label {
   display: block;
@@ -336,7 +336,7 @@ ul {
 .album-panel-card {
   background: var(--bg-panel);
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: 0;
   overflow: hidden;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
@@ -435,7 +435,7 @@ ul {
 .masonry-item {
   break-inside: avoid;
   margin-bottom: 2.5rem;
-  border-radius: 12px;
+  border-radius: 0;
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
@@ -460,8 +460,8 @@ ul {
   }
   
   .page-header {
-    margin-bottom: 2rem;
-    padding-top: 1rem;
+    margin-bottom: 1.5rem;
+    padding-top: 0.5rem;
   }
 }
 
@@ -473,8 +473,8 @@ ul {
   }
   
   .page-header {
-    margin-bottom: 1rem;
-    padding: 1.5rem 1rem 0; /* Header text still needs padding, but the grid doesn't */
+    margin-bottom: 0.75rem;
+    padding: 1rem 1rem 0; /* Header text still needs padding, but the grid doesn't */
   }
 
   .header-title {

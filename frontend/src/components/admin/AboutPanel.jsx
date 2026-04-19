@@ -139,7 +139,7 @@ const AboutPanel = ({ about, setAbout, aboutImage, setAboutImage, onUpdateAbout 
         .right-column { display: flex; flex-direction: column; }
  
         .profile-upload-section { display: flex; align-items: center; gap: 1.5rem; }
-        .profile-preview-wrapper { width: 100px; height: 100px; border-radius: 14px; overflow: hidden; position: relative; background: var(--admin-bg); border: 1px solid var(--admin-border); cursor: pointer; flex-shrink: 0; transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
+        .profile-preview-wrapper { width: 100px; height: 100px; border-radius: 0; overflow: hidden; position: relative; background: var(--admin-bg); border: 1px solid var(--admin-border); cursor: pointer; flex-shrink: 0; transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
         .profile-preview-wrapper:hover { transform: scale(1.02); border-color: var(--admin-accent); }
         .profile-img { width: 100%; height: 100%; object-fit: cover; }
         .profile-placeholder { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: var(--admin-text-soft); font-weight: 800; text-align: center; padding: 0.5rem; letter-spacing: 0.05em; opacity: 0.4; }

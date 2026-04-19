@@ -34,7 +34,7 @@ const AlbumDetail = ({ settings }) => {
   if (!album) return <div className="container" style={{paddingTop: '10rem'}}>Album not found.</div>;
 
   return (
-    <section className="page" style={{ paddingTop: '4rem' }}>
+    <section className="page" style={{ paddingTop: '2rem' }}>
       <SEO 
         settings={settings}
         title={album.name}
@@ -87,7 +87,7 @@ const AlbumDetail = ({ settings }) => {
       </div>
 
       <style jsx="true">{`
-        .page-header { position: relative; margin-bottom: 4rem; }
+        .page-header { position: relative; margin-bottom: 2rem; }
         .header-content { position: relative; z-index: 5; }
         .header-subtitle { font-size: 1rem; color: var(--admin-text-soft); margin-top: 1rem; max-width: 600px; line-height: 1.6; opacity: 0.8; }
 
@@ -101,7 +101,7 @@ const AlbumDetail = ({ settings }) => {
         }
         
         .panel-toolbar { 
-          padding: 1.25rem 2rem; 
+          padding: 0; 
           border-bottom: 1px solid var(--border-subtle); 
           background: var(--admin-header);
           display: flex;
@@ -140,13 +140,13 @@ const AlbumDetail = ({ settings }) => {
         .toolbar-divider { height: 20px; width: 1px; background: var(--border-subtle); }
         .toolbar-stat { font-size: 0.7rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 0.2em; }
         
-        .panel-body { padding: 2.5rem; }
+        .panel-body { padding: 0; }
 
         @media (max-width: 768px) {
           .page { padding-top: 2rem !important; }
           .portfolio-content-panel { border-radius: 0; border-left: none; border-right: none; }
-          .panel-body { padding: 1.5rem; }
-          .panel-toolbar { padding: 1rem; overflow-x: auto; position: relative; }
+          .panel-body { padding: 0; }
+          .panel-toolbar { padding: 0; overflow-x: auto; position: relative; }
           .header-title { font-size: 3rem; }
         }
         

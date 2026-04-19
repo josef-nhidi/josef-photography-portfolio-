@@ -43,7 +43,7 @@ const PortfolioLayout = ({
   const groupedImages = localData?.grouped || {};
 
   return (
-    <section className={`page ${category}-page`} style={{ paddingTop: '4rem' }}>
+    <section className={`page ${category}-page`} style={{ paddingTop: '2rem' }}>
       <SEO
         settings={settings}
         title={title}
