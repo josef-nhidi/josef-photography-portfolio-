@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import api from '../api/axios';
 import { Instagram, Linkedin, Mail, Globe, Twitter, Youtube, Facebook } from 'lucide-react';
 import SEO from '../components/ui/SEO';
+import ProtectedImage from '../components/portfolio/ProtectedImage';
 
 const About = ({ settings }) => {
   const [content, setContent] = useState(null);
@@ -67,7 +68,7 @@ const About = ({ settings }) => {
           <div className="panel-body about-grid">
         <div className="about-image">
           {content?.profile_image_url ? (
-            <img src={content.profile_image_url} alt="Josef Nhidi - Professional Photographer Tunisia" />
+            <ProtectedImage src={content.profile_image_url} alt="Josef Nhidi - Professional Photographer Tunisia" />
           ) : (
             <div className="image-placeholder">PROFILE PICTURE</div>
           )}
@@ -149,15 +150,13 @@ const About = ({ settings }) => {
           background: var(--border-subtle);
         }
 
-        .about-image img {
-          width: 100%;
+        .about-image :global(.protected-image-container) {
           height: 100%;
-          object-fit: cover;
           filter: grayscale(0.2);
           transition: var(--transition);
         }
 
-        .about-image img:hover {
+        .about-image :global(.protected-image-container):hover {
           filter: grayscale(0);
         }
 
