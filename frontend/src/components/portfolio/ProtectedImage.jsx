@@ -1,12 +1,15 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+import api from '../../api/axios';
 
 /**
  * ProtectedImage
  * A security-enhanced image component that renders pixels to a canvas.
  * This prevents standard 'Right-click Save As' and blocks most scraping tools.
  */
-const ProtectedImage = ({ src, alt, className }) => {
+const ProtectedImage = ({ id, src, alt, className }) => {
   const canvasRef = useRef(null);
+  const containerRef = useRef(null);
+  const [tracked, setTracked] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -46,8 +49,38 @@ const ProtectedImage = ({ src, alt, className }) => {
     img.src = src;
   }, [src]);
 
+  // --- AUTOMATED VIEW TRACKING ---
+  useEffect(() => {
+    if (!id || tracked) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Count as a view after 500ms of visibility to avoid scroll-spam
+            setTimeout(() => {
+              // Re-check after timeout to ensure still visible
+              if (entry.isIntersecting) {
+                 api.post(`photos/${id}/view`).catch(() => {});
+                 setTracked(true);
+              }
+            }, 800);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [id, tracked]);
+
   return (
-    <div className={`protected-image-container ${className}`}>
+    <div ref={containerRef} className={`protected-image-container ${className}`}>
       {/* ── SECURITY LAYER 1: THE INVISIBLE SHIELD ── */}
       <div className="security-overlay" onContextMenu={(e) => e.preventDefault()} />
 

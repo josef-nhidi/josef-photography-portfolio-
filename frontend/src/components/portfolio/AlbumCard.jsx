@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Image } from 'lucide-react';
+import ProtectedImage from './ProtectedImage';
 
 /**
  * AlbumCard
@@ -9,13 +10,15 @@ import { Image } from 'lucide-react';
  */
 const AlbumCard = ({ album }) => {
   const navigate = useNavigate();
-  const coverImage = album.photos && album.photos.length > 0 ? album.photos[0].url : null;
+  const coverPhoto = album.photos && album.photos.length > 0 ? album.photos[0] : null;
+  const coverImage = coverPhoto ? coverPhoto.url : null;
+  const coverId = coverPhoto ? coverPhoto.id : null;
 
   return (
     <div className="album-panel-card" onClick={() => navigate(`/album/${album.id}`)}>
       <div className="album-cover-container">
         {coverImage ? (
-          <img src={coverImage} alt={album.name} className="album-cover" />
+          <ProtectedImage id={coverId} src={coverImage} alt={album.name} className="album-cover" />
         ) : (
           <div className="album-placeholder">
              <Image size={32} />

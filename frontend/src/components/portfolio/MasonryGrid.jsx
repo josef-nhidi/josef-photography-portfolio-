@@ -27,6 +27,7 @@ const MasonryGrid = ({ images }) => {
           transition={{ duration: 1, ease: [0.19, 1, 0.22, 1], delay: (index % 5) * 0.1 }}
         >
           <ProtectedImage
+            id={image.id}
             src={image.url}
             alt={image.title ? `${image.title} | Josef Nhidi Photographer Tunisia` : 'Josef Nhidi Photographer Tunisia - Professional Services'}
             className="masonry-img"
